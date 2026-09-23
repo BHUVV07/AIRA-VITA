@@ -7,7 +7,7 @@ import FinalCTASection from "@/components/sections/FinalCTASection";
 import { INDUSTRIES } from "@/data/ariaVitaData";
 
 export const metadata = {
-  title: "Target Industries & Sectors | Aria Vita HVAC",
+  title: "Target Industries & Sectors | Aria Vita™ HVAC",
   description:
     "Engineered air distribution solutions tailored for Commercial Buildings, Hospitals, Hotels, Malls, Data Centers, Manufacturing Plants, Educational Institutions, and Food Processing Units.",
 };

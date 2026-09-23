@@ -7,9 +7,9 @@ import FinalCTASection from "@/components/sections/FinalCTASection";
 import { COMPANY_INFO } from "@/data/ariaVitaData";
 
 export const metadata = {
-  title: "About Us | Aria Vita HVAC Air Distribution",
+  title: "About Us | Aria Vita™ HVAC Air Distribution",
   description:
-    "Learn about Aria Vita, a leading manufacturer and supplier of engineered air distribution products for commercial, industrial and residential HVAC applications.",
+    "Learn about Aria Vita™, a leading manufacturer and supplier of engineered air distribution products for commercial, industrial and residential HVAC applications.",
 };
 
 export default function AboutPage() {
@@ -37,7 +37,7 @@ export default function AboutPage() {
             <SectionHeading
               badge="Core Purpose"
               title="Precision Air Distribution Solutions"
-              description="Aria Vita manufactures and supplies high-performance air distribution products engineered to meet demanding HVAC requirements across commercial, industrial and residential applications."
+              description="Aria Vita™ manufactures and supplies high-performance air distribution products engineered to meet demanding HVAC requirements across commercial, industrial and residential applications."
             />
 
             <p className="text-slate-600 text-base leading-relaxed">
@@ -67,7 +67,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900">
                 <Image
                   src="/images/products/constant-airflow-regulator.jpg"
-                  alt="Aria Vita Manufacturing & Distribution"
+                  alt="Aria Vita™ Manufacturing & Distribution"
                   fill
                   className="object-cover"
                 />
@@ -87,7 +87,7 @@ export default function AboutPage() {
               {COMPANY_INFO.distributor.name}
             </h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Aria Vita products are stocked, distributed, and supported pan-India by{" "}
+              Aria Vita™ products are stocked, distributed, and supported pan-India by{" "}
               <strong>Ecosta Systems</strong>, located in {COMPANY_INFO.distributor.location}. This ensures ready stock availability, rapid project dispatch, and local technical assistance for MEP contractors and consultants.
             </p>
           </div>

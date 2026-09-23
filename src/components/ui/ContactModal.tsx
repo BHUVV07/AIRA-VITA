@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Send, CheckCircle2, Phone, Mail, Building, ShieldCheck } from "lucide-react";
+import { X, Send, CheckCircle2, Phone, Mail, Building, ShieldCheck, MessageCircle } from "lucide-react";
 import { COMPANY_INFO, PRODUCTS } from "@/data/ariaVitaData";
+import { generateWhatsAppEnquiryUrl } from "@/utils/whatsapp";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -33,11 +34,14 @@ export default function ContactModal({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission delay for smooth UX
+    const waUrl = generateWhatsAppEnquiryUrl(formData);
+    if (typeof window !== "undefined") {
+      window.open(waUrl, "_blank", "noopener,noreferrer");
+    }
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 600);
+    }, 400);
   };
 
   const handleReset = () => {
@@ -59,7 +63,7 @@ export default function ContactModal({
             </div>
             <div>
               <h3 className="text-lg font-bold font-heading">Talk to Our Engineering Team</h3>
-              <p className="text-xs text-slate-400">ARIA VITA B2B Project Inquiry & Product RFQ</p>
+              <p className="text-xs text-slate-400">ARIA VITA™ B2B Project Inquiry & Product RFQ</p>
             </div>
           </div>
           <button
@@ -74,27 +78,40 @@ export default function ContactModal({
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto">
           {submitted ? (
-            <div className="py-10 text-center flex flex-col items-center">
+            <div className="py-8 text-center flex flex-col items-center">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h4 className="text-2xl font-bold font-heading text-slate-900">Enquiry Received</h4>
+              <h4 className="text-2xl font-bold font-heading text-slate-900">Enquiry Sent to WhatsApp</h4>
               <p className="mt-2 text-sm text-slate-600 max-w-md">
-                Thank you for contacting Aria Vita. Our engineering team and authorized distributor{" "}
-                <span className="font-semibold text-slate-900">{COMPANY_INFO.distributor.name}</span> will contact you shortly regarding your project requirements.
+                Your enquiry details have been pre-filled and sent to our WhatsApp desk ({COMPANY_INFO.contact.formattedPhone}).
+                If WhatsApp didn&apos;t open automatically, please click the button below:
               </p>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center">
+                <a
+                  href={generateWhatsAppEnquiryUrl(formData)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md transition-all"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Open WhatsApp Chat</span>
+                </a>
+                <button
+                  onClick={handleReset}
+                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition-all"
+                >
+                  Close Window
+                </button>
+              </div>
+
               <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left w-full max-w-md">
                 <p className="font-semibold text-slate-900 mb-1">Direct Contact Details:</p>
+                <p>WhatsApp & Phone: {COMPANY_INFO.contact.formattedPhone}</p>
                 <p>Email: {COMPANY_INFO.contact.email}</p>
-                <p>Phone: {COMPANY_INFO.contact.formattedPhone}</p>
-                <p>Location: {COMPANY_INFO.distributor.location}</p>
+                <p>Authorized Distributor: {COMPANY_INFO.distributor.name} ({COMPANY_INFO.distributor.location})</p>
               </div>
-              <button
-                onClick={handleReset}
-                className="mt-8 px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg text-sm transition-colors"
-              >
-                Close Window
-              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -230,14 +247,14 @@ export default function ContactModal({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2.5 bg-purple-700 hover:bg-purple-800 text-white text-sm font-semibold rounded-lg shadow-md shadow-purple-900/10 inline-flex items-center gap-2 transition-colors disabled:opacity-50 cursor-pointer"
+                  className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-semibold rounded-lg shadow-md inline-flex items-center gap-2 transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? (
-                    "Processing..."
+                    "Opening WhatsApp..."
                   ) : (
                     <>
-                      <span>Send Project Enquiry</span>
-                      <Send className="w-4 h-4" />
+                      <MessageCircle className="w-4 h-4" />
+                      <span>Send Enquiry via WhatsApp</span>
                     </>
                   )}
                 </button>

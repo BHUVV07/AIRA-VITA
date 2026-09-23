@@ -47,7 +47,7 @@ export default function ProductsPage() {
             </span>
           </h1>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Explore Aria Vita&apos;s range of HVAC air distribution solutions for commercial, industrial and residential applications.
+            Explore Aria Vita™&apos;s range of HVAC air distribution solutions for commercial, industrial and residential applications.
           </p>
         </div>
       </section>

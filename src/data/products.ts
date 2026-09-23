@@ -46,11 +46,11 @@ export interface Industry {
 }
 
 export const COMPANY_INFO = {
-  name: "ARIA VITA",
+  name: "ARIA VITA™",
   tagline: "Precision Air. Perfect Comfort.",
   positioning: "Engineering Airflow for Tomorrow",
-  concept: "At Aria Vita, we believe clean, controlled air is the foundation of comfort and safety.",
-  business: "Aria Vita manufactures and supplies high-performance HVAC air distribution products for commercial, industrial and residential projects.",
+  concept: "At Aria Vita™, we believe clean, controlled air is the foundation of comfort and safety.",
+  business: "Aria Vita™ manufactures and supplies high-performance HVAC air distribution products for commercial, industrial and residential projects.",
   principles: [
     {
       number: "01",
@@ -81,8 +81,8 @@ export const COMPANY_INFO = {
   },
   contact: {
     email: "info@ariavita.in",
-    phone: "9342050099",
-    formattedPhone: "+91 93420 50099",
+    phone: "9342050097",
+    formattedPhone: "+91 93420 50097",
     website: "www.ariavita.in",
     location: "Bangalore, Karnataka, India",
   },
@@ -268,7 +268,7 @@ export const PRODUCTS: Product[] = [
     category: "Air Barriers",
     shortDescription: "Commercial and industrial air barrier units with centrifugal blowers.",
     description:
-      "Aria Vita Air Curtains project a continuous high-speed air stream across open doorways, forming an invisible environmental barrier. Reduces air conditioning energy loss, excludes dust, smoke, and flying insects.",
+      "Aria Vita™ Air Curtains project a continuous high-speed air stream across open doorways, forming an invisible environmental barrier. Reduces air conditioning energy loss, excludes dust, smoke, and flying insects.",
     image: "/images/products/air-curtains.jpg",
     featured: true,
     badges: ["Width 900–1800 mm", "Height 7–18 ft", "4 Series Options"],

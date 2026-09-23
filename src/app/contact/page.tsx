@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Globe, ShieldCheck, Send, CheckCircle2, Building } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, ShieldCheck, Send, CheckCircle2, Building, MessageCircle } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { COMPANY_INFO, PRODUCTS } from "@/data/ariaVitaData";
+import { generateWhatsAppEnquiryUrl, getDirectWhatsAppUrl } from "@/utils/whatsapp";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,10 +23,14 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const waUrl = generateWhatsAppEnquiryUrl(formData);
+    if (typeof window !== "undefined") {
+      window.open(waUrl, "_blank", "noopener,noreferrer");
+    }
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 600);
+    }, 400);
   };
 
   return (
@@ -59,17 +64,27 @@ export default function ContactPage() {
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold font-heading text-slate-900">Enquiry Received</h3>
-                <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you for submitting your project request. Our technical sales team and authorized distributor{" "}
-                  <strong>{COMPANY_INFO.distributor.name}</strong> will respond within 24 business hours.
+                <h3 className="text-2xl font-bold font-heading text-slate-900">Enquiry Forwarded to WhatsApp</h3>
+                <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                  Thank you! Your project enquiry details have been pre-filled and directed to our WhatsApp engineering line ({COMPANY_INFO.contact.formattedPhone}).
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-6 px-6 py-2.5 bg-slate-900 text-white font-semibold text-xs rounded-xl"
-                >
-                  Submit Another Enquiry
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-3">
+                  <a
+                    href={generateWhatsAppEnquiryUrl(formData)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl inline-flex items-center gap-2 shadow-md transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Open WhatsApp Chat</span>
+                  </a>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition-all"
+                  >
+                    Submit Another Enquiry
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -125,7 +140,7 @@ export default function ContactPage() {
                     <input
                       type="tel"
                       required
-                      placeholder="e.g. 9342050099"
+                      placeholder="e.g. 9342050097"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none transition-all"
@@ -186,17 +201,20 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3.5 bg-purple-700 hover:bg-purple-800 text-white font-bold text-sm rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors cursor-pointer disabled:opacity-50"
+                  className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm rounded-xl shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
                 >
                   {loading ? (
-                    "Sending..."
+                    "Opening WhatsApp..."
                   ) : (
                     <>
-                      <span>Send Enquiry</span>
-                      <Send className="w-4 h-4" />
+                      <MessageCircle className="w-5 h-5" />
+                      <span>Send Enquiry via WhatsApp</span>
                     </>
                   )}
                 </button>
+                <p className="text-center text-xs text-slate-500">
+                  ⚡ Pre-fills all project details into WhatsApp (+91 93420 50097) for rapid engineering response.
+                </p>
               </form>
             )}
           </div>
@@ -206,7 +224,7 @@ export default function ContactPage() {
             {/* Direct Details */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
               <h3 className="text-xl font-bold font-heading text-slate-900 border-b border-slate-100 pb-3">
-                Aria Vita Headquarters
+                Aria Vita™ Headquarters
               </h3>
 
               <div className="space-y-4 text-sm text-slate-700">
@@ -229,14 +247,25 @@ export default function ContactPage() {
                   <Phone className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs text-slate-500 font-semibold uppercase block">
-                      Phone Number:
+                      Phone & WhatsApp:
                     </span>
-                    <a
-                      href={`tel:${COMPANY_INFO.contact.phone}`}
-                      className="font-bold text-slate-900 hover:text-sky-700 transition-colors"
-                    >
-                      {COMPANY_INFO.contact.formattedPhone}
-                    </a>
+                    <div className="flex flex-wrap items-center gap-2.5 mt-0.5">
+                      <a
+                        href={`tel:${COMPANY_INFO.contact.phone}`}
+                        className="font-bold text-slate-900 hover:text-sky-700 transition-colors"
+                      >
+                        {COMPANY_INFO.contact.formattedPhone}
+                      </a>
+                      <a
+                        href={getDirectWhatsAppUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition-colors"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5 text-emerald-700" />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -270,7 +299,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-bold font-heading">{COMPANY_INFO.distributor.name}</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Stocking, project support, and local dispatch for Aria Vita HVAC product lines.
+                Stocking, project support, and local dispatch for Aria Vita™ HVAC product lines.
               </p>
               <div className="pt-2 border-t border-slate-800 text-xs font-mono text-slate-400">
                 Address: {COMPANY_INFO.distributor.address}

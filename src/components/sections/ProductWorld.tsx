@@ -20,7 +20,7 @@ export default function ProductWorld() {
         <SectionHeading
           badge="Product Catalogue"
           title="Engineered Air Distribution"
-          description="From airflow regulation to flexible ducting and air barriers, Aria Vita develops solutions for controlled, efficient air movement."
+          description="From airflow regulation to flexible ducting and air barriers, Aria Vita™ develops solutions for controlled, efficient air movement."
           align="center"
           className="mb-14"
         />

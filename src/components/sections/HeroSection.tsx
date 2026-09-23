@@ -24,7 +24,7 @@ export default function HeroSection() {
             {/* Engineering Badge */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-purple-900 border border-purple-200 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse" />
-              <span>Aria Vita Air Distribution</span>
+              <span>Aria Vita™ Air Distribution</span>
             </div>
 
             {/* Main Headline */}
@@ -94,7 +94,7 @@ export default function HeroSection() {
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950">
                 <Image
                   src="/images/products/constant-airflow-regulator.jpg"
-                  alt="Aria Vita Constant Airflow Regulator HVAC Engineering"
+                  alt="Aria Vita™ Constant Airflow Regulator HVAC Engineering"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   priority

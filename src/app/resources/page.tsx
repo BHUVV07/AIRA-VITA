@@ -41,7 +41,7 @@ export default function ResourcesPage() {
             Technical Resources & Data Sheets
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            Access verified technical data sheets, airflow sizing performance curves, fire test safety documentation, and installation manuals for Aria Vita products.
+            Access verified technical data sheets, airflow sizing performance curves, fire test safety documentation, and installation manuals for Aria Vita™ products.
           </p>
         </div>
       </section>
@@ -155,7 +155,7 @@ export default function ResourcesPage() {
               </p>
             </div>
             <p className="text-xs text-slate-600">
-              Technical data sheets are verified against original Aria Vita laboratory test reports.
+              Technical data sheets are verified against original Aria Vita™ laboratory test reports.
             </p>
             <div className="pt-2 flex justify-end gap-2">
               <button

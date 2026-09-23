@@ -116,12 +116,22 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
-                <a
-                  href={`tel:${COMPANY_INFO.contact.phone}`}
-                  className="hover:text-slate-900 font-bold transition-colors"
-                >
-                  {COMPANY_INFO.contact.formattedPhone}
-                </a>
+                <div className="flex flex-col gap-0.5">
+                  <a
+                    href={`tel:${COMPANY_INFO.contact.phone}`}
+                    className="hover:text-slate-900 font-bold transition-colors"
+                  >
+                    {COMPANY_INFO.contact.formattedPhone}
+                  </a>
+                  <a
+                    href="https://wa.me/919342050097"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+                  >
+                    WhatsApp: +91 93420 50097
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-purple-700 shrink-0 mt-0.5" />
@@ -147,7 +157,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-slate-200 bg-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} ARIA VITA. All Rights Reserved. Precision Air. Perfect Comfort.</p>
+          <p>© {new Date().getFullYear()} ARIA VITA™. All Rights Reserved. Precision Air. Perfect Comfort.</p>
           <div className="flex items-center gap-6 font-medium">
             <span>Authorized Distributor: Ecosta Systems, Bangalore</span>
             <Link href="/contact" className="hover:text-purple-700 transition-colors">

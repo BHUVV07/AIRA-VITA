@@ -41,10 +41,10 @@ export interface TechnicalResource {
 }
 
 export const COMPANY_INFO = {
-  name: "ARIA VITA",
+  name: "ARIA VITA™",
   tagline: "Precision Air. Perfect Comfort.",
   positioning: "Engineering Airflow for Tomorrow",
-  concept: "At Aria Vita, we believe clean, controlled air is the foundation of comfort and safety.",
+  concept: "At Aria Vita™, we believe clean, controlled air is the foundation of comfort and safety.",
   business: "Manufacturer and supplier of air distribution products for commercial, industrial and residential HVAC applications.",
   focus: [
     "Quality Engineering",
@@ -61,8 +61,8 @@ export const COMPANY_INFO = {
   },
   contact: {
     email: "info@ariavita.in",
-    phone: "9342050099",
-    formattedPhone: "+91 93420 50099",
+    phone: "9342050097",
+    formattedPhone: "+91 93420 50097",
     website: "www.ariavita.in",
     location: "Bangalore, Karnataka, India",
   },
@@ -346,7 +346,7 @@ export const INDUSTRIES: IndustryItem[] = [
 export const TECHNICAL_RESOURCES: TechnicalResource[] = [
   {
     id: "res-01",
-    title: "Aria Vita Master Air Distribution Technical Catalogue",
+    title: "Aria Vita™ Master Air Distribution Technical Catalogue",
     product: "All Products",
     type: "Product Catalogues",
     fileSize: "4.2 MB",
