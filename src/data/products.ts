@@ -54,6 +54,10 @@ export interface Product {
   featured?: boolean;
   technicalDocuments?: TechnicalDocument[];
   subcategories?: ProductSubcategory[];
+  seoTitle?: string;
+  seoDescription?: string;
+  seoKeywords?: string[];
+  seoContent?: string;
 }
 
 export type ProductItem = Product;
@@ -131,6 +135,9 @@ export const PRODUCTS: Product[] = [
     image: "/images/products/disc-valves.png",
     featured: true,
     badges: ["3 Material Variants", "Supply & Exhaust", "Aerodynamic Design"],
+    seoTitle: "Disc Valves for HVAC Air Distribution | Aria Vita",
+    seoDescription: "Aria Vita disc valves for supply and exhaust air distribution in commercial and residential HVAC systems. Available in Aluminium Powder Coated, Stainless Steel, and ABS Plastic variants.",
+    seoKeywords: ["Disc Valves", "HVAC Disc Valves", "Supply Disc Valves", "Exhaust Disc Valves", "Aluminium Disc Valve", "Stainless Steel Disc Valve", "ABS Plastic Disc Valve"],
     subcategories: [
       {
         id: "aluminium-powder-coated",
@@ -216,6 +223,9 @@ export const PRODUCTS: Product[] = [
     image: "/images/products/air-curtains.jpg",
     featured: true,
     badges: ["AACA", "AACS", "AACH"],
+    seoTitle: "Air Curtains for Commercial & Industrial Applications | Aria Vita",
+    seoDescription: "Aria Vita high-efficiency air curtain barrier units for commercial entrances, retail shops, cleanrooms, and industrial applications. Available in AACA, AACS, and AACH models.",
+    seoKeywords: ["Air Curtain", "Commercial Air Curtain", "Industrial Air Curtain", "AACA Air Curtain", "AACS Stainless Steel Air Curtain", "AACH Industrial Application"],
     subcategories: [
       {
         id: "aluminium-powder-coated",
@@ -343,6 +353,9 @@ export const PRODUCTS: Product[] = [
     image: "/images/products/flexible-duct.jpg",
     featured: true,
     badges: ["Non-Insulated & Insulated", "30 m/s Max Velocity", "3000 Pa Pressure"],
+    seoTitle: "Flexible Duct for HVAC Ventilation | Aria Vita",
+    seoDescription: "Aria Vita heavy-duty multi-ply flexible ducting for HVAC heating, cooling, and ventilation networks. Available in Non-Insulated and Insulated variants.",
+    seoKeywords: ["Flexible Duct", "HVAC Flexible Duct", "Non-Insulated Flexible Duct", "Insulated Flexible Duct", "Aluminium Flexible Ducting", "Ducting Products India"],
     subcategories: [
       {
         id: "non-insulated",
@@ -419,6 +432,9 @@ export const PRODUCTS: Product[] = [
     image: "/images/products/fire-retardent-canvas.png",
     featured: true,
     badges: ["Fire Retardent — 92°C", "Fire Resistant — 250°C"],
+    seoTitle: "Fire Retardent Canvas for HVAC Applications | Aria Vita",
+    seoDescription: "Aria Vita fire safety-certified flexible duct connectors. Available in Fire Retardent (92°C) and Fire Resistant (250°C) high-temperature options.",
+    seoKeywords: ["Fire Retardent Canvas", "Fire Resistant Canvas", "HVAC Duct Connector", "Flexible Duct Connection", "92C Canvas", "250C Fire Resistant Canvas"],
     subcategories: [
       {
         id: "fire-retardent",
@@ -519,6 +535,9 @@ export const PRODUCTS: Product[] = [
     image: "/images/products/car.png",
     featured: true,
     badges: ["50–200 dia", "50–250 Pa Control", "Zero Power"],
+    seoTitle: "CAR Airflow Regulator | Constant Airflow Regulator | Aria Vita",
+    seoDescription: "Aria Vita Constant Airflow Regulator (CAR) self-balancing mechanical airflow controller. Operating range 50–200 dia and 50–250 Pa duct static pressure.",
+    seoKeywords: ["CAR", "Constant Airflow Regulator", "CAR Airflow Regulator", "HVAC Airflow Regulator", "Mechanical Airflow Controller", "Self-Balancing Regulator"],
     applications: [
       "Multi-story residential apartment exhaust shafts",
       "Hotel bathroom & room ventilation risers",

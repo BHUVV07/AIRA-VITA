@@ -6,10 +6,23 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import { COMPANY_INFO } from "@/data/ariaVitaData";
 
-export const metadata = {
-  title: "About Us | Aria Vita™ HVAC Air Distribution",
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Aria Vita | Engineering Airflow Solutions",
   description:
-    "Learn about Aria Vita™, a leading manufacturer and supplier of engineered air distribution products for commercial, industrial and residential HVAC applications.",
+    "Learn about Aria Vita's engineering principles, HVAC air distribution products, and pan-India distribution network through Ecosta Systems, Bangalore.",
+  alternates: {
+    canonical: "https://www.ariavita.in/about",
+  },
+  openGraph: {
+    title: "About Aria Vita | Engineering Airflow Solutions",
+    description:
+      "Learn about Aria Vita's engineering principles, HVAC air distribution products, and pan-India distribution network through Ecosta Systems, Bangalore.",
+    url: "https://www.ariavita.in/about",
+    siteName: "Aria Vita",
+    type: "website",
+  },
 };
 
 export default function AboutPage() {

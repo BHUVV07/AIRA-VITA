@@ -6,10 +6,23 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import { INDUSTRIES } from "@/data/ariaVitaData";
 
-export const metadata = {
-  title: "Target Industries & Sectors | Aria Vita™ HVAC",
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "HVAC Air Distribution for Commercial & Industrial Sectors | Aria Vita",
   description:
-    "Engineered air distribution solutions tailored for Commercial Buildings, Hospitals, Hotels, Malls, Data Centers, Manufacturing Plants, Educational Institutions, and Food Processing Units.",
+    "Tailored HVAC air distribution and airflow control solutions for commercial buildings, healthcare facilities, data centers, food processing, and manufacturing plants.",
+  alternates: {
+    canonical: "https://www.ariavita.in/industries",
+  },
+  openGraph: {
+    title: "HVAC Air Distribution for Commercial & Industrial Sectors | Aria Vita",
+    description:
+      "Tailored HVAC air distribution and airflow control solutions for commercial buildings, healthcare facilities, data centers, food processing, and manufacturing plants.",
+    url: "https://www.ariavita.in/industries",
+    siteName: "Aria Vita",
+    type: "website",
+  },
 };
 
 export default function IndustriesPage() {
