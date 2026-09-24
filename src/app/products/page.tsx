@@ -48,7 +48,7 @@ export default function ProductsPage() {
             </span>
           </h1>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Explore Aria Vita&apos;s 5 official air distribution product lines engineered for commercial, industrial and residential applications.
+            Explore Aria Vita™&apos;s 5 official air distribution product lines engineered for commercial, industrial and residential applications.
           </p>
         </div>
       </section>

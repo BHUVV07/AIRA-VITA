@@ -24,7 +24,7 @@ export default function AirflowAssistant() {
         <SectionHeading
           badge="Interactive Selection Tool"
           title="Find Your Airflow Solution"
-          description="Simulate your project application and target CFM requirement to identify matching Aria Vita engineered air distribution products."
+          description="Simulate your project application and target CFM requirement to identify matching Aria Vita™ engineered air distribution products."
           align="center"
           className="mb-10"
         />

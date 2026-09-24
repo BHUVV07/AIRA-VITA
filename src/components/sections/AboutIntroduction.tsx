@@ -14,13 +14,13 @@ export default function AboutIntroduction() {
           {/* Left Text Narrative */}
           <div className="lg:col-span-6 space-y-6">
             <SectionHeading
-              badge="About Aria Vita"
+              badge="About Aria Vita™"
               title="Engineering Airflow for Tomorrow"
               description={COMPANY_INFO.concept}
             />
 
             <p className="text-slate-600 text-base leading-relaxed">
-              Aria Vita manufactures and supplies high-performance air distribution products engineered to meet demanding HVAC requirements across commercial, industrial and residential projects.
+              Aria Vita™ manufactures and supplies high-performance air distribution products engineered to meet demanding HVAC requirements across commercial, industrial and residential projects.
             </p>
 
             {/* Application Sectors Pills */}
@@ -61,7 +61,7 @@ export default function AboutIntroduction() {
                 href="/about"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
-                About Aria Vita
+                About Aria Vita™
               </Button>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function AboutIntroduction() {
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100">
                 <Image
                   src="/images/products/fire-retardant-flexible-duct.jpg"
-                  alt="Aria Vita Fire Retardent Canvas Engineering"
+                  alt="Aria Vita™ Fire Retardent Canvas Engineering"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />

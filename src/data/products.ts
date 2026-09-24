@@ -66,11 +66,11 @@ export interface Industry {
 }
 
 export const COMPANY_INFO = {
-  name: "ARIA VITA",
+  name: "ARIA VITA™",
   tagline: "Precision Air. Perfect Comfort.",
   positioning: "Engineering Airflow for Tomorrow",
-  concept: "At Aria Vita, we believe clean, controlled air is the foundation of comfort and safety.",
-  business: "Aria Vita manufactures and supplies high-performance HVAC air distribution products for commercial, industrial and residential projects.",
+  concept: "At Aria Vita™, we believe clean, controlled air is the foundation of comfort and safety.",
+  business: "Aria Vita™ manufactures and supplies high-performance HVAC air distribution products for commercial, industrial and residential projects.",
   focus: [
     "Quality Engineering",
     "Technical Support",
@@ -108,10 +108,11 @@ export const COMPANY_INFO = {
   },
   contact: {
     email: "info@ariavita.in",
-    phone: "9342050099",
-    formattedPhone: "+91 93420 50099",
+    phone: "9342050097",
+    formattedPhone: "+91 93420 50097",
     website: "www.ariavita.in",
     location: "Bangalore, Karnataka, India",
+    whatsapp: "https://wa.me/919342050097",
   },
 };
 
@@ -592,4 +593,3 @@ export function searchProducts(query: string): Product[] {
     return nameMatch || subtitleMatch || catMatch || descMatch || appMatch || featMatch || modelMatch || subMatch || specMatch;
   });
 }
-

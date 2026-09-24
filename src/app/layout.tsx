@@ -3,6 +3,7 @@ import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,11 +19,11 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Aria Vita | Precision Air Distribution Solutions",
-    template: "%s | Aria Vita HVAC Air Distribution",
+    default: "Aria Vita™ | Precision Air Distribution Solutions",
+    template: "%s | Aria Vita™ HVAC Air Distribution",
   },
   description:
-    "Aria Vita manufactures and supplies high-performance air distribution and HVAC products for commercial, industrial and residential applications.",
+    "Aria Vita™ manufactures and supplies high-performance air distribution and HVAC products for commercial, industrial and residential applications.",
   keywords: [
     "HVAC Air Distribution",
     "Disc Valves",
@@ -32,19 +33,19 @@ export const metadata: Metadata = {
     "CAR",
     "Constant Airflow Regulator",
     "Ecosta Systems Bangalore",
-    "Aria Vita HVAC",
+    "Aria Vita™ HVAC",
   ],
-  authors: [{ name: "Aria Vita" }],
-  creator: "Aria Vita",
-  publisher: "Aria Vita",
+  authors: [{ name: "Aria Vita™" }],
+  creator: "Aria Vita™",
+  publisher: "Aria Vita™",
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "https://www.ariavita.in",
-    title: "Aria Vita | Precision Air Distribution Solutions",
+    title: "Aria Vita™ | Precision Air Distribution Solutions",
     description:
       "Engineered air distribution solutions focused on airflow control, safety, reliability, efficiency and long-term performance.",
-    siteName: "Aria Vita",
+    siteName: "Aria Vita™",
   },
   robots: {
     index: true,
@@ -69,6 +70,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <FloatingWhatsAppButton />
       </body>
     </html>
   );
