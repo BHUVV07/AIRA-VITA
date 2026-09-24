@@ -38,8 +38,13 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
         <div className="p-6 overflow-y-auto space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
             {/* Image */}
-            <div className="md:col-span-5 relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
-              <Image src={product.image} alt={product.name} fill className="object-cover" />
+            <div className="md:col-span-5 relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-2">
+              <Image
+                src={product.image}
+                alt={product.slug === "car" ? "Aria Vita Constant Airflow Regulator" : `Aria Vita ${product.name}`}
+                fill
+                className="object-contain p-2"
+              />
             </div>
 
             {/* Overview */}

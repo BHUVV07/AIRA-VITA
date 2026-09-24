@@ -30,12 +30,12 @@ export default function ProductShowcase() {
               className="group bg-white rounded-2xl border border-slate-200 hover:border-purple-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
             >
               {/* Product Image Treatment */}
-              <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+              <div className="relative aspect-[4/3] bg-slate-50 border-b border-slate-100 overflow-hidden p-2">
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt={product.slug === "car" ? "Aria Vita Constant Airflow Regulator" : `Aria Vita ${product.name}`}
                   fill
-                  className="object-cover group-hover:scale-108 transition-transform duration-500"
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md border border-slate-800">
                   {product.category}

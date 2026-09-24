@@ -128,7 +128,7 @@ export const PRODUCTS: Product[] = [
     shortDescription: "Aerodynamic disc valves available in Aluminium Powder Coated, Stainless Steel, and ABS Plastic variants.",
     description:
       "Disc valves engineered for ceiling and wall mounting in supply and exhaust ventilation systems. Designed for smooth air distribution, minimal pressure drop, and low acoustic emission across commercial, residential, and industrial HVAC applications.",
-    image: "/images/products/plastic-disc-valves.jpg",
+    image: "/images/products/disc-valves.png",
     featured: true,
     badges: ["3 Material Variants", "Supply & Exhaust", "Aerodynamic Design"],
     subcategories: [
@@ -154,7 +154,7 @@ export const PRODUCTS: Product[] = [
         name: "ABS Plastic",
         subtitle: "TDV Series aerodynamic plastic disc valves for ceiling and wall mounting.",
         description: "TDV Series aerodynamic plastic disc valves manufactured from durable, recyclable polypropylene. Designed for smooth air distribution and extraction in commercial offices, residential bathrooms, and domestic ventilation networks.",
-        image: "/images/products/plastic-disc-valves.jpg",
+        image: "/images/products/disc-valves.png",
         isComingSoon: false,
         applications: [
           "Domestic bathroom & kitchen extraction",
@@ -416,7 +416,7 @@ export const PRODUCTS: Product[] = [
     shortDescription: "Fire safety-certified flexible ducting for smoke exhaust and high-risk HVAC zones.",
     description:
       "Safety-first flexible ducting engineered specifically for smoke extraction systems, commercial kitchen exhausts, and fire-rated building shafts. Available in Fire Retardent (92°C) and Fire Resistant (250°C) variants.",
-    image: "/images/products/fire-retardant-flexible-duct.jpg",
+    image: "/images/products/fire-retardent-canvas.png",
     featured: true,
     badges: ["Fire Retardent — 92°C", "Fire Resistant — 250°C"],
     subcategories: [
@@ -427,7 +427,7 @@ export const PRODUCTS: Product[] = [
         temperature: "92°C",
         subtitle: "Fire Retardent Canvas — 92°C Operating Temperature.",
         description: "Fire Retardent Canvas rated for 92°C operating temperature. Designed for general ventilation, HVAC flexible duct connections, and standard smoke extraction shafts.",
-        image: "/images/products/fire-retardant-flexible-duct.jpg",
+        image: "/images/products/fire-retardent-canvas.png",
         isComingSoon: false,
         applications: [
           "Standard HVAC duct connection joints",
@@ -453,7 +453,7 @@ export const PRODUCTS: Product[] = [
         temperature: "250°C",
         subtitle: "Fire Resistant Canvas — 250°C Operating Temperature.",
         description: "High-temperature Fire Resistant Canvas rated for 250°C operating temperature. Engineered for commercial kitchen hood connections, high-temperature smoke extraction, and critical fire safety shafts.",
-        image: "/images/products/fire-retardant-flexible-duct.jpg",
+        image: "/images/products/fire-retardent-canvas.png",
         isComingSoon: false,
         applications: [
           "High-temperature smoke extraction shafts",
@@ -516,7 +516,7 @@ export const PRODUCTS: Product[] = [
     shortDescription: "Self-balancing mechanical air regulator for constant volumetric airflow in HVAC ducts.",
     description:
       "The Constant Airflow Regulator (CAR) is a self-adjusting mechanical device designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure across 50–200 dia, the CAR internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations without electrical power.",
-    image: "/images/products/constant-airflow-regulator.jpg",
+    image: "/images/products/car.png",
     featured: true,
     badges: ["50–200 dia", "50–250 Pa Control", "Zero Power"],
     applications: [

@@ -64,12 +64,12 @@ export default function AboutPage() {
 
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden bg-white p-3 border border-slate-200 shadow-xl">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-50 p-2">
                 <Image
-                  src="/images/products/constant-airflow-regulator.jpg"
-                  alt="Aria Vita™ Manufacturing & Distribution"
+                  src="/images/products/car.png"
+                  alt="Aria Vita Constant Airflow Regulator"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>

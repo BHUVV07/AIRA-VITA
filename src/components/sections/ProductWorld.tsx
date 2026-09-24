@@ -70,15 +70,15 @@ export default function ProductWorld() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-xl">
+            <div className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 shadow-xl p-3">
               <Image
                 src={featuredProduct.image}
-                alt={featuredProduct.name}
+                alt={`Aria Vita ${featuredProduct.fullName || featuredProduct.name}`}
                 fill
-                className="object-cover"
+                className="object-contain p-2"
               />
-              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono font-bold text-purple-900 border border-purple-200">
-                Ø80 – Ø250 mm
+              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono font-bold text-purple-900 border border-purple-200 shadow-sm">
+                50–200 dia
               </div>
             </div>
           </div>
@@ -90,12 +90,12 @@ export default function ProductWorld() {
                 key={prod.id}
                 className="group bg-white rounded-2xl border border-slate-200 hover:border-sky-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
-                <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                <div className="relative aspect-[4/3] bg-slate-50 border-b border-slate-100 overflow-hidden p-2">
                   <Image
                     src={prod.image}
-                    alt={prod.name}
+                    alt={`Aria Vita ${prod.name}`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3 bg-slate-900/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border border-slate-800">
                     {prod.category}

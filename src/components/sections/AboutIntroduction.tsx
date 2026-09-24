@@ -69,12 +69,12 @@ export default function AboutIntroduction() {
           {/* Right Product Graphic */}
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-white p-3">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-50 p-2">
                 <Image
-                  src="/images/products/fire-retardant-flexible-duct.jpg"
-                  alt="Aria Vita™ Fire Retardent Canvas Engineering"
+                  src="/images/products/fire-retardent-canvas.png"
+                  alt="Aria Vita Fire Retardent Canvas"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  className="object-contain hover:scale-105 transition-transform duration-500"
                 />
               </div>
 

@@ -179,12 +179,19 @@ export default function DynamicProductPage({ params }: PageProps) {
             </div>
 
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl p-2">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xl p-3">
                 <Image
                   src={activeSubcategory?.image || product.image}
-                  alt={activeSubcategory ? `${product.name} ${activeSubcategory.name}` : product.name}
+                  alt={
+                    product.slug === "car"
+                      ? "Aria Vita Constant Airflow Regulator"
+                      : activeSubcategory
+                      ? `Aria Vita ${product.name} ${activeSubcategory.name}`
+                      : `Aria Vita ${product.name}`
+                  }
                   fill
-                  className="object-cover rounded-xl"
+                  className="object-contain p-2 rounded-xl"
+                  priority
                 />
               </div>
             </div>

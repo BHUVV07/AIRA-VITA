@@ -84,12 +84,12 @@ export default function HeroSection() {
 
             {/* Main Featured Visual Container */}
             <div className="relative rounded-2xl overflow-hidden bg-white p-3 border border-sky-200 shadow-2xl group">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900/95 p-2">
                 <Image
-                  src="/images/products/constant-airflow-regulator.jpg"
-                  alt="Aria Vita CAR HVAC Engineering"
+                  src="/images/products/car.png"
+                  alt="Aria Vita Constant Airflow Regulator"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />

@@ -140,12 +140,12 @@ export default function ProductsPage() {
                     key={product.id}
                     className="bg-white rounded-3xl border border-slate-200 hover:border-purple-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group"
                   >
-                    <div className="relative bg-slate-950 aspect-[4/3] overflow-hidden">
+                    <div className="relative bg-slate-50/90 border-b border-slate-100 aspect-[4/3] overflow-hidden p-3">
                       <Image
                         src={product.image}
-                        alt={product.name}
+                        alt={product.slug === "car" ? "Aria Vita Constant Airflow Regulator" : `Aria Vita ${product.name}`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-4 left-4 bg-white/95 text-purple-900 text-xs font-mono font-bold tracking-wider px-3 py-1 rounded-md shadow-md border border-purple-200 flex items-center gap-2">
                         <span className="text-purple-600">{indexFormatted}</span>
