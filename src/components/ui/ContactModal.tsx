@@ -21,7 +21,7 @@ export default function ContactModal({
     email: "",
     phone: "",
     projectType: "Commercial Building",
-    product: defaultProduct || "Fire Retardant Flexible Duct",
+    product: defaultProduct || "Disc Valves",
     message: "",
   });
 

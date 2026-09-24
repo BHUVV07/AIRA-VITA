@@ -72,7 +72,7 @@ export default function AboutIntroduction() {
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100">
                 <Image
                   src="/images/products/fire-retardant-flexible-duct.jpg"
-                  alt="Aria Vita Fire Retardant Flexible Duct Engineering"
+                  alt="Aria Vita Fire Retardent Canvas Engineering"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />

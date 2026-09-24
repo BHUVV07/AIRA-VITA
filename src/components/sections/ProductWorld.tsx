@@ -11,8 +11,8 @@ import { PRODUCTS, Product } from "@/data/products";
 export default function ProductWorld() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const featuredProduct = PRODUCTS.find((p) => p.slug === "constant-airflow-regulator") || PRODUCTS[0];
-  const secondaryProducts = PRODUCTS.filter((p) => p.slug !== "constant-airflow-regulator");
+  const featuredProduct = PRODUCTS.find((p) => p.slug === "car") || PRODUCTS[0];
+  const secondaryProducts = PRODUCTS.filter((p) => p.slug !== "car");
 
   return (
     <section className="py-20 lg:py-28 bg-white border-b border-slate-200">

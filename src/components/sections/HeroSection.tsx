@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, PhoneCall, ShieldCheck, Wind, Cpu, Sliders, CheckCircle2 } from "lucide-react";
+import { ArrowRight, PhoneCall, ShieldCheck, Wind, Cpu, CheckCircle2 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ui/ContactModal";
 
@@ -21,12 +20,6 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Text Content */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Engineering Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-purple-900 border border-purple-200 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse" />
-              <span>Aria Vita Air Distribution</span>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-heading text-slate-900 tracking-tight leading-[1.08]">
               Precision Air. <br />
@@ -94,7 +87,7 @@ export default function HeroSection() {
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950">
                 <Image
                   src="/images/products/constant-airflow-regulator.jpg"
-                  alt="Aria Vita Constant Airflow Regulator HVAC Engineering"
+                  alt="Aria Vita CAR HVAC Engineering"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   priority
@@ -108,7 +101,7 @@ export default function HeroSection() {
                       Flagship Product
                     </span>
                     <span className="text-sm font-bold block">
-                      Constant Airflow Regulator (CAR)
+                      CAR
                     </span>
                   </div>
                   <span className="text-xs font-mono font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded border border-sky-200">

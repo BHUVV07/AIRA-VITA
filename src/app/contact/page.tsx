@@ -12,7 +12,7 @@ export default function ContactPage() {
     email: "",
     phone: "",
     projectType: "Commercial Building",
-    product: "Fire Retardant Flexible Duct",
+    product: "Disc Valves",
     message: "",
   });
 

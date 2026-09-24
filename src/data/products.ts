@@ -16,12 +16,29 @@ export interface TechnicalDocument {
   format: "PDF";
 }
 
+export interface ProductSubcategory {
+  id: string;
+  slug: string;
+  name: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  isComingSoon?: boolean;
+  applications?: string[];
+  features?: string[];
+  standards?: string[];
+  specifications?: Record<string, string | number>;
+  models?: ProductModel[];
+  technicalDocuments?: TechnicalDocument[];
+}
+
 export interface Product {
   id: string;
   slug: string;
   name: string;
+  fullName?: string;
   subtitle: string;
-  category: "Airflow Control" | "Fire Safety" | "Air Distribution" | "Flexible Ducting" | "Air Barriers" | "Accessories";
+  category: string;
   shortDescription: string;
   description: string;
   image: string;
@@ -34,7 +51,10 @@ export interface Product {
   badges?: string[];
   featured?: boolean;
   technicalDocuments?: TechnicalDocument[];
+  subcategories?: ProductSubcategory[];
 }
+
+export type ProductItem = Product;
 
 export interface Industry {
   id: string;
@@ -51,6 +71,13 @@ export const COMPANY_INFO = {
   positioning: "Engineering Airflow for Tomorrow",
   concept: "At Aria Vita, we believe clean, controlled air is the foundation of comfort and safety.",
   business: "Aria Vita manufactures and supplies high-performance HVAC air distribution products for commercial, industrial and residential projects.",
+  focus: [
+    "Quality Engineering",
+    "Technical Support",
+    "Product Performance",
+    "Project Requirements",
+    "Reliable Delivery",
+  ],
   principles: [
     {
       number: "01",
@@ -90,63 +117,218 @@ export const COMPANY_INFO = {
 
 export const PRODUCTS: Product[] = [
   {
-    id: "constant-airflow-regulator",
-    slug: "constant-airflow-regulator",
-    name: "Constant Airflow Regulator (CAR)",
-    subtitle: "Maintain consistent airflow despite duct pressure fluctuations.",
-    category: "Airflow Control",
-    shortDescription: "Self-balancing mechanical air regulator for constant volumetric airflow in HVAC ducts.",
+    id: "disc-valves",
+    slug: "disc-valves",
+    name: "Disc Valves",
+    subtitle: "Aerodynamic supply and exhaust disc valves for clean air distribution.",
+    category: "Disc Valves",
+    shortDescription: "Aerodynamic disc valves available in Aluminium Powder Coated, Stainless Steel, and ABS Plastic variants.",
     description:
-      "The Constant Airflow Regulator (CAR) is a self-adjusting mechanical device designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure, the CAR internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations, ensuring calibrated CFM rates without electrical sensors.",
-    image: "/images/products/constant-airflow-regulator.jpg",
+      "Disc valves engineered for ceiling and wall mounting in supply and exhaust ventilation systems. Designed for smooth air distribution, minimal pressure drop, and low acoustic emission across commercial, residential, and industrial HVAC applications.",
+    image: "/images/products/plastic-disc-valves.jpg",
     featured: true,
-    badges: ["Flagship Technology", "50–250 Pa Control", "Zero Power"],
+    badges: ["3 Material Variants", "Supply & Exhaust", "Aerodynamic Design"],
+    subcategories: [
+      {
+        id: "aluminium-powder-coated",
+        slug: "aluminium-powder-coated",
+        name: "Aluminium Powder Coated",
+        subtitle: "Architectural aluminium disc valves with durable powder-coated finish.",
+        description: "High-grade aluminium disc valves finished with electrostatic powder coating for superior corrosion resistance and seamless architectural integration in premium HVAC systems.",
+        isComingSoon: true,
+      },
+      {
+        id: "stainless-steel",
+        slug: "stainless-steel",
+        name: "Stainless Steel",
+        subtitle: "Corrosion-resistant stainless steel disc valves for hygienic environments.",
+        description: "Heavy-duty stainless steel disc valves engineered specifically for cleanrooms, laboratories, commercial kitchens, and aggressive ambient environments.",
+        isComingSoon: true,
+      },
+      {
+        id: "abs-plastic",
+        slug: "abs-plastic",
+        name: "ABS Plastic",
+        subtitle: "TDV Series aerodynamic plastic disc valves for ceiling and wall mounting.",
+        description: "TDV Series aerodynamic plastic disc valves manufactured from durable, recyclable polypropylene. Designed for smooth air distribution and extraction in commercial offices, residential bathrooms, and domestic ventilation networks.",
+        image: "/images/products/plastic-disc-valves.jpg",
+        isComingSoon: false,
+        applications: [
+          "Domestic bathroom & kitchen extraction",
+          "Commercial office air distribution",
+          "Hotel room supply & return air",
+          "Industrial amenity ventilation",
+        ],
+        features: [
+          "Aerodynamic Design",
+          "Low Sound Level",
+          "Large Volume Air Capacity",
+          "Quick & Easy Installation",
+          "Corrosion-Proof Recyclable Polypropylene",
+        ],
+        specifications: {
+          "Series": "TDV Series",
+          "Material": "Recyclable Polypropylene",
+          "Maximum Temperature": "100°C",
+          "Mounting Frame": "Bayonet ring clamp",
+          "Airflow Pattern": "360° Radial Dispersion",
+        },
+        models: [
+          { name: "TDV 80", size: "Ø80 mm", application: "Small bathroom exhaust", soundLevel: "< 24 dB(A)" },
+          { name: "TDV 100", size: "Ø100 mm", application: "Standard washroom / kitchen", soundLevel: "< 26 dB(A)" },
+          { name: "TDV 125", size: "Ø125 mm", application: "Commercial office supply", soundLevel: "< 28 dB(A)" },
+          { name: "TDV 160", size: "Ø160 mm", application: "High-flow exhaust zone", soundLevel: "< 31 dB(A)" },
+          { name: "TDV 200", size: "Ø200 mm", application: "Large space air transfer", soundLevel: "< 34 dB(A)" },
+        ],
+      },
+    ],
     applications: [
-      "Multi-story residential apartment exhaust shafts",
-      "Hotel bathroom & room ventilation risers",
-      "Commercial office fresh air distribution",
-      "Hospital room supply & extract airflow balance",
+      "Domestic bathroom & kitchen extraction",
+      "Commercial office air distribution",
+      "Hotel room supply & return air",
+      "Industrial amenity ventilation",
     ],
     features: [
-      "Automatic Duct Pressure Compensation",
-      "Screwdriver Airflow Calibration Adjustment",
-      "Airtight Seal Ring Gasket",
-      "Durable Polystyrene Housing",
-      "Zero Electrical Wiring Required",
+      "Aerodynamic Design",
+      "Low Sound Level",
+      "Large Volume Air Capacity",
+      "Quick & Easy Installation",
+      "Corrosion-Proof Materials",
     ],
     specifications: {
-      "Operating Pressure Range": "50–250 Pa",
-      "Maximum Operating Temp": "60°C",
-      "Adjustment Method": "Screwdriver airflow rate calibration",
-      "Housing Material": "High-impact Polystyrene",
-      "Color": "Black",
-      "Available Diameter Sizes": "Ø80, Ø100, Ø125, Ø150, Ø160, Ø200, Ø250 mm",
+      "Available Variants": "Aluminium Powder Coated, Stainless Steel, ABS Plastic",
+      "Mounting": "Ceiling & Wall Mounting",
+      "Airflow Dispersion": "360° Radial Dispersion Pattern",
+    },
+  },
+  {
+    id: "air-curtain",
+    slug: "air-curtain",
+    name: "Air Curtain",
+    subtitle: "Create an invisible barrier. Keep dust, insects & temperature in check.",
+    category: "Air Curtain",
+    shortDescription: "Commercial and industrial air curtain barrier units with centrifugal blowers.",
+    description:
+      "Aria Vita Air Curtains project a continuous high-speed air stream across open doorways, forming an invisible environmental barrier. Reduces air conditioning energy loss, excludes dust, smoke, and flying insects.",
+    image: "/images/products/air-curtains.jpg",
+    featured: true,
+    badges: ["Width 900–1800 mm", "Height 7–18 ft", "4 Series Options"],
+    applications: [
+      "Mall entrances & retail shops",
+      "Hospitals & healthcare lobbies",
+      "Clean rooms & pharmaceutical labs",
+      "Factories, warehouses & cold storage",
+    ],
+    features: [
+      "Substantial Energy Saving",
+      "Dust & Insect Exclusion Barrier",
+      "Multiple Body Options (Aluminium & Stainless Steel)",
+      "Optional Inbuilt Motion Sensor",
+      "Low Noise Centrifugal Operation",
+    ],
+    specifications: {
+      "Width Range": "900 mm to 1800 mm",
+      "Door Height Coverage": "7 ft to 18 ft",
+      "Blower Type": "Centrifugal direct-drive fan wheels",
     },
     models: [
-      { name: "CAR Ø80", size: "Ø80 mm", airflowRange: "15 – 90 m³/h", weight: "0.12 kg" },
-      { name: "CAR Ø100", size: "Ø100 mm", airflowRange: "15 – 120 m³/h", weight: "0.15 kg" },
-      { name: "CAR Ø125", size: "Ø125 mm", airflowRange: "15 – 180 m³/h", weight: "0.19 kg" },
-      { name: "CAR Ø150", size: "Ø150 mm", airflowRange: "50 – 300 m³/h", weight: "0.24 kg" },
-      { name: "CAR Ø160", size: "Ø160 mm", airflowRange: "50 – 300 m³/h", weight: "0.26 kg" },
-      { name: "CAR Ø200", size: "Ø200 mm", airflowRange: "100 – 500 m³/h", weight: "0.38 kg" },
-      { name: "CAR Ø250", size: "Ø250 mm", airflowRange: "150 – 700 m³/h", weight: "0.52 kg" },
+      { name: "AACA Series", bodyMaterial: "Aluminium Body", application: "Mall entrances, retail shops, hospitals" },
+      { name: "AACS Series", bodyMaterial: "Stainless Steel Body", application: "Clean rooms, commercial kitchens, food processing" },
+      { name: "AACH Series", bodyMaterial: "Heavy Duty Body", application: "Factories, warehouses, industrial bays" },
+      { name: "AACA-MS Series", bodyMaterial: "Aluminium + Motion Sensor", application: "Retail stores, automated office entrances" },
     ],
     technicalDocuments: [
       {
-        id: "doc-car-01",
-        title: "CAR Constant Airflow Regulator Sizing & Technical Data",
-        type: "Performance Data",
-        fileSize: "1.8 MB",
+        id: "doc-ac-01",
+        title: "Air Curtain Selection Matrix & Technical Specifications",
+        type: "Product Catalogue",
+        fileSize: "2.6 MB",
         format: "PDF",
       },
     ],
   },
   {
-    id: "fire-retardant-flexible-duct",
-    slug: "fire-retardant-flexible-duct",
-    name: "Fire Retardant Flexible Duct",
+    id: "flexible-duct",
+    slug: "flexible-duct",
+    name: "Flexible Duct",
+    subtitle: "High-durability multi-ply flexible ducting for HVAC & ventilation.",
+    category: "Flexible Duct",
+    shortDescription: "1 ply Aluminium + 2 ply Polyester flexible ducting with spring steel helix.",
+    description:
+      "High-performance flexible ducting engineered for HVAC air distribution, indoor agriculture, and hydroponic ventilation systems. Offers high velocity capability, minimal pressure drop, and superior humidity resistance.",
+    image: "/images/products/flexible-duct.jpg",
+    featured: true,
+    badges: ["Non-Insulated & Insulated", "30 m/s Max Velocity", "3000 Pa Pressure"],
+    subcategories: [
+      {
+        id: "non-insulated",
+        slug: "non-insulated",
+        name: "Non-Insulated",
+        subtitle: "1 ply Aluminium + 2 ply Polyester (Black) flexible ducting.",
+        description: "Heavy-duty non-insulated flexible ducting constructed with 1 ply Aluminium combined with 2 ply Polyester (Black) over encapsulated spring steel wire. Engineered for minimal pressure drop, high velocity airflow, and extreme humidity resistance.",
+        image: "/images/products/flexible-duct.jpg",
+        isComingSoon: false,
+        applications: [
+          "Ventilation heating and cooling",
+          "Hydroponic ventilation",
+          "Indoor agriculture",
+          "Grow rooms",
+          "Low and medium pressure applications",
+        ],
+        features: [
+          "Coated spring steel wire",
+          "Resistant to humidity and heat",
+          "Airtight",
+          "Low pressure drop",
+        ],
+        specifications: {
+          "Construction": "1 ply Aluminium + 2 ply Polyester (Black)",
+          "Nominal Thickness": "45 micron",
+          "Diameter": "102–508 mm",
+          "Operating Temperature": "-30°C to +120°C",
+          "Maximum Air Velocity": "30 m/s",
+          "Maximum Operating Pressure": "3000 Pa",
+          "Standard Length": "5 m / 10 m",
+        },
+      },
+      {
+        id: "insulated",
+        slug: "insulated",
+        name: "Insulated",
+        subtitle: "Thermal and acoustic insulated flexible ducting.",
+        description: "Thermal insulated flexible ducting with acoustic fiber wool layer engineered to eliminate condensation and reduce duct breakout noise.",
+        isComingSoon: true,
+      },
+    ],
+    applications: [
+      "Ventilation heating and cooling",
+      "Hydroponic ventilation",
+      "Indoor agriculture",
+      "Grow rooms",
+      "Low and medium pressure applications",
+    ],
+    features: [
+      "Coated spring steel wire",
+      "Resistant to humidity and heat",
+      "Airtight",
+      "Low pressure drop",
+    ],
+    specifications: {
+      "Construction": "1 ply Aluminium + 2 ply Polyester (Black)",
+      "Nominal Thickness": "45 micron",
+      "Diameter Range": "102–508 mm",
+      "Operating Temperature": "-30°C to +120°C",
+      "Maximum Air Velocity": "30 m/s",
+      "Maximum Operating Pressure": "3000 Pa",
+      "Standard Length": "5 m / 10 m",
+    },
+  },
+  {
+    id: "fire-retardent-canvas",
+    slug: "fire-retardent-canvas",
+    name: "Fire Retardent Canvas",
     subtitle: "Safety-first ducting for critical applications.",
-    category: "Fire Safety",
+    category: "Fire Retardent Canvas",
     shortDescription: "Fire safety-certified flexible ducting for smoke exhaust and high-risk HVAC zones.",
     description:
       "Safety-first flexible ducting engineered specifically for smoke extraction systems, commercial kitchen exhausts, and fire-rated building shafts. Built with multi-layer fire retardant composite material that prevents flame propagation while maintaining high acoustic flexibility.",
@@ -179,7 +361,7 @@ export const PRODUCTS: Product[] = [
     technicalDocuments: [
       {
         id: "doc-frd-01",
-        title: "Fire Retardant Flexible Duct Safety & Test Compliance Datasheet",
+        title: "Fire Retardent Canvas Safety & Test Compliance Datasheet",
         type: "Technical Data Sheet",
         fileSize: "1.1 MB",
         format: "PDF",
@@ -187,144 +369,56 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    id: "plastic-disc-valves",
-    slug: "plastic-disc-valves",
-    name: "ABS / Plastic Disc Valves",
-    subtitle: "Aerodynamic supply and exhaust disc valves for clean air distribution.",
-    category: "Air Distribution",
-    shortDescription: "TDV Series aerodynamic plastic disc valves for ceiling and wall mounting.",
+    id: "car",
+    slug: "car",
+    name: "CAR",
+    fullName: "Constant Airflow Regulator",
+    subtitle: "Maintain consistent airflow despite duct pressure fluctuations.",
+    category: "CAR",
+    shortDescription: "Self-balancing mechanical air regulator for constant volumetric airflow in HVAC ducts.",
     description:
-      "TDV Series aerodynamic plastic disc valves manufactured from durable, recyclable polypropylene. Designed for smooth air distribution and extraction in commercial offices, residential bathrooms, and domestic ventilation networks.",
-    image: "/images/products/plastic-disc-valves.jpg",
-    featured: false,
-    badges: ["TDV Series", "Polypropylene", "100°C Max Temp"],
-    applications: [
-      "Domestic bathroom & kitchen extraction",
-      "Commercial office air distribution",
-      "Hotel room supply & return air",
-      "Industrial amenity ventilation",
-    ],
-    features: [
-      "Aerodynamic Design",
-      "Low Sound Level",
-      "Large Volume Air Capacity",
-      "Quick & Easy Installation",
-      "Corrosion-Proof Recyclable Polypropylene",
-    ],
-    specifications: {
-      "Series": "TDV Series",
-      "Material": "Recyclable Polypropylene",
-      "Maximum Temperature": "100°C",
-      "Mounting Frame": "Bayonet ring clamp",
-      "Airflow Pattern": "360° Radial Dispersion",
-    },
-    models: [
-      { name: "TDV 80", size: "Ø80 mm", application: "Small bathroom exhaust", soundLevel: "< 24 dB(A)" },
-      { name: "TDV 100", size: "Ø100 mm", application: "Standard washroom / kitchen", soundLevel: "< 26 dB(A)" },
-      { name: "TDV 125", size: "Ø125 mm", application: "Commercial office supply", soundLevel: "< 28 dB(A)" },
-      { name: "TDV 160", size: "Ø160 mm", application: "High-flow exhaust zone", soundLevel: "< 31 dB(A)" },
-      { name: "TDV 200", size: "Ø200 mm", application: "Large space air transfer", soundLevel: "< 34 dB(A)" },
-    ],
-  },
-  {
-    id: "flexible-duct",
-    slug: "flexible-duct",
-    name: "Non-Insulated Flexible Duct",
-    subtitle: "High-durability multi-ply flexible ducting for HVAC & ventilation.",
-    category: "Flexible Ducting",
-    shortDescription: "1 ply Aluminium + 2 ply Polyester flexible ducting with spring steel helix.",
-    description:
-      "Heavy-duty non-insulated flexible ducting constructed with 1 ply Aluminium combined with 2 ply Polyester (Black) over encapsulated spring steel wire. Engineered for minimal pressure drop, high velocity airflow, and extreme humidity resistance.",
-    image: "/images/products/flexible-duct.jpg",
-    featured: false,
-    badges: ["45 Micron Thickness", "30 m/s Max Velocity", "3000 Pa Pressure"],
-    applications: [
-      "Ventilation heating and cooling air distribution",
-      "Hydroponic ventilation systems",
-      "Indoor agriculture & grow rooms",
-      "Low and medium pressure HVAC branch lines",
-    ],
-    features: [
-      "Coated Spring Steel Wire Helix",
-      "High Humidity and Heat Resistance",
-      "Airtight Tear-Resistant Seal",
-      "Low Pressure Drop",
-    ],
-    specifications: {
-      "Construction": "1 ply Aluminium + 2 ply Polyester (Black)",
-      "Nominal Thickness": "45 micron",
-      "Diameter Range": "102–508 mm",
-      "Operating Temperature": "-30°C to +120°C",
-      "Maximum Air Velocity": "30 m/s",
-      "Maximum Operating Pressure": "3000 Pa",
-      "Standard Length": "5 m / 10 m",
-    },
-  },
-  {
-    id: "air-curtains",
-    slug: "air-curtains",
-    name: "Air Curtains",
-    subtitle: "Create an invisible barrier. Keep dust, insects & temperature in check.",
-    category: "Air Barriers",
-    shortDescription: "Commercial and industrial air barrier units with centrifugal blowers.",
-    description:
-      "Aria Vita Air Curtains project a continuous high-speed air stream across open doorways, forming an invisible environmental barrier. Reduces air conditioning energy loss, excludes dust, smoke, and flying insects.",
-    image: "/images/products/air-curtains.jpg",
+      "The Constant Airflow Regulator (CAR) is a self-adjusting mechanical device designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure, the CAR internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations, ensuring calibrated CFM rates without electrical sensors.",
+    image: "/images/products/constant-airflow-regulator.jpg",
     featured: true,
-    badges: ["Width 900–1800 mm", "Height 7–18 ft", "4 Series Options"],
+    badges: ["Flagship Technology", "50–250 Pa Control", "Zero Power"],
     applications: [
-      "Mall entrances & retail shops",
-      "Hospitals & healthcare lobbies",
-      "Clean rooms & pharmaceutical labs",
-      "Factories, warehouses & cold storage",
+      "Multi-story residential apartment exhaust shafts",
+      "Hotel bathroom & room ventilation risers",
+      "Commercial office fresh air distribution",
+      "Hospital room supply & extract airflow balance",
     ],
     features: [
-      "Substantial Energy Saving",
-      "Dust & Insect Exclusion Barrier",
-      "Multiple Body Options (Aluminium & Stainless Steel)",
-      "Optional Inbuilt Motion Sensor",
-      "Low Noise Centrifugal Operation",
+      "Automatic Duct Pressure Compensation",
+      "Screwdriver Airflow Calibration Adjustment",
+      "Airtight Seal Ring Gasket",
+      "Durable Polystyrene Housing",
+      "Zero Electrical Wiring Required",
     ],
     specifications: {
-      "Width Range": "900 mm to 1800 mm",
-      "Door Height Coverage": "7 ft to 18 ft",
-      "Blower Type": "Centrifugal direct-drive fan wheels",
+      "Pressure range": "50–250 Pa",
+      "Maximum temperature": "60°C",
+      "Material": "Polystyrene",
+      "Colour": "Black",
+      "Available sizes": "Ø80, Ø100, Ø125, Ø150, Ø160, Ø200, Ø250",
     },
     models: [
-      { name: "AACA Series", bodyMaterial: "Aluminium Body", application: "Mall entrances, retail shops, hospitals" },
-      { name: "AACS Series", bodyMaterial: "Stainless Steel Body", application: "Clean rooms, commercial kitchens, food processing" },
-      { name: "AACH Series", bodyMaterial: "Heavy Duty Body", application: "Factories, warehouses, industrial bays" },
-      { name: "AACA-MS Series", bodyMaterial: "Aluminium + Motion Sensor", application: "Retail stores, automated office entrances" },
+      { name: "CAR Ø80", size: "Ø80 mm", airflowRange: "15 – 90 m³/h", weight: "0.12 kg" },
+      { name: "CAR Ø100", size: "Ø100 mm", airflowRange: "15 – 120 m³/h", weight: "0.15 kg" },
+      { name: "CAR Ø125", size: "Ø125 mm", airflowRange: "15 – 180 m³/h", weight: "0.19 kg" },
+      { name: "CAR Ø150", size: "Ø150 mm", airflowRange: "50 – 300 m³/h", weight: "0.24 kg" },
+      { name: "CAR Ø160", size: "Ø160 mm", airflowRange: "50 – 300 m³/h", weight: "0.26 kg" },
+      { name: "CAR Ø200", size: "Ø200 mm", airflowRange: "100 – 500 m³/h", weight: "0.38 kg" },
+      { name: "CAR Ø250", size: "Ø250 mm", airflowRange: "150 – 700 m³/h", weight: "0.52 kg" },
     ],
-  },
-  {
-    id: "flexible-duct-connectors",
-    slug: "flexible-duct-connectors",
-    name: "Flexible Duct Connectors & Accessories",
-    subtitle: "Flexible solutions for duct stability & vibration isolation.",
-    category: "Accessories",
-    shortDescription: "Air Duct Vibration Isolation Connectors & Self-Adhesive Insulation Pins.",
-    description:
-      "Essential ductwork connection accessories designed to decouple mechanical AHU fan vibration, prevent acoustic resonance transfer in metal duct runs, and mount thermal insulation cleanly.",
-    image: "/images/products/flexible-duct-connectors.jpg",
-    featured: false,
-    badges: ["Vibration Isolation", "Self-Adhesive Pins", "Galvanized Steel Edging"],
-    applications: [
-      "AHU and fan coil unit duct connection joints",
-      "Vibration decoupling in main air supply runs",
-      "Thermal & acoustic insulation pin attachment",
+    technicalDocuments: [
+      {
+        id: "doc-car-01",
+        title: "CAR Constant Airflow Regulator Sizing & Technical Data",
+        type: "Performance Data",
+        fileSize: "1.8 MB",
+        format: "PDF",
+      },
     ],
-    features: [
-      "Air Duct Vibration Isolation Connector",
-      "Self-Adhesive Pins for Insulation Mounting",
-      "Airtight Mechanical Metal-to-Fabric Seam",
-      "Corrosion-Resistant Galvanized Steel",
-    ],
-    specifications: {
-      "Primary Component": "Air Duct Vibration Isolation Connector",
-      "Reference Accessory": "Self-Adhesive Pins",
-      "Operating Pressure": "Up to 2500 Pa",
-    },
   },
 ];
 
@@ -335,7 +429,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Commercial Buildings",
     description: "High-rise office towers, IT parks, and corporate headquarters requiring quiet, energy-efficient airflow regulation and balanced ventilation.",
     image: "/images/industries/commercial-buildings.jpg",
-    keyProducts: ["Constant Airflow Regulator", "ABS / Plastic Disc Valves", "Non-Insulated Flexible Duct"],
+    keyProducts: ["CAR", "Disc Valves", "Flexible Duct"],
   },
   {
     id: "hospitals-healthcare",
@@ -343,7 +437,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Hospitals & Healthcare",
     description: "Sterile surgical cleanrooms, isolation wards, and diagnostic labs demanding precise pressure control and fire safety ducting.",
     image: "/images/industries/hospitals-healthcare.jpg",
-    keyProducts: ["Fire Retardant Flexible Duct", "Constant Airflow Regulator", "Air Curtains"],
+    keyProducts: ["Fire Retardent Canvas", "CAR", "Air Curtain"],
   },
   {
     id: "hotels-hospitality",
@@ -351,7 +445,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Hotels & Hospitality",
     description: "Luxury guest rooms, banquet halls, and commercial kitchens requiring low-noise ventilation valves and stainless steel air barriers.",
     image: "/images/industries/commercial-buildings.jpg",
-    keyProducts: ["ABS / Plastic Disc Valves", "AACS Stainless Steel Air Curtains", "Constant Airflow Regulator"],
+    keyProducts: ["Disc Valves", "Air Curtain", "CAR"],
   },
   {
     id: "malls-retail",
@@ -359,7 +453,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Malls & Retail",
     description: "Heavy foot-traffic retail hubs and shopping centers requiring high-capacity motion-sensor air curtains and balanced fresh air supply.",
     image: "/images/industries/commercial-buildings.jpg",
-    keyProducts: ["AACA-MS Air Curtains", "Non-Insulated Flexible Duct", "ABS / Plastic Disc Valves"],
+    keyProducts: ["Air Curtain", "Flexible Duct", "Disc Valves"],
   },
   {
     id: "data-centers",
@@ -367,7 +461,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Data Centers",
     description: "Mission-critical server facilities requiring precise cold-aisle pressure control and vibration isolation connections.",
     image: "/images/industries/data-centers.jpg",
-    keyProducts: ["Constant Airflow Regulator", "Flexible Duct Connectors & Accessories"],
+    keyProducts: ["CAR", "Flexible Duct"],
   },
   {
     id: "manufacturing-plants",
@@ -375,7 +469,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Manufacturing Plants",
     description: "Heavy industrial production facilities requiring robust smoke exhaust ducting and high-velocity industrial air barriers.",
     image: "/images/industries/manufacturing-plants.jpg",
-    keyProducts: ["AACH Heavy Duty Air Curtains", "Fire Retardant Flexible Duct"],
+    keyProducts: ["Air Curtain", "Fire Retardent Canvas"],
   },
   {
     id: "educational-institutions",
@@ -383,7 +477,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Educational Institutions",
     description: "Universities, research auditoriums, and schools requiring whisper-quiet disc valves and reliable room air exchanges.",
     image: "/images/industries/commercial-buildings.jpg",
-    keyProducts: ["ABS / Plastic Disc Valves", "Constant Airflow Regulator"],
+    keyProducts: ["Disc Valves", "CAR"],
   },
   {
     id: "food-processing-units",
@@ -391,7 +485,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Food Processing Units",
     description: "Hygienic food packaging and cold storage facilities requiring washdown stainless steel air curtains and airtight ducting.",
     image: "/images/industries/hospitals-healthcare.jpg",
-    keyProducts: ["AACS Stainless Steel Air Curtains", "Flexible Duct Connectors & Accessories"],
+    keyProducts: ["Air Curtain", "Flexible Duct"],
   },
 ];
 
@@ -401,7 +495,43 @@ export function getAllProducts(): Product[] {
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+  if (!slug) return undefined;
+  const s = slug.toLowerCase();
+  
+  // Direct match on main slug or alias
+  const mainMatch = PRODUCTS.find((p) => p.slug === s || p.id === s);
+  if (mainMatch) return mainMatch;
+
+  // Handle aliases
+  if (s === "constant-airflow-regulator") return PRODUCTS.find((p) => p.slug === "car");
+  if (s === "plastic-disc-valves" || s === "abs-plastic-disc-valves") return PRODUCTS.find((p) => p.slug === "disc-valves");
+  if (s === "fire-retardant-flexible-duct") return PRODUCTS.find((p) => p.slug === "fire-retardent-canvas");
+  if (s === "air-curtains") return PRODUCTS.find((p) => p.slug === "air-curtain");
+  if (s === "non-insulated-flexible-duct") return PRODUCTS.find((p) => p.slug === "flexible-duct");
+
+  // Handle subcategory slug lookup
+  for (const prod of PRODUCTS) {
+    if (prod.subcategories) {
+      const sub = prod.subcategories.find((sc) => sc.slug === s || sc.id === s);
+      if (sub) return prod;
+    }
+  }
+
+  return undefined;
+}
+
+export function getSubcategoryBySlug(productSlug: string, subcategorySlug: string): { product: Product; subcategory: ProductSubcategory } | undefined {
+  const product = getProductBySlug(productSlug);
+  if (!product || !product.subcategories) return undefined;
+
+  const sub = product.subcategories.find(
+    (sc) => sc.slug.toLowerCase() === subcategorySlug.toLowerCase() || sc.id.toLowerCase() === subcategorySlug.toLowerCase()
+  );
+
+  if (sub) {
+    return { product, subcategory: sub };
+  }
+  return undefined;
 }
 
 export function getFeaturedProducts(): Product[] {
@@ -412,25 +542,54 @@ export function getProductsByCategory(category: string): Product[] {
   if (!category || category === "All Products" || category === "All") {
     return PRODUCTS;
   }
+  const catLower = category.toLowerCase();
   return PRODUCTS.filter(
-    (p) => p.category.toLowerCase() === category.toLowerCase() || p.category.includes(category)
+    (p) =>
+      p.name.toLowerCase() === catLower ||
+      p.category.toLowerCase() === catLower ||
+      p.subcategories?.some((sc) => sc.name.toLowerCase() === catLower)
   );
 }
 
 export function getAllCategories(): string[] {
-  const categories = Array.from(new Set(PRODUCTS.map((p) => p.category)));
-  return ["All Products", ...categories];
+  return [
+    "All Products",
+    "Disc Valves",
+    "Air Curtain",
+    "Flexible Duct",
+    "Fire Retardent Canvas",
+    "CAR",
+  ];
 }
 
 export function searchProducts(query: string): Product[] {
   if (!query) return PRODUCTS;
   const q = query.toLowerCase();
-  return PRODUCTS.filter(
-    (p) =>
-      p.name.toLowerCase().includes(q) ||
-      p.subtitle.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q) ||
-      p.applications.some((app) => app.toLowerCase().includes(q))
-  );
+  return PRODUCTS.filter((p) => {
+    const nameMatch = p.name.toLowerCase().includes(q) || (p.fullName && p.fullName.toLowerCase().includes(q));
+    const subtitleMatch = p.subtitle.toLowerCase().includes(q);
+    const catMatch = p.category.toLowerCase().includes(q);
+    const descMatch = p.description.toLowerCase().includes(q);
+    const appMatch = p.applications?.some((app) => app.toLowerCase().includes(q));
+    const featMatch = p.features?.some((f) => f.toLowerCase().includes(q));
+    const modelMatch = p.models?.some((m) => m.name.toLowerCase().includes(q) || (m.size && m.size.toLowerCase().includes(q)));
+    
+    // Subcategory matches
+    const subMatch = p.subcategories?.some(
+      (sc) =>
+        sc.name.toLowerCase().includes(q) ||
+        (sc.description && sc.description.toLowerCase().includes(q)) ||
+        sc.applications?.some((app) => app.toLowerCase().includes(q)) ||
+        sc.features?.some((f) => f.toLowerCase().includes(q)) ||
+        sc.models?.some((m) => m.name.toLowerCase().includes(q) || (m.size && m.size.toLowerCase().includes(q)))
+    );
+
+    // Specifications matches
+    const specMatch = Object.entries(p.specifications || {}).some(
+      ([k, v]) => k.toLowerCase().includes(q) || String(v).toLowerCase().includes(q)
+    );
+
+    return nameMatch || subtitleMatch || catMatch || descMatch || appMatch || featMatch || modelMatch || subMatch || specMatch;
+  });
 }
+

@@ -9,7 +9,7 @@ import { PRODUCTS, searchProducts } from "@/data/products";
 export default function AirflowAssistant() {
   const [sector, setSector] = useState("Commercial Building");
   const [cfm, setCfm] = useState(150);
-  const [category, setCategory] = useState("Airflow Control");
+  const [category, setCategory] = useState("CAR");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProductSlug, setSelectedProductSlug] = useState("");
 
@@ -97,10 +97,11 @@ export default function AirflowAssistant() {
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { label: "Airflow Control", cat: "Airflow Control" },
-                  { label: "Fire Safety Ducting", cat: "Fire Safety" },
-                  { label: "Disc Valves", cat: "Air Distribution" },
-                  { label: "Air Barriers", cat: "Air Barriers" },
+                  { label: "CAR", cat: "CAR" },
+                  { label: "Fire Retardent Canvas", cat: "Fire Retardent Canvas" },
+                  { label: "Disc Valves", cat: "Disc Valves" },
+                  { label: "Air Curtain", cat: "Air Curtain" },
+                  { label: "Flexible Duct", cat: "Flexible Duct" },
                 ].map((item) => (
                   <button
                     key={item.cat}

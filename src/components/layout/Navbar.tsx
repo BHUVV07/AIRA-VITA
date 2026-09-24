@@ -7,7 +7,7 @@ import { ChevronDown, Menu, X, ArrowRight, Layers, FileText } from "lucide-react
 import AriaVitaLogo from "@/components/ui/AriaVitaLogo";
 import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ui/ContactModal";
-import { PRODUCTS, getAllCategories } from "@/data/products";
+import { PRODUCTS } from "@/data/products";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -78,36 +78,56 @@ export default function Navbar() {
 
                       {/* Dynamic Mega Menu */}
                       {productsHover && (
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[660px] bg-white rounded-2xl shadow-2xl border border-sky-100 p-6 grid grid-cols-2 gap-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[720px] bg-white rounded-2xl shadow-2xl border border-sky-100 p-6 grid grid-cols-2 gap-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                           <div className="col-span-2 pb-3 border-b border-slate-100 flex items-center justify-between">
                             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-800 font-heading">
                               <Layers className="w-4 h-4 text-purple-600" />
-                              <span>Air Distribution Solutions Catalogue</span>
+                              <span>Official Air Distribution Catalogue</span>
                             </div>
                             <span className="text-xs text-slate-400 font-mono font-semibold">
-                              {PRODUCTS.length} Categories Loaded
+                              5 Top-Level Product Lines
                             </span>
                           </div>
 
                           {PRODUCTS.map((prod) => (
-                            <Link
+                            <div
                               key={prod.id}
-                              href={`/products/${prod.slug}`}
-                              onClick={() => setProductsHover(false)}
-                              className="group p-3 rounded-xl hover:bg-sky-50/70 border border-transparent hover:border-sky-100 transition-all flex items-start gap-3"
+                              className="p-3 rounded-xl hover:bg-sky-50/70 border border-transparent hover:border-sky-100 transition-all flex flex-col justify-between"
                             >
-                              <div className="w-8 h-8 rounded-lg bg-purple-50 group-hover:bg-purple-700 text-purple-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
-                                <ArrowRight className="w-4 h-4" />
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-bold text-slate-900 group-hover:text-purple-800 transition-colors">
-                                  {prod.name}
-                                </h4>
-                                <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
-                                  {prod.subtitle}
-                                </p>
-                              </div>
-                            </Link>
+                              <Link
+                                href={`/products/${prod.slug}`}
+                                onClick={() => setProductsHover(false)}
+                                className="group flex items-start gap-2.5"
+                              >
+                                <div className="w-7 h-7 rounded-lg bg-purple-50 group-hover:bg-purple-700 text-purple-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5">
+                                  <ArrowRight className="w-3.5 h-3.5" />
+                                </div>
+                                <div>
+                                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-purple-800 transition-colors">
+                                    {prod.name}
+                                  </h4>
+                                  <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                                    {prod.subtitle}
+                                  </p>
+                                </div>
+                              </Link>
+
+                              {/* Subcategories if present */}
+                              {prod.subcategories && prod.subcategories.length > 0 && (
+                                <div className="mt-2 pl-9 space-y-1 border-l-2 border-purple-100 ml-3">
+                                  {prod.subcategories.map((sub) => (
+                                    <Link
+                                      key={sub.id}
+                                      href={`/products/${prod.slug}/${sub.slug}`}
+                                      onClick={() => setProductsHover(false)}
+                                      className="block text-[11px] font-semibold text-slate-600 hover:text-purple-800 transition-colors"
+                                    >
+                                      → {sub.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           ))}
 
                           <div className="col-span-2 pt-3 border-t border-slate-100 flex items-center justify-between bg-gradient-to-r from-ice-blue to-white -mx-6 -mb-6 p-4 rounded-b-2xl">
@@ -193,16 +213,31 @@ export default function Navbar() {
                 </Link>
 
                 {link.hasDropdown && (
-                  <div className="pl-4 pr-2 py-1 space-y-1.5 border-l-2 border-purple-200 ml-4 my-1">
+                  <div className="pl-4 pr-2 py-1 space-y-2 border-l-2 border-purple-200 ml-4 my-1">
                     {PRODUCTS.map((prod) => (
-                      <Link
-                        key={prod.id}
-                        href={`/products/${prod.slug}`}
-                        onClick={() => setMobileOpen(false)}
-                        className="block text-xs font-semibold text-slate-600 hover:text-purple-800 py-1"
-                      >
-                        • {prod.name}
-                      </Link>
+                      <div key={prod.id} className="space-y-1">
+                        <Link
+                          href={`/products/${prod.slug}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="block text-xs font-bold text-slate-800 hover:text-purple-800 py-0.5"
+                        >
+                          • {prod.name}
+                        </Link>
+                        {prod.subcategories && prod.subcategories.length > 0 && (
+                          <div className="pl-4 space-y-1">
+                            {prod.subcategories.map((sub) => (
+                              <Link
+                                key={sub.id}
+                                href={`/products/${prod.slug}/${sub.slug}`}
+                                onClick={() => setMobileOpen(false)}
+                                className="block text-[11px] font-semibold text-slate-500 hover:text-purple-800 py-0.5"
+                              >
+                                → {sub.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
