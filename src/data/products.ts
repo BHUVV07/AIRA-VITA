@@ -104,8 +104,8 @@ export const COMPANY_INFO = {
   ],
   distributor: {
     name: "Ecosta Systems",
-    location: "Bangalore - 560008",
-    address: "Bangalore - 560008, Karnataka, India",
+    location: "Indiranagar, Bengaluru - 560008",
+    address: "#31, Ground Floor, 80 Feet Rd, HAL 2nd Stage, Indiranagar, Near LPSC, Bengaluru, Karnataka 560008",
     tagline: "Authorized Distributor",
   },
   contact: {
@@ -113,7 +113,7 @@ export const COMPANY_INFO = {
     phone: "9342050097",
     formattedPhone: "+91 93420 50097",
     website: "www.ariavita.in",
-    location: "Bangalore, Karnataka, India",
+    location: "#31, Ground Floor, 80 Feet Rd, HAL 2nd Stage, Indiranagar, Near LPSC, Bengaluru, Karnataka 560008",
     whatsapp: "https://wa.me/919342050097",
   },
 };
