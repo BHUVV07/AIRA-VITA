@@ -20,6 +20,8 @@ export interface ProductSubcategory {
   id: string;
   slug: string;
   name: string;
+  model?: string;
+  temperature?: string;
   subtitle?: string;
   description?: string;
   image?: string;
@@ -213,7 +215,90 @@ export const PRODUCTS: Product[] = [
       "Aria Vita Air Curtains project a continuous high-speed air stream across open doorways, forming an invisible environmental barrier. Reduces air conditioning energy loss, excludes dust, smoke, and flying insects.",
     image: "/images/products/air-curtains.jpg",
     featured: true,
-    badges: ["Width 900–1800 mm", "Height 7–18 ft", "4 Series Options"],
+    badges: ["AACA", "AACS", "AACH"],
+    subcategories: [
+      {
+        id: "aluminium-powder-coated",
+        slug: "aluminium-powder-coated",
+        name: "Aluminium Powder Coated",
+        model: "AACA",
+        subtitle: "Aluminium powder-coated air curtain unit.",
+        description: "Commercial aluminium powder coated air curtain unit designed for mall entrances, retail stores, and hospital lobbies.",
+        image: "/images/products/air-curtains.jpg",
+        isComingSoon: false,
+        applications: [
+          "Mall entrances & retail shops",
+          "Hospitals & healthcare lobbies",
+          "Commercial office doorways",
+        ],
+        features: [
+          "Substantial Energy Saving",
+          "Dust & Insect Exclusion Barrier",
+          "Aluminium Powder Coated Housing",
+          "Low Noise Centrifugal Operation",
+        ],
+        specifications: {
+          "Model": "AACA",
+          "Body Material": "Aluminium Powder Coated",
+          "Door Height Coverage": "7 ft to 18 ft",
+          "Blower Type": "Centrifugal direct-drive fan wheels",
+        },
+      },
+      {
+        id: "stainless-steel",
+        slug: "stainless-steel",
+        name: "Stainless Steel",
+        model: "AACS",
+        subtitle: "Stainless steel hygienic air curtain unit.",
+        description: "High-hygiene stainless steel air curtain unit engineered for cleanrooms, pharmaceutical labs, commercial kitchens, and food processing facilities.",
+        image: "/images/products/air-curtains.jpg",
+        isComingSoon: false,
+        applications: [
+          "Clean rooms & pharmaceutical labs",
+          "Commercial kitchens & food processing",
+          "Hygienic manufacturing zones",
+        ],
+        features: [
+          "Corrosion-Proof Stainless Steel Finish",
+          "Hygienic Cleanroom Certified",
+          "Dust & Insect Exclusion Barrier",
+          "Low Noise Centrifugal Operation",
+        ],
+        specifications: {
+          "Model": "AACS",
+          "Body Material": "Stainless Steel",
+          "Door Height Coverage": "7 ft to 18 ft",
+          "Blower Type": "Centrifugal direct-drive fan wheels",
+        },
+      },
+      {
+        id: "industrial-application",
+        slug: "industrial-application",
+        name: "Industrial Application",
+        model: "AACH",
+        subtitle: "Heavy-duty air curtain unit for industrial doorways.",
+        description: "Industrial application high-velocity air curtain unit engineered for factories, warehouses, cold storage, and heavy industrial loading bays.",
+        image: "/images/products/air-curtains.jpg",
+        isComingSoon: false,
+        applications: [
+          "Factories & industrial manufacturing plants",
+          "Warehouses & logistics bays",
+          "Cold storage facilities",
+        ],
+        features: [
+          "High-Velocity Industrial Blower Air Jet",
+          "Substantial Energy Cost Savings",
+          "Heavy Duty Industrial Housing",
+          "Thermal & Dust Protection Barrier",
+        ],
+        specifications: {
+          "Model": "AACH",
+          "Body Material": "Industrial Application",
+          "Door Height Coverage": "7 ft to 18 ft",
+          "Blower Type": "High-velocity industrial centrifugal wheels",
+        },
+      },
+    ],
     applications: [
       "Mall entrances & retail shops",
       "Hospitals & healthcare lobbies",
@@ -223,20 +308,18 @@ export const PRODUCTS: Product[] = [
     features: [
       "Substantial Energy Saving",
       "Dust & Insect Exclusion Barrier",
-      "Multiple Body Options (Aluminium & Stainless Steel)",
-      "Optional Inbuilt Motion Sensor",
+      "Multiple Body Options (AACA, AACS, AACH)",
       "Low Noise Centrifugal Operation",
     ],
     specifications: {
-      "Width Range": "900 mm to 1800 mm",
+      "Available Variants": "Aluminium Powder Coated (AACA), Stainless Steel (AACS), Industrial Application (AACH)",
       "Door Height Coverage": "7 ft to 18 ft",
       "Blower Type": "Centrifugal direct-drive fan wheels",
     },
     models: [
-      { name: "AACA Series", bodyMaterial: "Aluminium Body", application: "Mall entrances, retail shops, hospitals" },
-      { name: "AACS Series", bodyMaterial: "Stainless Steel Body", application: "Clean rooms, commercial kitchens, food processing" },
-      { name: "AACH Series", bodyMaterial: "Heavy Duty Body", application: "Factories, warehouses, industrial bays" },
-      { name: "AACA-MS Series", bodyMaterial: "Aluminium + Motion Sensor", application: "Retail stores, automated office entrances" },
+      { name: "AACA", bodyMaterial: "Aluminium Powder Coated", application: "Mall entrances, retail shops, hospitals" },
+      { name: "AACS", bodyMaterial: "Stainless Steel", application: "Clean rooms, commercial kitchens, food processing" },
+      { name: "AACH", bodyMaterial: "Industrial Application", application: "Factories, warehouses, industrial bays" },
     ],
     technicalDocuments: [
       {
@@ -332,10 +415,64 @@ export const PRODUCTS: Product[] = [
     category: "Fire Retardent Canvas",
     shortDescription: "Fire safety-certified flexible ducting for smoke exhaust and high-risk HVAC zones.",
     description:
-      "Safety-first flexible ducting engineered specifically for smoke extraction systems, commercial kitchen exhausts, and fire-rated building shafts. Built with multi-layer fire retardant composite material that prevents flame propagation while maintaining high acoustic flexibility.",
+      "Safety-first flexible ducting engineered specifically for smoke extraction systems, commercial kitchen exhausts, and fire-rated building shafts. Available in Fire Retardent (92°C) and Fire Resistant (250°C) variants.",
     image: "/images/products/fire-retardant-flexible-duct.jpg",
     featured: true,
-    badges: ["BS 476 Part 7 Class 1", "ASTM E84 Class A", "UL 94 V-0"],
+    badges: ["Fire Retardent — 92°C", "Fire Resistant — 250°C"],
+    subcategories: [
+      {
+        id: "fire-retardent",
+        slug: "fire-retardent",
+        name: "Fire Retardent",
+        temperature: "92°C",
+        subtitle: "Fire Retardent Canvas — 92°C Operating Temperature.",
+        description: "Fire Retardent Canvas rated for 92°C operating temperature. Designed for general ventilation, HVAC flexible duct connections, and standard smoke extraction shafts.",
+        image: "/images/products/fire-retardant-flexible-duct.jpg",
+        isComingSoon: false,
+        applications: [
+          "Standard HVAC duct connection joints",
+          "Smoke exhaust systems",
+          "Commercial building risers",
+        ],
+        features: [
+          "Fire Retardent Material Construction",
+          "92°C Temperature Resistance",
+          "Airtight Seam Construction",
+          "Lightweight & Highly Flexible",
+        ],
+        specifications: {
+          "Variant": "Fire Retardent",
+          "Temperature Resistance": "92°C",
+          "Flexibility Radius": "0.6 x Diameter",
+        },
+      },
+      {
+        id: "fire-resistant",
+        slug: "fire-resistant",
+        name: "Fire Resistant",
+        temperature: "250°C",
+        subtitle: "Fire Resistant Canvas — 250°C Operating Temperature.",
+        description: "High-temperature Fire Resistant Canvas rated for 250°C operating temperature. Engineered for commercial kitchen hood connections, high-temperature smoke extraction, and critical fire safety shafts.",
+        image: "/images/products/fire-retardant-flexible-duct.jpg",
+        isComingSoon: false,
+        applications: [
+          "High-temperature smoke extraction shafts",
+          "Commercial kitchen exhaust hood connections",
+          "Critical fire-rated building zones",
+        ],
+        features: [
+          "High-Temperature Fire Resistant Construction",
+          "250°C Thermal Resistance",
+          "Extreme Flame Propagation Protection",
+          "Heavy Duty Composite Weave",
+        ],
+        specifications: {
+          "Variant": "Fire Resistant",
+          "Temperature Resistance": "250°C",
+          "Flexibility Radius": "0.6 x Diameter",
+        },
+      },
+    ],
     applications: [
       "Smoke exhaust systems",
       "Kitchen exhaust hood connections",
@@ -343,8 +480,8 @@ export const PRODUCTS: Product[] = [
       "Stairwell pressurization & safety shafts",
     ],
     features: [
-      "Fire Retardant Composite Construction",
-      "High Temperature Resistance",
+      "Fire Retardent Composite Construction",
+      "92°C & 250°C Temperature Options",
       "Lightweight & Highly Flexible",
       "Quick & Tool-less Installation",
     ],
@@ -354,9 +491,9 @@ export const PRODUCTS: Product[] = [
       "UL 94 V-0",
     ],
     specifications: {
-      "Material Construction": "Fire-Retardant Multi-Layer Composite",
+      "Fire Retardent Variant": "92°C",
+      "Fire Resistant Variant": "250°C",
       "Fire Safety Standards": "BS 476 Part 7 Class 1 / ASTM E84 Class A / UL 94 V-0",
-      "Temperature Range": "-30°C to +140°C",
       "Flexibility Radius": "0.6 x Diameter",
     },
     technicalDocuments: [
@@ -378,10 +515,10 @@ export const PRODUCTS: Product[] = [
     category: "CAR",
     shortDescription: "Self-balancing mechanical air regulator for constant volumetric airflow in HVAC ducts.",
     description:
-      "The Constant Airflow Regulator (CAR) is a self-adjusting mechanical device designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure, the CAR internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations, ensuring calibrated CFM rates without electrical sensors.",
+      "The Constant Airflow Regulator (CAR) is a self-adjusting mechanical device designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure across 50–200 dia, the CAR internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations without electrical power.",
     image: "/images/products/constant-airflow-regulator.jpg",
     featured: true,
-    badges: ["Flagship Technology", "50–250 Pa Control", "Zero Power"],
+    badges: ["50–200 dia", "50–250 Pa Control", "Zero Power"],
     applications: [
       "Multi-story residential apartment exhaust shafts",
       "Hotel bathroom & room ventilation risers",
@@ -396,20 +533,13 @@ export const PRODUCTS: Product[] = [
       "Zero Electrical Wiring Required",
     ],
     specifications: {
-      "Pressure range": "50–250 Pa",
-      "Maximum temperature": "60°C",
-      "Material": "Polystyrene",
-      "Colour": "Black",
-      "Available sizes": "Ø80, Ø100, Ø125, Ø150, Ø160, Ø200, Ø250",
+      "DIAMETER": "50–200 dia",
+      "PRESSURE RANGE": "50–250 Pa",
+      "Housing Material": "High-impact Polystyrene",
+      "Color": "Black",
     },
     models: [
-      { name: "CAR Ø80", size: "Ø80 mm", airflowRange: "15 – 90 m³/h", weight: "0.12 kg" },
-      { name: "CAR Ø100", size: "Ø100 mm", airflowRange: "15 – 120 m³/h", weight: "0.15 kg" },
-      { name: "CAR Ø125", size: "Ø125 mm", airflowRange: "15 – 180 m³/h", weight: "0.19 kg" },
-      { name: "CAR Ø150", size: "Ø150 mm", airflowRange: "50 – 300 m³/h", weight: "0.24 kg" },
-      { name: "CAR Ø160", size: "Ø160 mm", airflowRange: "50 – 300 m³/h", weight: "0.26 kg" },
-      { name: "CAR Ø200", size: "Ø200 mm", airflowRange: "100 – 500 m³/h", weight: "0.38 kg" },
-      { name: "CAR Ø250", size: "Ø250 mm", airflowRange: "150 – 700 m³/h", weight: "0.52 kg" },
+      { name: "CAR 50-200", size: "50–200 dia", airflowRange: "15 – 500 m³/h", weight: "0.15 – 0.50 kg" },
     ],
     technicalDocuments: [
       {
@@ -499,7 +629,7 @@ export function getProductBySlug(slug: string): Product | undefined {
   if (!slug) return undefined;
   const s = slug.toLowerCase();
   
-  // Direct match on main slug or alias
+  // Direct match on main slug or id
   const mainMatch = PRODUCTS.find((p) => p.slug === s || p.id === s);
   if (mainMatch) return mainMatch;
 
@@ -510,10 +640,10 @@ export function getProductBySlug(slug: string): Product | undefined {
   if (s === "air-curtains") return PRODUCTS.find((p) => p.slug === "air-curtain");
   if (s === "non-insulated-flexible-duct") return PRODUCTS.find((p) => p.slug === "flexible-duct");
 
-  // Handle subcategory slug lookup
+  // Handle subcategory or variant slug lookup
   for (const prod of PRODUCTS) {
     if (prod.subcategories) {
-      const sub = prod.subcategories.find((sc) => sc.slug === s || sc.id === s);
+      const sub = prod.subcategories.find((sc) => sc.slug === s || sc.id === s || (sc.model && sc.model.toLowerCase() === s));
       if (sub) return prod;
     }
   }
@@ -526,7 +656,10 @@ export function getSubcategoryBySlug(productSlug: string, subcategorySlug: strin
   if (!product || !product.subcategories) return undefined;
 
   const sub = product.subcategories.find(
-    (sc) => sc.slug.toLowerCase() === subcategorySlug.toLowerCase() || sc.id.toLowerCase() === subcategorySlug.toLowerCase()
+    (sc) =>
+      sc.slug.toLowerCase() === subcategorySlug.toLowerCase() ||
+      sc.id.toLowerCase() === subcategorySlug.toLowerCase() ||
+      (sc.model && sc.model.toLowerCase() === subcategorySlug.toLowerCase())
   );
 
   if (sub) {
@@ -565,7 +698,8 @@ export function getAllCategories(): string[] {
 
 export function searchProducts(query: string): Product[] {
   if (!query) return PRODUCTS;
-  const q = query.toLowerCase();
+  const q = query.toLowerCase().trim();
+
   return PRODUCTS.filter((p) => {
     const nameMatch = p.name.toLowerCase().includes(q) || (p.fullName && p.fullName.toLowerCase().includes(q));
     const subtitleMatch = p.subtitle.toLowerCase().includes(q);
@@ -575,14 +709,16 @@ export function searchProducts(query: string): Product[] {
     const featMatch = p.features?.some((f) => f.toLowerCase().includes(q));
     const modelMatch = p.models?.some((m) => m.name.toLowerCase().includes(q) || (m.size && m.size.toLowerCase().includes(q)));
     
-    // Subcategory matches
+    // Exact search term matches requested by client
+    // e.g. "AACA", "AACS", "AACH", "92", "250", "50-200", "50-250", "dia"
     const subMatch = p.subcategories?.some(
       (sc) =>
         sc.name.toLowerCase().includes(q) ||
+        (sc.model && sc.model.toLowerCase().includes(q)) ||
+        (sc.temperature && sc.temperature.toLowerCase().includes(q)) ||
         (sc.description && sc.description.toLowerCase().includes(q)) ||
         sc.applications?.some((app) => app.toLowerCase().includes(q)) ||
-        sc.features?.some((f) => f.toLowerCase().includes(q)) ||
-        sc.models?.some((m) => m.name.toLowerCase().includes(q) || (m.size && m.size.toLowerCase().includes(q)))
+        sc.features?.some((f) => f.toLowerCase().includes(q))
     );
 
     // Specifications matches

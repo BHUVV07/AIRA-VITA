@@ -25,6 +25,8 @@ export interface ProductItem {
     id: string;
     slug: string;
     name: string;
+    model?: string;
+    temperature?: string;
     subtitle?: string;
     description?: string;
     image?: string;
@@ -71,6 +73,8 @@ export const PRODUCTS: ProductItem[] = MAIN_PRODUCTS.map((p) => ({
     id: sc.id,
     slug: sc.slug,
     name: sc.name,
+    model: sc.model,
+    temperature: sc.temperature,
     subtitle: sc.subtitle,
     description: sc.description,
     image: sc.image,

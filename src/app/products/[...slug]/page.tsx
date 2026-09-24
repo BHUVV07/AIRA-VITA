@@ -9,11 +9,11 @@ import {
   CheckCircle2,
   Sliders,
   Mail,
-  ArrowRight,
   Wind,
   Settings2,
   Clock,
   PhoneCall,
+  Thermometer,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ui/ContactModal";
@@ -34,22 +34,29 @@ export default function DynamicProductPage({ params }: PageProps) {
 
   const product = getProductBySlug(mainSlug);
 
-  // Check subcategory if subSlug present or if mainSlug was actually a subcategory slug
-  let subcategory: ProductSubcategory | undefined = undefined;
+  // Determine active subcategory or selected variant index
+  let initialSubIdx = 0;
   if (product && product.subcategories) {
     if (subSlug) {
-      subcategory = product.subcategories.find(
-        (sc) => sc.slug.toLowerCase() === subSlug.toLowerCase() || sc.id.toLowerCase() === subSlug.toLowerCase()
+      const idx = product.subcategories.findIndex(
+        (sc) =>
+          sc.slug.toLowerCase() === subSlug.toLowerCase() ||
+          sc.id.toLowerCase() === subSlug.toLowerCase() ||
+          (sc.model && sc.model.toLowerCase() === subSlug.toLowerCase())
       );
+      if (idx !== -1) initialSubIdx = idx;
     } else if (mainSlug !== product.slug) {
-      // Main slug was a subcategory alias like abs-plastic or non-insulated
-      subcategory = product.subcategories.find(
-        (sc) => sc.slug.toLowerCase() === mainSlug.toLowerCase() || sc.id.toLowerCase() === mainSlug.toLowerCase()
+      const idx = product.subcategories.findIndex(
+        (sc) =>
+          sc.slug.toLowerCase() === mainSlug.toLowerCase() ||
+          sc.id.toLowerCase() === mainSlug.toLowerCase() ||
+          (sc.model && sc.model.toLowerCase() === mainSlug.toLowerCase())
       );
+      if (idx !== -1) initialSubIdx = idx;
     }
   }
 
-  const [selectedModelIdx, setSelectedModelIdx] = useState(0);
+  const [activeSubIdx, setActiveSubIdx] = useState(initialSubIdx);
   const [modalOpen, setModalOpen] = useState(false);
   const [carMode, setCarMode] = useState<"blowing" | "extraction">("blowing");
 
@@ -66,19 +73,20 @@ export default function DynamicProductPage({ params }: PageProps) {
   }
 
   const isCAR = product.slug === "car";
-  const isAirCurtain = product.slug === "air-curtain";
+  const isFireCanvas = product.slug === "fire-retardent-canvas";
 
-  const activeModels = subcategory?.models || product.models;
-  const activeSpecs = subcategory?.specifications || product.specifications;
-  const activeFeatures = subcategory?.features || product.features || [];
-  const activeApps = subcategory?.applications || product.applications || [];
-  const currentModel = activeModels ? activeModels[selectedModelIdx] : null;
+  const subcategories = product.subcategories || [];
+  const activeSubcategory: ProductSubcategory | undefined = subcategories[activeSubIdx];
+
+  const activeSpecs = activeSubcategory?.specifications || product.specifications;
+  const activeFeatures = activeSubcategory?.features || product.features || [];
+  const activeApps = activeSubcategory?.applications || product.applications || [];
 
   return (
     <div className="pt-24 min-h-screen bg-slate-50">
       {/* Breadcrumb Navigation */}
       <div className="bg-white border-b border-slate-200 py-3">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-600 font-medium overflow-x-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-600 font-medium overflow-x-auto whitespace-nowrap">
           <Link href="/" className="hover:text-purple-700 transition-colors shrink-0">
             Home
           </Link>
@@ -89,14 +97,14 @@ export default function DynamicProductPage({ params }: PageProps) {
           <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           <Link
             href={`/products/${product.slug}`}
-            className={`hover:text-purple-700 transition-colors shrink-0 ${!subcategory ? "font-bold text-slate-900" : ""}`}
+            className={`hover:text-purple-700 transition-colors shrink-0 ${!activeSubcategory ? "font-bold text-slate-900" : ""}`}
           >
             {product.name}
           </Link>
-          {subcategory && (
+          {activeSubcategory && (
             <>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-              <span className="font-bold text-slate-900 shrink-0">{subcategory.name}</span>
+              <span className="font-bold text-slate-900 shrink-0">{activeSubcategory.name}</span>
             </>
           )}
         </div>
@@ -108,21 +116,42 @@ export default function DynamicProductPage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
               <span className="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-3.5 py-1 rounded-full border border-purple-200 inline-block">
-                {subcategory ? `${product.name} → ${subcategory.name}` : product.category}
+                {activeSubcategory ? `${product.name} → ${activeSubcategory.name}` : product.category}
               </span>
+
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight">
-                {subcategory ? `${product.name} — ${subcategory.name}` : product.name}
+                {activeSubcategory
+                  ? `${product.name} — ${activeSubcategory.name}${activeSubcategory.model ? ` (${activeSubcategory.model})` : ""}`
+                  : product.name}
               </h1>
+
               <p className="text-lg text-slate-600 leading-relaxed font-normal">
-                {subcategory?.subtitle || product.subtitle}
+                {activeSubcategory?.subtitle || product.subtitle}
               </p>
 
-              {product.fullName && (
-                <div className="p-3 bg-purple-50/80 rounded-xl border border-purple-200 text-xs font-semibold text-purple-900 inline-block">
-                  Official Technical Name: <strong className="text-slate-900">{product.fullName}</strong>
+              {/* CAR Prominent Key Highlights */}
+              {isCAR && (
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <div className="px-4 py-2 bg-white rounded-xl border border-sky-200 shadow-sm font-mono">
+                    <span className="text-[10px] text-slate-400 uppercase font-bold block">DIAMETER</span>
+                    <span className="text-sm font-extrabold text-purple-900">50–200 dia</span>
+                  </div>
+                  <div className="px-4 py-2 bg-white rounded-xl border border-sky-200 shadow-sm font-mono">
+                    <span className="text-[10px] text-slate-400 uppercase font-bold block">PRESSURE RANGE</span>
+                    <span className="text-sm font-extrabold text-sky-700">50–250 Pa</span>
+                  </div>
                 </div>
               )}
 
+              {/* Fire Retardent Canvas Temperature Highlight */}
+              {isFireCanvas && activeSubcategory?.temperature && (
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-900 text-white rounded-xl shadow-md font-mono text-xs">
+                  <Thermometer className="w-4 h-4 text-purple-300" />
+                  <span>TEMPERATURE RESISTANCE: <strong>{activeSubcategory.temperature}</strong></span>
+                </div>
+              )}
+
+              {/* Standards Badges */}
               {product.standards && (
                 <div className="flex flex-wrap gap-2 pt-2">
                   {product.standards.map((std) => (
@@ -152,8 +181,8 @@ export default function DynamicProductPage({ params }: PageProps) {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl p-2">
                 <Image
-                  src={subcategory?.image || product.image}
-                  alt={subcategory ? `${product.name} ${subcategory.name}` : product.name}
+                  src={activeSubcategory?.image || product.image}
+                  alt={activeSubcategory ? `${product.name} ${activeSubcategory.name}` : product.name}
                   fill
                   className="object-cover rounded-xl"
                 />
@@ -164,9 +193,66 @@ export default function DynamicProductPage({ params }: PageProps) {
       </section>
 
       {/* Main Content Body */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+        {/* INTERACTIVE VARIANT SELECTOR FOR PRODUCTS WITH SUBCATEGORIES */}
+        {subcategories.length > 0 && (
+          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-sky-200 shadow-lg space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-700 block mb-1">
+                  Product Selector
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold font-heading text-slate-900">
+                  Select {product.name} Variant
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-slate-400 font-semibold hidden sm:block">
+                {subcategories.length} Options Available
+              </span>
+            </div>
+
+            {/* Responsive Horizontally Scrollable Selector */}
+            <div className="flex gap-3 overflow-x-auto pb-2 pt-2 scrollbar-none">
+              {subcategories.map((sub, idx) => {
+                const isSelected = activeSubIdx === idx;
+
+                return (
+                  <button
+                    key={sub.id}
+                    onClick={() => setActiveSubIdx(idx)}
+                    className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all shrink-0 text-left cursor-pointer border ${
+                      isSelected
+                        ? "bg-purple-700 border-purple-700 text-white shadow-md ring-2 ring-purple-300"
+                        : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>{sub.name}</span>
+                      {sub.model && (
+                        <span className={`font-mono text-[10px] px-2 py-0.5 rounded ${isSelected ? "bg-purple-900 text-purple-200" : "bg-purple-100 text-purple-800"}`}>
+                          {sub.model}
+                        </span>
+                      )}
+                      {sub.temperature && (
+                        <span className={`font-mono text-[10px] px-2 py-0.5 rounded ${isSelected ? "bg-purple-900 text-purple-200" : "bg-purple-100 text-purple-800"}`}>
+                          {sub.temperature}
+                        </span>
+                      )}
+                      {sub.isComingSoon && (
+                        <span className="text-[10px] font-mono bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded">
+                          Soon
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* If viewing a subcategory with isComingSoon */}
-        {subcategory?.isComingSoon ? (
+        {activeSubcategory?.isComingSoon ? (
           <div className="bg-white p-10 rounded-3xl border border-sky-200 shadow-lg text-center max-w-2xl mx-auto space-y-6">
             <div className="w-16 h-16 bg-purple-100 rounded-2xl text-purple-700 flex items-center justify-center mx-auto">
               <Clock className="w-8 h-8" />
@@ -176,7 +262,7 @@ export default function DynamicProductPage({ params }: PageProps) {
                 Technical Information Coming Soon
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Detailed technical specifications, CAD drawings, and test certificates for {product.name} — {subcategory.name} are currently being updated by our engineering team.
+                Detailed technical specifications, CAD drawings, and test certificates for {product.name} — {activeSubcategory.name} are currently being updated by our engineering team.
               </p>
             </div>
             <div className="pt-2 flex justify-center gap-4">
@@ -196,11 +282,27 @@ export default function DynamicProductPage({ params }: PageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div className="lg:col-span-7 space-y-6">
                 <h2 className="text-2xl font-bold font-heading text-slate-900 border-b border-slate-200 pb-3">
-                  Product Overview & Performance Features
+                  Product Overview & Technical Performance
                 </h2>
+
                 <p className="text-slate-700 leading-relaxed text-base">
-                  {subcategory?.description || product.description}
+                  {activeSubcategory?.description || product.description}
                 </p>
+
+                {/* Prominent Temperature Resistance Display for Fire Retardent Canvas */}
+                {isFireCanvas && activeSubcategory?.temperature && (
+                  <div className="p-5 rounded-2xl bg-gradient-to-r from-purple-900 to-slate-900 text-white space-y-2 shadow-md">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-300 block">
+                      TEMPERATURE RESISTANCE SPECIFICATION
+                    </span>
+                    <div className="text-3xl font-extrabold font-mono text-purple-200">
+                      {activeSubcategory.temperature}
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Engineered to maintain structural integrity and flexibility under thermal operating conditions up to {activeSubcategory.temperature}.
+                    </p>
+                  </div>
+                )}
 
                 {activeApps.length > 0 && (
                   <div>
@@ -244,14 +346,14 @@ export default function DynamicProductPage({ params }: PageProps) {
               {/* Specifications Table */}
               <div className="lg:col-span-5 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
                 <h3 className="text-lg font-bold font-heading text-slate-900 border-b border-slate-100 pb-3 flex items-center justify-between">
-                  <span>Technical Specifications</span>
+                  <span>Technical Data Sheet</span>
                   <span className="text-xs font-mono text-slate-400">Verified</span>
                 </h3>
 
                 <div className="divide-y divide-slate-100">
                   {Object.entries(activeSpecs || {}).map(([key, value]) => (
                     <div key={key} className="py-2.5 flex items-center justify-between text-xs">
-                      <span className="font-semibold text-slate-600">{key}</span>
+                      <span className="font-semibold text-slate-600 uppercase tracking-wide">{key}</span>
                       <span className="font-mono text-slate-900 font-bold text-right ml-4">
                         {String(value)}
                       </span>
@@ -268,54 +370,6 @@ export default function DynamicProductPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* SUBCATEGORIES SHOWCASE FOR DISC VALVES & FLEXIBLE DUCT */}
-            {product.subcategories && !subcategory && (
-              <div className="bg-white p-8 rounded-3xl border border-sky-200 shadow-lg space-y-6">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-purple-700 block mb-1">
-                    Product Hierarchy & Variants
-                  </span>
-                  <h2 className="text-2xl font-bold font-heading text-slate-900">
-                    Available {product.name} Types
-                  </h2>
-                  <p className="text-sm text-slate-600 mt-1">
-                    Select a subcategory to inspect technical specifications and models.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {product.subcategories.map((sub) => (
-                    <Link
-                      key={sub.id}
-                      href={`/products/${product.slug}/${sub.slug}`}
-                      className="group p-6 rounded-2xl bg-slate-50 hover:bg-sky-50/70 border border-slate-200 hover:border-purple-300 transition-all flex flex-col justify-between space-y-4"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-lg font-bold text-slate-900 group-hover:text-purple-700 transition-colors">
-                            {sub.name}
-                          </h3>
-                          {sub.isComingSoon && (
-                            <span className="text-[10px] font-mono font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">
-                              Coming Soon
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs text-slate-600 leading-relaxed">
-                          {sub.subtitle || sub.description}
-                        </p>
-                      </div>
-
-                      <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs font-bold text-purple-700 group-hover:text-purple-800">
-                        <span>{sub.isComingSoon ? "View Status" : "View Subcategory"}</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* FLAGSHIP CAR TECH SHOWCASE */}
             {isCAR && (
               <div className="space-y-10 bg-white p-8 rounded-3xl border border-sky-200 shadow-lg">
@@ -327,8 +381,28 @@ export default function DynamicProductPage({ params }: PageProps) {
                     How The CAR Self-Balancing Regulator Works
                   </h2>
                   <p className="text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
-                    The Constant Airflow Regulator operates on mechanical pressure differential balancing. Inside the bulb, an inflatable membrane automatically opens or closes the airflow passage in response to pressure changes between 50 and 250 Pa.
+                    The Constant Airflow Regulator operates on mechanical pressure differential balancing across 50–200 dia. Inside the bulb, an inflatable membrane automatically opens or closes the airflow passage in response to duct pressure variations between 50 and 250 Pa.
                   </p>
+                </div>
+
+                {/* Technical Specification Highlight Area */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="p-5 rounded-2xl bg-sky-50 border border-sky-200 space-y-1">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-sky-700 block">DIAMETER</span>
+                    <span className="text-xl font-extrabold font-mono text-slate-900">50–200 dia</span>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-purple-50 border border-purple-200 space-y-1">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-purple-700 block">PRESSURE RANGE</span>
+                    <span className="text-xl font-extrabold font-mono text-purple-900">50–250 Pa</span>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-600 block">HOUSING MATERIAL</span>
+                    <span className="text-base font-bold text-slate-900">Polystyrene</span>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-600 block">HOUSING COLOUR</span>
+                    <span className="text-base font-bold text-slate-900">Black</span>
+                  </div>
                 </div>
 
                 {/* Operating Mode Toggle */}
@@ -374,7 +448,7 @@ export default function DynamicProductPage({ params }: PageProps) {
                         : "Prevents over-ventilation and balances total static exhaust pressure across multi-story riser shafts."}
                     </p>
                     <div className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-[11px] text-slate-300 font-mono">
-                      Pressure range: 50–250 Pa | Max temp: 60°C | Material: Polystyrene | Colour: Black
+                      Diameter: 50–200 dia | Pressure: 50–250 Pa | Material: Polystyrene | Colour: Black
                     </div>
                   </div>
 
@@ -387,106 +461,6 @@ export default function DynamicProductPage({ params }: PageProps) {
                     </span>
                     <span className="text-[10px] text-slate-400 mt-1">Screwdriver Calibrated Setting</span>
                   </div>
-                </div>
-
-                {/* Diameter Selector */}
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold font-heading text-slate-900">
-                      Select Your CAR Diameter Model:
-                    </h3>
-                    <span className="text-xs text-slate-500 font-mono">Available sizes: Ø80, Ø100, Ø125, Ø150, Ø160, Ø200, Ø250</span>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {product.models?.map((m, idx) => (
-                      <button
-                        key={m.name}
-                        onClick={() => setSelectedModelIdx(idx)}
-                        className={`px-4 py-2.5 rounded-xl font-bold text-xs font-mono transition-all cursor-pointer ${
-                          selectedModelIdx === idx
-                            ? "bg-purple-700 text-white shadow-md ring-2 ring-purple-300"
-                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                        }`}
-                      >
-                        {m.name}
-                      </button>
-                    ))}
-                  </div>
-
-                  {currentModel && (
-                    <div className="p-6 rounded-2xl bg-purple-50 border border-purple-200 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                      <div>
-                        <span className="text-purple-700 font-semibold block">Model Designation:</span>
-                        <span className="text-slate-900 font-bold font-mono text-sm">{currentModel.name}</span>
-                      </div>
-                      <div>
-                        <span className="text-purple-700 font-semibold block">Duct Size:</span>
-                        <span className="text-slate-900 font-bold font-mono text-sm">{currentModel.size}</span>
-                      </div>
-                      <div>
-                        <span className="text-purple-700 font-semibold block">Calibrated Airflow Range:</span>
-                        <span className="text-sky-700 font-bold font-mono text-sm">{currentModel.airflowRange}</span>
-                      </div>
-                      <div>
-                        <span className="text-purple-700 font-semibold block">Unit Weight:</span>
-                        <span className="text-slate-900 font-bold font-mono text-sm">{currentModel.weight}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* AIR CURTAIN SERIES RANGE */}
-            {isAirCurtain && product.models && (
-              <div className="bg-white p-8 rounded-3xl border border-slate-200 space-y-6">
-                <h2 className="text-2xl font-bold font-heading text-slate-900">
-                  Air Curtain Series Range
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {product.models.map((m) => (
-                    <div key={m.name} className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                      <span className="text-xs font-mono font-bold text-purple-700 uppercase block">
-                        {m.name}
-                      </span>
-                      <h3 className="text-base font-bold text-slate-900">{m.bodyMaterial}</h3>
-                      <p className="text-xs text-slate-600 leading-relaxed">{m.application}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* MODEL RANGE TABLE IF MODELS PRESENT */}
-            {activeModels && activeModels.length > 0 && !isCAR && !isAirCurtain && (
-              <div className="bg-white p-8 rounded-3xl border border-slate-200 space-y-6">
-                <h2 className="text-2xl font-bold font-heading text-slate-900">
-                  Model Specifications & Sizes
-                </h2>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                  <table className="w-full text-xs text-left">
-                    <thead className="bg-slate-900 text-white font-heading text-[11px] uppercase tracking-wider">
-                      <tr>
-                        <th className="px-4 py-3">Model Name</th>
-                        <th className="px-4 py-3">Duct Size / Dimensions</th>
-                        <th className="px-4 py-3">Primary Application</th>
-                        <th className="px-4 py-3">Performance Data</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 bg-white font-medium">
-                      {activeModels.map((m) => (
-                        <tr key={m.name} className="hover:bg-slate-50">
-                          <td className="px-4 py-3 font-bold text-slate-900 font-mono">{m.name}</td>
-                          <td className="px-4 py-3 text-slate-700 font-mono">{m.size || "Standard"}</td>
-                          <td className="px-4 py-3 text-slate-700">{m.application || m.bodyMaterial || "HVAC Distribution"}</td>
-                          <td className="px-4 py-3 text-sky-700 font-mono font-semibold">
-                            {m.soundLevel || m.airflowRange || "Verified"}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             )}
@@ -523,7 +497,7 @@ export default function DynamicProductPage({ params }: PageProps) {
       <ContactModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        defaultProduct={subcategory ? `${product.name} — ${subcategory.name}` : product.name}
+        defaultProduct={activeSubcategory ? `${product.name} — ${activeSubcategory.name}` : product.name}
       />
     </div>
   );
