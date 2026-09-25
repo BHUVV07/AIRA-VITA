@@ -10,7 +10,6 @@ interface LogoProps {
 
 export default function AriaVitaLogo({
   className = "",
-  variant = "dark",
   showTagline = true,
 }: LogoProps) {
   return (
@@ -20,12 +19,12 @@ export default function AriaVitaLogo({
       aria-label="ARIA VITA™ Home"
     >
       {/* Official Supplied Logo Asset */}
-      <div className="relative h-10 w-[110px] sm:w-[125px] shrink-0 flex items-center justify-center">
+      <div className="relative h-10 w-[68px] sm:h-12 sm:w-[82px] shrink-0 flex items-center justify-center">
         <Image
-          src="/images/logo.png"
+          src="/images/aria-vita-logo.png"
           alt="ARIA VITA™ Logo - Precision Air. Perfect Comfort."
           fill
-          sizes="125px"
+          sizes="(max-width: 640px) 68px, 82px"
           className="object-contain object-left mix-blend-multiply"
           priority
         />
@@ -33,7 +32,7 @@ export default function AriaVitaLogo({
 
       {showTagline && (
         <div className="hidden sm:flex flex-col border-l border-slate-200 pl-3">
-          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-purple-900 font-heading">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-900 font-heading">
             Precision Air
           </span>
           <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-slate-500">

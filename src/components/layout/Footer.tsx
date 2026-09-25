@@ -25,11 +25,11 @@ export default function Footer() {
             {/* Distributor Badge */}
             <div className="pt-2">
               <div className="p-4 rounded-2xl bg-white border border-sky-200 shadow-xs flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700 shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-sky-100 border border-sky-200 flex items-center justify-center text-sky-700 shrink-0 mt-0.5">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-purple-800 block">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-sky-800 block">
                     Authorized Pan India Distributor
                   </span>
                   <h4 className="text-sm font-bold text-slate-900 mt-0.5">
@@ -51,7 +51,7 @@ export default function Footer() {
                 <li key={prod.id}>
                   <Link
                     href={`/products/${prod.slug}`}
-                    className="hover:text-purple-700 transition-colors"
+                    className="hover:text-sky-700 transition-colors"
                   >
                     {prod.name}
                   </Link>
@@ -67,32 +67,32 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
               <li>
-                <Link href="/" className="hover:text-purple-700 transition-colors">
+                <Link href="/" className="hover:text-sky-700 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-purple-700 transition-colors">
+                <Link href="/products" className="hover:text-sky-700 transition-colors">
                   All Products Catalogue
                 </Link>
               </li>
               <li>
-                <Link href="/industries" className="hover:text-purple-700 transition-colors">
+                <Link href="/industries" className="hover:text-sky-700 transition-colors">
                   Industries & Sectors
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-purple-700 transition-colors">
+                <Link href="/about" className="hover:text-sky-700 transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="hover:text-purple-700 transition-colors">
+                <Link href="/resources" className="hover:text-sky-700 transition-colors">
                   Technical Resources
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-purple-700 transition-colors">
+                <Link href="/contact" className="hover:text-sky-700 transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -106,7 +106,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-xs text-slate-600 font-medium">
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-purple-700 shrink-0 mt-0.5" />
+                <Mail className="w-4 h-4 text-sky-700 shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${COMPANY_INFO.contact.email}`}
                   className="hover:text-slate-900 font-bold transition-colors"
@@ -134,7 +134,7 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-purple-700 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-sky-700 shrink-0 mt-0.5" />
                 <span>{COMPANY_INFO.contact.location}</span>
               </li>
               <li className="flex items-start gap-2.5">
@@ -160,7 +160,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} ARIA VITA™. All Rights Reserved. Precision Air. Perfect Comfort.</p>
           <div className="flex items-center gap-6 font-medium">
             <span>Authorized Distributor: Ecosta Systems, Bangalore</span>
-            <Link href="/contact" className="hover:text-purple-700 transition-colors">
+            <Link href="/contact" className="hover:text-sky-700 transition-colors">
               RFQ Support
             </Link>
           </div>

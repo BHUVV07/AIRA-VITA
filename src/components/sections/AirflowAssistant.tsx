@@ -30,8 +30,8 @@ export default function AirflowAssistant() {
         />
 
         {/* Mandatory Engineering Disclaimer */}
-        <div className="max-w-3xl mx-auto mb-10 p-3.5 rounded-2xl bg-white/90 border border-purple-200 text-purple-900 text-xs flex items-center gap-3 shadow-xs">
-          <Info className="w-5 h-5 text-purple-600 shrink-0" />
+        <div className="max-w-3xl mx-auto mb-10 p-3.5 rounded-2xl bg-white/90 border border-sky-200 text-sky-900 text-xs flex items-center gap-3 shadow-xs">
+          <Info className="w-5 h-5 text-sky-600 shrink-0" />
           <span>
             <strong>Indicative selection tool.</strong> Final product selection should be verified against project requirements and applicable engineering standards.
           </span>
@@ -42,7 +42,7 @@ export default function AirflowAssistant() {
           {/* Controls Column */}
           <div className="lg:col-span-6 space-y-6">
             <h3 className="text-base font-bold font-heading text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
-              <Sliders className="w-4 h-4 text-purple-700" />
+              <Sliders className="w-4 h-4 text-sky-600" />
               <span>1. Enter Project Parameters</span>
             </h3>
 
@@ -54,7 +54,7 @@ export default function AirflowAssistant() {
               <select
                 value={sector}
                 onChange={(e) => setSector(e.target.value)}
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-medium text-slate-900 focus:ring-2 focus:ring-purple-500 outline-none"
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-medium text-slate-900 focus:ring-2 focus:ring-sky-400 outline-none"
               >
                 <option value="Commercial Building">Commercial Building (Office / IT Park)</option>
                 <option value="Hospital & Cleanroom">Hospital & Cleanroom Isolation</option>
@@ -81,7 +81,7 @@ export default function AirflowAssistant() {
                 step="10"
                 value={cfm}
                 onChange={(e) => setCfm(Number(e.target.value))}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-sky-500"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
                 <span>30 CFM (Small Room)</span>
@@ -109,7 +109,7 @@ export default function AirflowAssistant() {
                     onClick={() => setCategory(item.cat)}
                     className={`px-3 py-2 text-xs font-semibold rounded-xl border transition-all text-left cursor-pointer ${
                       category === item.cat
-                        ? "bg-purple-700 border-purple-700 text-white shadow-sm"
+                        ? "bg-sky-600 border-sky-600 text-white shadow-sm"
                         : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
                     }`}
                   >
@@ -124,7 +124,7 @@ export default function AirflowAssistant() {
           <div className="lg:col-span-6 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl border border-slate-800 p-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <span className="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5 font-heading">
+                <span className="text-xs font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1.5 font-heading">
                   <Sparkles className="w-4 h-4" />
                   <span>Matching Product Recommendation</span>
                 </span>
@@ -167,7 +167,7 @@ export default function AirflowAssistant() {
                   setSelectedProductSlug(recommendedProduct.name);
                   setModalOpen(true);
                 }}
-                className="w-full py-3.5 bg-purple-700 hover:bg-purple-800 text-white font-semibold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="w-full py-3.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <span>Request Technical RFQ for Selection</span>
                 <ArrowRight className="w-4 h-4" />

@@ -34,16 +34,16 @@ export default function ProductsClient() {
   return (
     <div className="pt-24 min-h-screen bg-slate-50">
       {/* Editorial Hero */}
-      <section className="bg-gradient-to-b from-white via-sky-50 to-ice-blue py-14 lg:py-20 border-b border-sky-100">
+      <section className="bg-gradient-to-b from-white via-sky-50 to-sky-100/50 py-14 lg:py-20 border-b border-sky-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl space-y-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-3.5 py-1 rounded-full border border-purple-200 inline-block">
+          <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-3.5 py-1 rounded-full border border-sky-200 inline-block">
             Official HVAC Product Catalogue
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight">
             HVAC Air Distribution Products
           </h1>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Explore Aria Vita™&apos;s 5 official air distribution product lines engineered for commercial, industrial and residential applications, including disc valves, air curtains, flexible ducts, fire retardent canvas, and CAR airflow regulators.
+            Explore Aria Vita&apos;s product lines engineered for commercial, industrial and residential applications.
           </p>
         </div>
       </section>
@@ -78,7 +78,7 @@ export default function ProductsClient() {
                   }}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     selectedCategory === cat
-                      ? "bg-purple-700 text-white shadow-md"
+                      ? "bg-sky-600 text-white shadow-md"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                   }`}
                 >
@@ -95,7 +95,7 @@ export default function ProductsClient() {
                 placeholder="Search products, subcategories, models, specs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
               />
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function ProductsClient() {
                   onClick={() => setSelectedSubcategory(sub)}
                   className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                     selectedSubcategory === sub
-                      ? "bg-sky-600 text-white"
+                      ? "bg-sky-700 text-white"
                       : "bg-sky-50 text-sky-800 hover:bg-sky-100 border border-sky-200"
                   }`}
                 >
@@ -134,7 +134,7 @@ export default function ProductsClient() {
                 setSelectedSubcategory("All");
                 setSearchQuery("");
               }}
-              className="mt-4 px-5 py-2.5 bg-purple-700 text-white font-semibold text-xs rounded-xl"
+              className="mt-4 px-5 py-2.5 bg-sky-600 text-white font-semibold text-xs rounded-xl"
             >
               Reset Search & Filters
             </button>
@@ -148,7 +148,7 @@ export default function ProductsClient() {
                 return (
                   <div
                     key={product.id}
-                    className="bg-white rounded-3xl border border-slate-200 hover:border-purple-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group"
+                    className="bg-white rounded-3xl border border-slate-200 hover:border-sky-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group"
                   >
                     <div className="relative bg-slate-50/90 border-b border-slate-100 aspect-[4/3] overflow-hidden p-3">
                       <Image
@@ -157,8 +157,8 @@ export default function ProductsClient() {
                         fill
                         className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4 bg-white/95 text-purple-900 text-xs font-mono font-bold tracking-wider px-3 py-1 rounded-md shadow-md border border-purple-200 flex items-center gap-2">
-                        <span className="text-purple-600">{indexFormatted}</span>
+                      <div className="absolute top-4 left-4 bg-white/95 text-sky-900 text-xs font-mono font-bold tracking-wider px-3 py-1 rounded-md shadow-md border border-sky-200 flex items-center gap-2">
+                        <span className="text-sky-600">{indexFormatted}</span>
                         <span>{product.name.toUpperCase()}</span>
                       </div>
                     </div>
@@ -168,10 +168,10 @@ export default function ProductsClient() {
                         <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
                           <span>PRODUCT {indexFormatted}</span>
                           {product.badges && product.badges[0] && (
-                            <span className="text-purple-700 font-semibold">{product.badges[0]}</span>
+                            <span className="text-sky-700 font-semibold">{product.badges[0]}</span>
                           )}
                         </div>
-                        <h3 className="text-2xl font-extrabold font-heading text-slate-900 group-hover:text-purple-700 transition-colors">
+                        <h3 className="text-2xl font-extrabold font-heading text-slate-900 group-hover:text-sky-700 transition-colors">
                           {product.name}
                         </h3>
                         <p className="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-2">
@@ -180,8 +180,8 @@ export default function ProductsClient() {
 
                         {/* Display Subcategories List if present */}
                         {product.subcategories && product.subcategories.length > 0 && (
-                          <div className="mt-4 p-3 bg-sky-50/70 rounded-2xl border border-sky-100 space-y-1.5">
-                            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-800 block">
+                          <div className="mt-4 p-3 bg-sky-50/50 rounded-2xl border border-sky-100 space-y-1.5">
+                            <span className="text-[10px] uppercase font-bold tracking-wider text-sky-800 block">
                               Available Subcategories:
                             </span>
                             <div className="flex flex-wrap gap-1.5">
@@ -189,9 +189,9 @@ export default function ProductsClient() {
                                 <Link
                                   key={sub.id}
                                   href={`/products/${product.slug}/${sub.slug}`}
-                                  className="text-[11px] font-semibold text-slate-700 hover:text-purple-700 bg-white px-2.5 py-1 rounded border border-slate-200 transition-colors"
+                                  className="text-[11px] font-semibold text-slate-700 hover:text-sky-700 bg-white px-2.5 py-1 rounded border border-slate-200 transition-colors"
                                 >
-                                  {sub.name} {sub.isComingSoon && "(Soon)"}
+                                  {sub.name}
                                 </Link>
                               ))}
                             </div>
@@ -218,14 +218,14 @@ export default function ProductsClient() {
                       <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <button
                           onClick={() => setSelectedProduct(product)}
-                          className="text-xs font-semibold text-slate-500 hover:text-purple-700 transition-colors cursor-pointer"
+                          className="text-xs font-semibold text-slate-500 hover:text-sky-700 transition-colors cursor-pointer"
                         >
                           Quick Specifications
                         </button>
 
                         <Link
                           href={`/products/${product.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-900 group-hover:translate-x-1 transition-all"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 group-hover:translate-x-1 transition-all"
                         >
                           <span>Explore Product</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -244,7 +244,7 @@ export default function ProductsClient() {
       <section className="py-12 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
           <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-            <ShieldCheck className="w-6 h-6 text-purple-600 mx-auto md:mx-0" />
+            <ShieldCheck className="w-6 h-6 text-sky-600 mx-auto md:mx-0" />
             <h4 className="text-sm font-bold text-slate-900">Tested MEP Quality</h4>
             <p className="text-xs text-slate-600 leading-relaxed">
               Manufactured and compliance-tested to international HVAC performance standards for commercial and industrial installation.
@@ -258,7 +258,7 @@ export default function ProductsClient() {
             </p>
           </div>
           <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-            <ArrowRight className="w-6 h-6 text-purple-600 mx-auto md:mx-0" />
+            <ArrowRight className="w-6 h-6 text-sky-600 mx-auto md:mx-0" />
             <h4 className="text-sm font-bold text-slate-900">Technical Selection Assistance</h4>
             <p className="text-xs text-slate-600 leading-relaxed">
               Our engineering team assists MEP consultants with airflow sizing, duct selection, and project bill of quantities (BOQ).

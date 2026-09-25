@@ -38,9 +38,9 @@ export default function AirflowCanvas() {
     }> = [];
 
     const colors = [
-      "rgba(109, 40, 217, ",  // purple
-      "rgba(2, 132, 199, ",   // hvac blue
-      "rgba(56, 189, 248, ",  // sky blue
+      "rgba(56, 189, 248, ",   // Primary Air Blue #38BDF8
+      "rgba(2, 132, 199, ",    // Air Blue Dark #0284C7
+      "rgba(14, 165, 233, ",   // Sky Blue #0EA5E9
     ];
 
     for (let i = 0; i < particleCount; i++) {

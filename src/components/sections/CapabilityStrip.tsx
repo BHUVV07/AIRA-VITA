@@ -41,11 +41,11 @@ export default function CapabilityStrip() {
                 key={cap.name}
                 className="flex items-center gap-3.5 group p-2 rounded-lg hover:bg-slate-800/60 transition-colors"
               >
-                <div className="w-10 h-10 rounded-lg bg-purple-950/80 border border-purple-800/60 text-purple-400 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-purple-500 transition-all duration-300">
+                <div className="w-10 h-10 rounded-lg bg-sky-950/80 border border-sky-800/60 text-sky-400 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-sky-500 transition-all duration-300">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">
+                  <h4 className="text-sm font-bold text-white group-hover:text-sky-300 transition-colors">
                     {cap.name}
                   </h4>
                   <p className="text-[11px] text-slate-400 leading-none mt-1">{cap.detail}</p>

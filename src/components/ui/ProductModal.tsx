@@ -21,7 +21,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
         {/* Header */}
         <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
           <div>
-            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-400 block">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-sky-400 block">
               {product.category}
             </span>
             <h3 className="text-xl font-bold font-heading">{product.name}</h3>
@@ -52,13 +52,13 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
               <p className="text-sm text-slate-700 leading-relaxed">{product.description}</p>
 
               {product.standards && (
-                <div className="p-3 bg-purple-50 rounded-xl border border-purple-100 space-y-1">
-                  <span className="text-xs font-bold text-purple-900 block">Fire & Safety Test Standards:</span>
+                <div className="p-3 bg-sky-50 rounded-xl border border-sky-100 space-y-1">
+                  <span className="text-xs font-bold text-sky-900 block">Fire & Safety Test Standards:</span>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {product.standards.map((std) => (
                       <span
                         key={std}
-                        className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-white text-purple-700 border border-purple-200"
+                        className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-white text-sky-700 border border-sky-200"
                       >
                         {std}
                       </span>
@@ -98,7 +98,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {product.applications.map((app) => (
                 <div key={app} className="flex items-center gap-2 text-xs text-slate-700">
-                  <CheckCircle2 className="w-4 h-4 text-purple-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
                   <span>{app}</span>
                 </div>
               ))}
@@ -114,7 +114,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
           <Link
             href={`/products/${product.slug}`}
             onClick={onClose}
-            className="px-5 py-2 bg-purple-700 hover:bg-purple-800 text-white font-semibold text-xs rounded-lg inline-flex items-center gap-2 shadow-sm"
+            className="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-lg inline-flex items-center gap-2 shadow-sm"
           >
             <span>Full Product Page</span>
             <ArrowRight className="w-4 h-4" />

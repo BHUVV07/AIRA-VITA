@@ -57,14 +57,14 @@ export default function IndustriesPreview() {
 
                 {/* Card Top: Icon */}
                 <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-purple-950/80 border border-purple-800/60 text-purple-300 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-sky-950/80 border border-sky-800/60 text-sky-400 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
                 </div>
 
                 {/* Card Bottom: Info */}
                 <div className="relative z-10 space-y-2 mt-auto">
-                  <h3 className="text-lg font-bold font-heading text-white group-hover:text-purple-300 transition-colors">
+                  <h3 className="text-lg font-bold font-heading text-white group-hover:text-sky-300 transition-colors">
                     {ind.name}
                   </h3>
                   <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">

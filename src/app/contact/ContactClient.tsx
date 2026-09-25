@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Globe, ShieldCheck, Send, CheckCircle2, Building, MessageCircle } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import { Mail, Phone, MapPin, Globe, ShieldCheck, CheckCircle2, MessageCircle } from "lucide-react";
 import { COMPANY_INFO, PRODUCTS } from "@/data/ariaVitaData";
-import { generateWhatsAppEnquiryUrl, getDirectWhatsAppUrl } from "@/utils/whatsapp";
+import { generateWhatsAppEnquiryUrl } from "@/utils/whatsapp";
 
 export default function ContactClient() {
   const [formData, setFormData] = useState({
@@ -20,25 +19,33 @@ export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      const whatsappUrl = generateWhatsAppEnquiryUrl({
-        name: formData.name,
-        company: formData.company,
-        email: formData.email,
-        phone: formData.phone,
-        product: formData.product,
-        projectType: formData.projectType,
-        message: formData.message,
+    try {
+      const res = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
+      const data = await res.json();
+      const whatsappUrl = data.whatsappUrl || generateWhatsAppEnquiryUrl(formData);
 
-      window.open(whatsappUrl, "_blank");
-    }, 600);
+      setSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      }
+    } catch (err) {
+      console.error("Enquiry error:", err);
+      const whatsappUrl = generateWhatsAppEnquiryUrl(formData);
+      setSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +53,7 @@ export default function ContactClient() {
       {/* Header */}
       <section className="bg-slate-900 text-white py-16 lg:py-20 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-400 block mb-3">
+          <span className="text-xs font-bold uppercase tracking-wider text-sky-400 block mb-3">
             Get in Touch
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-heading tracking-tight">
@@ -64,7 +71,7 @@ export default function ContactClient() {
           {/* Form */}
           <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-lg space-y-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-purple-700 block mb-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-sky-700 block mb-1">
                 Project Enquiry
               </span>
               <h2 className="text-2xl font-bold font-heading text-slate-900">
@@ -76,15 +83,15 @@ export default function ContactClient() {
             </div>
 
             {submitted ? (
-              <div className="p-8 bg-purple-50 rounded-2xl border border-purple-200 text-center space-y-4">
-                <CheckCircle2 className="w-12 h-12 text-purple-700 mx-auto" />
+              <div className="p-8 bg-sky-50 rounded-2xl border border-sky-200 text-center space-y-4">
+                <CheckCircle2 className="w-12 h-12 text-sky-700 mx-auto" />
                 <h3 className="text-xl font-bold text-slate-900">Enquiry Redirecting to WhatsApp</h3>
                 <p className="text-xs text-slate-600">
                   Thank you, {formData.name}! Your enquiry details have been formatted for instant dispatch to Ecosta Systems technical desk.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-4 px-6 py-2.5 bg-purple-700 text-white font-semibold text-xs rounded-xl"
+                  className="mt-4 px-6 py-2.5 bg-sky-600 text-white font-semibold text-xs rounded-xl"
                 >
                   Submit Another Enquiry
                 </button>
@@ -100,7 +107,7 @@ export default function ContactClient() {
                       placeholder="e.g. Rajesh Kumar"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                     />
                   </div>
                   <div>
@@ -110,7 +117,7 @@ export default function ContactClient() {
                       placeholder="e.g. Apex MEP Consultants"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                     />
                   </div>
                 </div>
@@ -124,7 +131,7 @@ export default function ContactClient() {
                       placeholder="rajesh@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                     />
                   </div>
                   <div>
@@ -135,7 +142,7 @@ export default function ContactClient() {
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                     />
                   </div>
                 </div>
@@ -146,7 +153,7 @@ export default function ContactClient() {
                     <select
                       value={formData.product}
                       onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                     >
                       {PRODUCTS.map((p) => (
                         <option key={p.id} value={p.name}>
@@ -160,7 +167,7 @@ export default function ContactClient() {
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                     >
                       <option value="Commercial Building">Commercial Office Building</option>
                       <option value="Hospital / Healthcare">Hospital / Cleanroom</option>
@@ -178,14 +185,14 @@ export default function ContactClient() {
                     placeholder="Mention required quantities, sizes, static pressure ratings, or site location..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>{loading ? "Formatting Enquiry..." : "Send Technical Enquiry via WhatsApp"}</span>
@@ -197,13 +204,13 @@ export default function ContactClient() {
           {/* Contact Cards */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-purple-700 block">
+              <span className="text-xs font-bold uppercase tracking-wider text-sky-700 block">
                 Official Channels
               </span>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3.5">
-                  <MapPin className="w-5 h-5 text-purple-700 shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-sky-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs text-slate-500 font-semibold uppercase block">
                       Authorized Stockist & Address:
@@ -221,19 +228,19 @@ export default function ContactClient() {
                     <span className="text-xs text-slate-500 font-semibold uppercase block">
                       Email Address:
                     </span>
-                    <a href={`mailto:${COMPANY_INFO.contact.email}`} className="font-bold text-slate-900 hover:text-purple-700 transition-colors">
+                    <a href={`mailto:${COMPANY_INFO.contact.email}`} className="font-bold text-slate-900 hover:text-sky-700 transition-colors">
                       {COMPANY_INFO.contact.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3.5">
-                  <Phone className="w-5 h-5 text-purple-700 shrink-0 mt-0.5" />
+                  <Phone className="w-5 h-5 text-sky-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs text-slate-500 font-semibold uppercase block">
                       Direct Support Line:
                     </span>
-                    <a href={`tel:${COMPANY_INFO.contact.phone}`} className="font-bold text-slate-900 hover:text-purple-700 transition-colors">
+                    <a href={`tel:${COMPANY_INFO.contact.phone}`} className="font-bold text-slate-900 hover:text-sky-700 transition-colors">
                       {COMPANY_INFO.contact.formattedPhone}
                     </a>
                   </div>
@@ -253,8 +260,8 @@ export default function ContactClient() {
 
             {/* Distributor Card */}
             <div className="bg-slate-900 text-white p-8 rounded-3xl border border-slate-800 shadow-xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-950 text-purple-300 rounded-full text-[10px] uppercase font-bold tracking-wider border border-purple-800">
-                <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-950 text-sky-300 rounded-full text-[10px] uppercase font-bold tracking-wider border border-sky-800">
+                <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
                 <span>Authorized Stockist</span>
               </div>
               <h3 className="text-xl font-bold font-heading">{COMPANY_INFO.distributor.name}</h3>

@@ -11,8 +11,8 @@ import { PRODUCTS, Product } from "@/data/products";
 export default function ProductWorld() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const featuredProduct = PRODUCTS.find((p) => p.slug === "car") || PRODUCTS[0];
-  const secondaryProducts = PRODUCTS.filter((p) => p.slug !== "car");
+  const featuredProduct = PRODUCTS[0];
+  const secondaryProducts = PRODUCTS.slice(1);
 
   return (
     <section className="py-20 lg:py-28 bg-white border-b border-slate-200">
@@ -27,11 +27,11 @@ export default function ProductWorld() {
 
         {/* Editorial Layout: Large Featured Hero Lead + Secondary Modules */}
         <div className="space-y-8">
-          {/* 1. Featured Flagship Hero Lead (Constant Airflow Regulator) */}
+          {/* 1. Featured Flagship Hero Lead */}
           <div className="bg-gradient-to-r from-sky-50 via-white to-ice-blue rounded-3xl border border-sky-200 p-6 md:p-10 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold uppercase tracking-wider">
-                <Wind className="w-3.5 h-3.5 text-purple-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-bold uppercase tracking-wider">
+                <Wind className="w-3.5 h-3.5 text-sky-600" />
                 <span>Featured Technical Lead</span>
               </div>
 
@@ -44,26 +44,25 @@ export default function ProductWorld() {
               </p>
 
               <div className="p-4 bg-white/90 rounded-2xl border border-sky-200 text-xs space-y-2">
-                <span className="font-bold text-slate-900 block">Verified Performance Envelope:</span>
+                <span className="font-bold text-slate-900 block">Verified Technical Highlights:</span>
                 <div className="grid grid-cols-2 gap-2 text-[11px] font-mono text-slate-700">
-                  <div>Pressure Range: <strong>50–250 Pa</strong></div>
-                  <div>Max Temp: <strong>60°C</strong></div>
-                  <div>Sizes: <strong>Ø80 to Ø250 mm</strong></div>
-                  <div>Operation: <strong>Self-Balancing</strong></div>
+                  {Object.entries(featuredProduct.specifications).slice(0, 4).map(([k, v]) => (
+                    <div key={k}>{k}: <strong>{String(v)}</strong></div>
+                  ))}
                 </div>
               </div>
 
               <div className="pt-2 flex items-center gap-4">
                 <Link
                   href={`/products/${featuredProduct.slug}`}
-                  className="px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white font-semibold text-sm rounded-xl inline-flex items-center gap-2 shadow-md transition-colors"
+                  className="px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl inline-flex items-center gap-2 shadow-md transition-colors"
                 >
-                  <span>Explore CAR System Specs</span>
+                  <span>Explore {featuredProduct.name} Specs</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <button
                   onClick={() => setSelectedProduct(featuredProduct)}
-                  className="text-xs font-bold text-slate-700 hover:text-purple-700 underline underline-offset-4 cursor-pointer"
+                  className="text-xs font-bold text-slate-700 hover:text-sky-700 underline underline-offset-4 cursor-pointer"
                 >
                   Quick Specs
                 </button>
@@ -77,8 +76,8 @@ export default function ProductWorld() {
                 fill
                 className="object-contain p-2"
               />
-              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono font-bold text-purple-900 border border-purple-200 shadow-sm">
-                50–200 dia
+              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono font-bold text-sky-900 border border-sky-200 shadow-sm">
+                {featuredProduct.badges?.[0] || featuredProduct.category}
               </div>
             </div>
           </div>
@@ -104,7 +103,7 @@ export default function ProductWorld() {
 
                 <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
                   <div>
-                    <h4 className="text-lg font-bold font-heading text-slate-900 group-hover:text-purple-700 transition-colors">
+                    <h4 className="text-lg font-bold font-heading text-slate-900 group-hover:text-sky-700 transition-colors">
                       {prod.name}
                     </h4>
                     <p className="mt-1.5 text-xs text-slate-600 line-clamp-2 leading-relaxed">
@@ -115,14 +114,14 @@ export default function ProductWorld() {
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedProduct(prod)}
-                      className="text-xs font-semibold text-slate-500 hover:text-purple-700 cursor-pointer"
+                      className="text-xs font-semibold text-slate-500 hover:text-sky-700 cursor-pointer"
                     >
                       Quick Data Sheet
                     </button>
 
                     <Link
                       href={`/products/${prod.slug}`}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-800 group-hover:translate-x-1 transition-transform"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 hover:text-sky-800 group-hover:translate-x-1 transition-transform"
                     >
                       <span>View Details</span>
                       <ArrowRight className="w-3.5 h-3.5" />

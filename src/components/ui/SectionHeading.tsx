@@ -25,8 +25,8 @@ export default function SectionHeading({
       className={`flex flex-col ${isCenter ? "items-center text-center max-w-3xl mx-auto" : "max-w-2xl"} ${className}`}
     >
       {badge && (
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
           {badge}
         </div>
       )}

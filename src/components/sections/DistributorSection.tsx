@@ -13,20 +13,20 @@ export default function DistributorSection() {
     <section className="py-20 lg:py-28 bg-gradient-to-r from-ice-blue via-sky-100/60 to-soft-blue border-y border-sky-200 relative overflow-hidden">
       {/* Soft Blue Atmospheric Vectors */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-200/50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-200/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white/90 backdrop-blur-md rounded-3xl border border-sky-200 p-8 md:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-900 border border-purple-200">
-              <ShieldCheck className="w-4 h-4 text-purple-700" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-100 text-sky-900 border border-sky-200">
+              <ShieldCheck className="w-4 h-4 text-sky-600" />
               <span>Pan India Distribution Partner</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900 leading-tight">
               Local Stock. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-sky-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-sky-400">
                 Faster Support.
               </span>
             </h2>
@@ -38,7 +38,7 @@ export default function DistributorSection() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-2xl bg-sky-50/70 border border-sky-200 flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-700 text-white flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0">
                   <Truck className="w-5 h-5" />
                 </div>
                 <div>
@@ -72,7 +72,7 @@ export default function DistributorSection() {
 
           <div className="lg:col-span-5 bg-slate-900 text-white p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
             <div className="border-b border-slate-800 pb-4">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400 block">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 block">
                 Authorized Stockist & Partner
               </span>
               <h3 className="text-2xl font-bold font-heading text-white mt-1">
@@ -83,7 +83,7 @@ export default function DistributorSection() {
 
             <div className="space-y-3 text-xs text-slate-300">
               <div className="flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-purple-400 shrink-0" />
+                <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>{COMPANY_INFO.distributor.address}</span>
               </div>
               <div className="flex items-center gap-3">
@@ -91,7 +91,7 @@ export default function DistributorSection() {
                 <span>{COMPANY_INFO.contact.email}</span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-purple-400 shrink-0" />
+                <Phone className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>{COMPANY_INFO.contact.formattedPhone}</span>
               </div>
             </div>

@@ -38,13 +38,13 @@ export default function AirflowTransition() {
           />
           <defs>
             <linearGradient id="airflow-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#6D28D9" stopOpacity="0.2" />
+              <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.2" />
               <stop offset="50%" stopColor="#0284C7" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#7DD3FC" stopOpacity="0.3" />
             </linearGradient>
             <linearGradient id="airflow-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#0284C7" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#7C3AED" stopOpacity="0.7" />
+              <stop offset="50%" stopColor="#38BDF8" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#0284C7" stopOpacity="0.1" />
             </linearGradient>
           </defs>
@@ -54,14 +54,14 @@ export default function AirflowTransition() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Engineering Tagline Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sky-200 shadow-sm mb-6 text-xs font-bold uppercase tracking-widest text-sky-800">
-          <Wind className="w-4 h-4 text-purple-600 animate-spin-slow" />
+          <Wind className="w-4 h-4 text-sky-600 animate-spin-slow" />
           <span>Controlled Dynamics</span>
         </div>
 
         {/* Signature Editorial Statement */}
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
           &ldquo;Air isn&apos;t just movement. <br className="hidden sm:inline" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-sky-600 to-sky-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-700 via-sky-500 to-sky-400">
             It&apos;s performance.&rdquo;
           </span>
         </h2>
@@ -69,7 +69,7 @@ export default function AirflowTransition() {
         {/* Technical Annotations */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
           <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-sky-100 shadow-xs flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center shrink-0 font-mono font-bold text-xs">
+            <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 font-mono font-bold text-xs">
               01
             </div>
             <div>
@@ -89,7 +89,7 @@ export default function AirflowTransition() {
           </div>
 
           <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-sky-100 shadow-xs flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center shrink-0 font-mono font-bold text-xs">
+            <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 font-mono font-bold text-xs">
               03
             </div>
             <div>

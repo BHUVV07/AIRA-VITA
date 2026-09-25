@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Send, CheckCircle2, Phone, Mail, Building, ShieldCheck, MessageCircle } from "lucide-react";
+import { X, CheckCircle2, Building, ShieldCheck, MessageCircle } from "lucide-react";
 import { COMPANY_INFO, PRODUCTS } from "@/data/ariaVitaData";
 import { generateWhatsAppEnquiryUrl } from "@/utils/whatsapp";
 
@@ -31,17 +31,33 @@ export default function ContactModal({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const waUrl = generateWhatsAppEnquiryUrl(formData);
-    if (typeof window !== "undefined") {
-      window.open(waUrl, "_blank", "noopener,noreferrer");
-    }
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      const targetUrl = data.whatsappUrl || generateWhatsAppEnquiryUrl(formData);
+
+      if (typeof window !== "undefined") {
+        window.open(targetUrl, "_blank", "noopener,noreferrer");
+      }
       setSubmitted(true);
-    }, 400);
+    } catch (err) {
+      console.error("Enquiry submission error:", err);
+      // Fallback direct WhatsApp open
+      const waUrl = generateWhatsAppEnquiryUrl(formData);
+      if (typeof window !== "undefined") {
+        window.open(waUrl, "_blank", "noopener,noreferrer");
+      }
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
@@ -58,7 +74,7 @@ export default function ContactModal({
         {/* Header */}
         <div className="px-6 py-5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-purple-600/30 border border-purple-500/40 flex items-center justify-center text-purple-400">
+            <div className="w-9 h-9 rounded-lg bg-sky-600/30 border border-sky-500/40 flex items-center justify-center text-sky-400">
               <Building className="w-5 h-5" />
             </div>
             <div>
@@ -126,7 +142,7 @@ export default function ContactModal({
                     placeholder="e.g. Rajesh Kumar"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none"
+                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none"
                   />
                 </div>
 
@@ -140,7 +156,7 @@ export default function ContactModal({
                     placeholder="e.g. Apex MEP Consultants"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none"
+                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none"
                   />
                 </div>
               </div>
@@ -156,7 +172,7 @@ export default function ContactModal({
                     placeholder="e.g. rajesh@apexconsultants.in"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none"
+                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none"
                   />
                 </div>
 
@@ -170,7 +186,7 @@ export default function ContactModal({
                     placeholder="e.g. 9876543210"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none"
+                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none"
                   />
                 </div>
               </div>
@@ -183,7 +199,7 @@ export default function ContactModal({
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none"
+                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none"
                   >
                     <option value="Commercial Building">Commercial Building</option>
                     <option value="Hospital & Cleanroom">Hospital & Cleanroom</option>
@@ -201,7 +217,7 @@ export default function ContactModal({
                   <select
                     value={formData.product}
                     onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none"
+                    className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none"
                   >
                     {PRODUCTS.map((p) => (
                       <option key={p.id} value={p.name}>
@@ -222,13 +238,13 @@ export default function ContactModal({
                   placeholder="Share required quantities, duct sizes, CFM rates, or project location..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all outline-none resize-none"
+                  className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all outline-none resize-none"
                 />
               </div>
 
               {/* Distributor Trust Note */}
-              <div className="flex items-center gap-2 p-3 bg-purple-50 rounded-lg border border-purple-100 text-xs text-purple-900">
-                <ShieldCheck className="w-4 h-4 text-purple-600 shrink-0" />
+              <div className="flex items-center gap-2 p-3 bg-sky-50 rounded-lg border border-sky-100 text-xs text-sky-900">
+                <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
                 <span>
                   All requests are processed with technical support by authorized distributor{" "}
                   <strong>{COMPANY_INFO.distributor.name}</strong> ({COMPANY_INFO.distributor.location}).

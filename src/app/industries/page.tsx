@@ -42,7 +42,7 @@ export default function IndustriesPage() {
       {/* Header */}
       <section className="bg-slate-900 text-white py-16 lg:py-20 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-400 block mb-3">
+          <span className="text-xs font-bold uppercase tracking-wider text-sky-400 block mb-3">
             Industry Applications
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-heading tracking-tight">
@@ -68,7 +68,7 @@ export default function IndustriesPage() {
                   <Image src={ind.image} alt={ind.name} fill className="object-cover opacity-80" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="text-xl font-bold font-heading text-white">{ind.name}</h3>
@@ -86,9 +86,9 @@ export default function IndustriesPage() {
                       {ind.keyProducts.map((prod) => (
                         <span
                           key={prod}
-                          className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded bg-purple-50 text-purple-700 border border-purple-200"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded bg-sky-50 text-sky-700 border border-sky-200"
                         >
-                          <CheckCircle2 className="w-3.5 h-3.5 text-purple-600" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-sky-600" />
                           {prod}
                         </span>
                       ))}
@@ -98,7 +98,7 @@ export default function IndustriesPage() {
                   <div className="pt-4 border-t border-slate-100">
                     <Link
                       href="/products"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-800"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-800"
                     >
                       <span>Explore Sector Products</span>
                       <ArrowRight className="w-4 h-4" />

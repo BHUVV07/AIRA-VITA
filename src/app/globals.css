@@ -1,14 +1,69 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary-air-blue: #38BDF8;
+  --color-soft-sky-blue: #E0F2FE;
+  --color-very-light-air-blue: #F0F9FF;
+  --color-deep-navy: #0B132B;
+
+  --color-ice-blue: #F0F9FF;
+  --color-soft-blue: #E0F2FE;
+  --color-dark-navy: #0B132B;
+
+  /* Sky / Air Blue Palette */
+  --color-sky-50: #F0F9FF;
+  --color-sky-100: #E0F2FE;
+  --color-sky-200: #BAE6FD;
+  --color-sky-300: #7DD3FC;
+  --color-sky-400: #38BDF8;
+  --color-sky-500: #0EA5E9;
+  --color-sky-600: #0284C7;
+  --color-sky-700: #0369A1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0C4A6E;
+  --color-sky-950: #082F49;
+
+  /* Aliasing teal and purple to Light Air Blue palette for full design system integration */
+  --color-teal-50: #F0F9FF;
+  --color-teal-100: #E0F2FE;
+  --color-teal-200: #BAE6FD;
+  --color-teal-300: #7DD3FC;
+  --color-teal-400: #38BDF8;
+  --color-teal-500: #38BDF8;
+  --color-teal-600: #0284C7;
+  --color-teal-700: #0369A1;
+  --color-teal-800: #075985;
+  --color-teal-900: #0C4A6E;
+  --color-teal-950: #082F49;
+
+  --color-purple-50: #F0F9FF;
+  --color-purple-100: #E0F2FE;
+  --color-purple-200: #BAE6FD;
+  --color-purple-300: #7DD3FC;
+  --color-purple-400: #38BDF8;
+  --color-purple-500: #38BDF8;
+  --color-purple-600: #0284C7;
+  --color-purple-700: #0369A1;
+  --color-purple-800: #075985;
+  --color-purple-900: #0C4A6E;
+  --color-purple-950: #082F49;
+}
+
 @layer base {
   :root {
     --primary: #0B132B;
     --primary-dark: #070D1E;
     --navy-surface: #0F172A;
-    --purple-brand: #6D28D9;
-    --purple-brand-light: #7C3AED;
-    --hvac-blue: #0284C7;
-    --hvac-blue-light: #38BDF8;
+    --air-blue-primary: #38BDF8;
+    --air-blue-soft: #E0F2FE;
+    --air-blue-light: #F0F9FF;
+    --teal-brand: #38BDF8;
+    --teal-brand-dark: #0284C7;
+    --teal-brand-light: #E0F2FE;
+    --purple-brand: #38BDF8;
+    --purple-brand-light: #0284C7;
+    --hvac-blue: #38BDF8;
+    --hvac-blue-light: #E0F2FE;
     --bg-light: #F8FAFC;
     --border-light: #E2E8F0;
   }

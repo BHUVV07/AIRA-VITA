@@ -26,7 +26,7 @@ export default function AboutIntroduction() {
             {/* Application Sectors Pills */}
             <div className="grid grid-cols-3 gap-3 pt-2">
               <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs text-center">
-                <Building2 className="w-5 h-5 text-purple-600 mx-auto mb-1.5" />
+                <Building2 className="w-5 h-5 text-sky-600 mx-auto mb-1.5" />
                 <span className="text-xs font-bold text-slate-800 block">Commercial</span>
               </div>
               <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs text-center">
@@ -34,7 +34,7 @@ export default function AboutIntroduction() {
                 <span className="text-xs font-bold text-slate-800 block">Industrial</span>
               </div>
               <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-xs text-center">
-                <Home className="w-5 h-5 text-purple-600 mx-auto mb-1.5" />
+                <Home className="w-5 h-5 text-sky-600 mx-auto mb-1.5" />
                 <span className="text-xs font-bold text-slate-800 block">Residential</span>
               </div>
             </div>
@@ -48,7 +48,7 @@ export default function AboutIntroduction() {
                 "Reliable delivery & local stock via Ecosta Systems",
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -81,14 +81,14 @@ export default function AboutIntroduction() {
               {/* Float Trust Card */}
               <div className="mt-4 p-4 rounded-xl bg-slate-900 text-white flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-purple-400 block">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-sky-400 block">
                     Pan India Authorized Distribution
                   </span>
                   <p className="text-sm font-bold mt-0.5">Ecosta Systems, Bangalore</p>
                 </div>
                 <Link
                   href="/contact"
-                  className="text-xs font-semibold px-3.5 py-1.5 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors"
+                  className="text-xs font-semibold px-3.5 py-1.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg transition-colors"
                 >
                   Contact
                 </Link>

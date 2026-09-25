@@ -64,14 +64,14 @@ export default function Navbar() {
                         href="/products"
                         className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-xl transition-colors ${
                           isActive || pathname.startsWith("/products")
-                            ? "text-purple-800 bg-purple-50 font-bold"
-                            : "text-slate-700 hover:text-purple-800 hover:bg-slate-50"
+                            ? "text-sky-800 bg-sky-50 font-bold"
+                            : "text-slate-700 hover:text-sky-800 hover:bg-slate-50"
                         }`}
                       >
                         <span>Products</span>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-200 ${
-                            productsHover ? "rotate-180 text-purple-700" : "text-slate-400"
+                            productsHover ? "rotate-180 text-sky-600" : "text-slate-400"
                           }`}
                         />
                       </Link>
@@ -80,8 +80,8 @@ export default function Navbar() {
                       {productsHover && (
                         <div className="absolute top-full left-1/2 -translate-x-1/2 w-[720px] bg-white rounded-2xl shadow-2xl border border-sky-100 p-6 grid grid-cols-2 gap-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                           <div className="col-span-2 pb-3 border-b border-slate-100 flex items-center justify-between">
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-800 font-heading">
-                              <Layers className="w-4 h-4 text-purple-600" />
+                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-800 font-heading">
+                              <Layers className="w-4 h-4 text-sky-600" />
                               <span>Official Air Distribution Catalogue</span>
                             </div>
                             <span className="text-xs text-slate-400 font-mono font-semibold">
@@ -99,11 +99,11 @@ export default function Navbar() {
                                 onClick={() => setProductsHover(false)}
                                 className="group flex items-start gap-2.5"
                               >
-                                <div className="w-7 h-7 rounded-lg bg-purple-50 group-hover:bg-purple-700 text-purple-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5">
+                                <div className="w-7 h-7 rounded-lg bg-sky-50 group-hover:bg-sky-600 text-sky-600 group-hover:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5">
                                   <ArrowRight className="w-3.5 h-3.5" />
                                 </div>
                                 <div>
-                                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-purple-800 transition-colors">
+                                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-sky-700 transition-colors">
                                     {prod.name}
                                   </h4>
                                   <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
@@ -114,13 +114,13 @@ export default function Navbar() {
 
                               {/* Subcategories if present */}
                               {prod.subcategories && prod.subcategories.length > 0 && (
-                                <div className="mt-2 pl-9 space-y-1 border-l-2 border-purple-100 ml-3">
+                                <div className="mt-2 pl-9 space-y-1 border-l-2 border-sky-100 ml-3">
                                   {prod.subcategories.map((sub) => (
                                     <Link
                                       key={sub.id}
                                       href={`/products/${prod.slug}/${sub.slug}`}
                                       onClick={() => setProductsHover(false)}
-                                      className="block text-[11px] font-semibold text-slate-600 hover:text-purple-800 transition-colors"
+                                      className="block text-[11px] font-semibold text-slate-600 hover:text-sky-700 transition-colors"
                                     >
                                       → {sub.name}
                                     </Link>
@@ -137,7 +137,7 @@ export default function Navbar() {
                             <Link
                               href="/products"
                               onClick={() => setProductsHover(false)}
-                              className="text-xs font-bold text-purple-800 hover:text-purple-900 flex items-center gap-1"
+                              className="text-xs font-bold text-sky-700 hover:text-sky-800 flex items-center gap-1"
                             >
                               Full Catalogue →
                             </Link>
@@ -154,8 +154,8 @@ export default function Navbar() {
                     href={link.href}
                     className={`px-4 py-2 text-sm font-semibold rounded-xl transition-colors ${
                       isActive
-                        ? "text-purple-800 bg-purple-50 font-bold"
-                        : "text-slate-700 hover:text-purple-800 hover:bg-slate-50"
+                        ? "text-sky-800 bg-sky-50 font-bold"
+                        : "text-slate-700 hover:text-sky-800 hover:bg-slate-50"
                     }`}
                   >
                     {link.name}
@@ -180,7 +180,7 @@ export default function Navbar() {
             <div className="flex lg:hidden items-center gap-2">
               <button
                 onClick={() => setModalOpen(true)}
-                className="px-3 py-1.5 bg-purple-700 text-white text-xs font-semibold rounded-lg"
+                className="px-3 py-1.5 bg-sky-600 text-white text-xs font-semibold rounded-lg"
               >
                 Inquire
               </button>
@@ -205,7 +205,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className={`block px-4 py-2.5 text-base font-bold rounded-xl ${
                     pathname === link.href
-                      ? "text-purple-800 bg-purple-50"
+                      ? "text-sky-800 bg-sky-50"
                       : "text-slate-800 hover:bg-slate-50"
                   }`}
                 >
@@ -213,13 +213,13 @@ export default function Navbar() {
                 </Link>
 
                 {link.hasDropdown && (
-                  <div className="pl-4 pr-2 py-1 space-y-2 border-l-2 border-purple-200 ml-4 my-1">
+                  <div className="pl-4 pr-2 py-1 space-y-2 border-l-2 border-sky-200 ml-4 my-1">
                     {PRODUCTS.map((prod) => (
                       <div key={prod.id} className="space-y-1">
                         <Link
                           href={`/products/${prod.slug}`}
                           onClick={() => setMobileOpen(false)}
-                          className="block text-xs font-bold text-slate-800 hover:text-purple-800 py-0.5"
+                          className="block text-xs font-bold text-slate-800 hover:text-sky-700 py-0.5"
                         >
                           • {prod.name}
                         </Link>
@@ -230,7 +230,7 @@ export default function Navbar() {
                                 key={sub.id}
                                 href={`/products/${prod.slug}/${sub.slug}`}
                                 onClick={() => setMobileOpen(false)}
-                                className="block text-[11px] font-semibold text-slate-500 hover:text-purple-800 py-0.5"
+                                className="block text-[11px] font-semibold text-slate-500 hover:text-sky-700 py-0.5"
                               >
                                 → {sub.name}
                               </Link>

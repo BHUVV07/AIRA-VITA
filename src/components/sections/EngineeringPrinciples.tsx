@@ -26,12 +26,12 @@ export default function EngineeringPrinciples() {
 
               <div className="relative z-10 flex flex-col sm:flex-row sm:items-start gap-6">
                 {/* Oversized Number */}
-                <span className="text-5xl sm:text-6xl font-black font-heading text-purple-900/30 group-hover:text-purple-700 transition-colors shrink-0">
+                <span className="text-5xl sm:text-6xl font-black font-heading text-sky-900/30 group-hover:text-sky-700 transition-colors shrink-0">
                   {principle.number}
                 </span>
 
                 <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 group-hover:text-purple-700 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 group-hover:text-sky-700 transition-colors">
                     {principle.title}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 leading-relaxed">

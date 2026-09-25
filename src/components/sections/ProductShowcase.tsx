@@ -27,7 +27,7 @@ export default function ProductShowcase() {
           {PRODUCTS.map((product) => (
             <div
               key={product.id}
-              className="group bg-white rounded-2xl border border-slate-200 hover:border-purple-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
+              className="group bg-white rounded-2xl border border-slate-200 hover:border-sky-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
             >
               {/* Product Image Treatment */}
               <div className="relative aspect-[4/3] bg-slate-50 border-b border-slate-100 overflow-hidden p-2">
@@ -45,7 +45,7 @@ export default function ProductShowcase() {
               {/* Card Body */}
               <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
                 <div>
-                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-purple-700 transition-colors">
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-sky-700 transition-colors">
                     {product.name}
                   </h3>
                   <p className="mt-2 text-sm text-slate-600 line-clamp-2 leading-relaxed">
@@ -58,9 +58,9 @@ export default function ProductShowcase() {
                       {product.standards.map((std) => (
                         <span
                           key={std}
-                          className="inline-flex items-center gap-1 text-[11px] font-mono font-medium px-2.5 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200"
+                          className="inline-flex items-center gap-1 text-[11px] font-mono font-medium px-2.5 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-200"
                         >
-                          <ShieldCheck className="w-3 h-3 text-purple-600" />
+                          <ShieldCheck className="w-3 h-3 text-sky-600" />
                           {std}
                         </span>
                       ))}
@@ -86,14 +86,14 @@ export default function ProductShowcase() {
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <button
                     onClick={() => setSelectedProduct(product)}
-                    className="text-xs font-semibold text-slate-600 hover:text-purple-700 transition-colors cursor-pointer"
+                    className="text-xs font-semibold text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                   >
                     Quick Specs
                   </button>
 
                   <Link
                     href={`/products/${product.slug}`}
-                    className="inline-flex items-center gap-1 text-sm font-bold text-purple-700 hover:text-purple-800 group-hover:translate-x-1 transition-all"
+                    className="inline-flex items-center gap-1 text-sm font-bold text-sky-700 hover:text-sky-800 group-hover:translate-x-1 transition-all"
                   >
                     <span>View Product</span>
                     <ArrowRight className="w-4 h-4" />

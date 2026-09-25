@@ -75,11 +75,11 @@ export default async function TechnicalArticlePage({ params }: PageProps) {
       {/* Breadcrumb Navigation */}
       <div className="bg-white border-b border-slate-200 py-3">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-slate-600 font-medium overflow-x-auto whitespace-nowrap">
-          <Link href="/" className="hover:text-purple-700 transition-colors shrink-0">
+          <Link href="/" className="hover:text-sky-700 transition-colors shrink-0">
             Home
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <Link href="/resources" className="hover:text-purple-700 transition-colors shrink-0">
+          <Link href="/resources" className="hover:text-sky-700 transition-colors shrink-0">
             Resources
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -93,7 +93,7 @@ export default async function TechnicalArticlePage({ params }: PageProps) {
       <section className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white py-14 lg:py-18 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-sky-400 bg-sky-950/80 px-3 py-1 rounded-full border border-sky-800">
               {article.category}
             </span>
             <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
@@ -135,7 +135,7 @@ export default async function TechnicalArticlePage({ params }: PageProps) {
                 <ul className="space-y-2.5 pt-2">
                   {sec.bulletPoints.map((point, bIdx) => (
                     <li key={bIdx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-800 font-medium">
-                      <div className="w-1.5 h-1.5 rounded-full bg-purple-600 shrink-0 mt-2" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0 mt-2" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -146,9 +146,9 @@ export default async function TechnicalArticlePage({ params }: PageProps) {
 
           {/* Target Product Internal Link Box */}
           {article.targetProductSlug && (
-            <div className="mt-8 p-6 bg-gradient-to-r from-sky-50 via-purple-50 to-sky-50 rounded-2xl border border-sky-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="mt-8 p-6 bg-gradient-to-r from-sky-50 via-sky-100/50 to-sky-50 rounded-2xl border border-sky-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-700 block mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 block mb-1">
                   Related Product Line
                 </span>
                 <h3 className="text-lg font-bold font-heading text-slate-900">
@@ -160,7 +160,7 @@ export default async function TechnicalArticlePage({ params }: PageProps) {
               </div>
               <Link
                 href={`/products/${article.targetProductSlug}`}
-                className="px-5 py-2.5 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-bold transition-all shrink-0 inline-flex items-center gap-2 shadow-sm"
+                className="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-bold transition-all shrink-0 inline-flex items-center gap-2 shadow-sm"
               >
                 <span>View Product Page</span>
                 <ArrowRight className="w-4 h-4" />

@@ -9,28 +9,28 @@ export default function WhyAriaVita() {
       title: "Quality First",
       description: "Tested for fire safety, durability and performance.",
       icon: ShieldCheck,
-      color: "border-purple-200 bg-purple-50/50 text-purple-700",
+      color: "border-sky-200 bg-sky-50/70 text-sky-700",
     },
     {
       number: "02",
       title: "Technical Expertise",
       description: "Product selection, sizing and installation support.",
       icon: Wrench,
-      color: "border-sky-200 bg-sky-50/50 text-sky-700",
+      color: "border-sky-200 bg-sky-50/70 text-sky-700",
     },
     {
       number: "03",
       title: "Reliable Supply",
       description: "Ready stock and dependable project support.",
       icon: PackageCheck,
-      color: "border-purple-200 bg-purple-50/50 text-purple-700",
+      color: "border-sky-200 bg-sky-50/70 text-sky-700",
     },
     {
       number: "04",
       title: "Pan India Reach",
       description: "Distribution and support through Ecosta Systems, Bangalore.",
       icon: MapPin,
-      color: "border-sky-200 bg-sky-50/50 text-sky-700",
+      color: "border-sky-200 bg-sky-50/70 text-sky-700",
     },
   ];
 
@@ -55,7 +55,7 @@ export default function WhyAriaVita() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-2xl font-black font-heading text-slate-300 group-hover:text-purple-600 transition-colors">
+                    <span className="text-2xl font-black font-heading text-slate-300 group-hover:text-sky-600 transition-colors">
                       {block.number}
                     </span>
                     <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${block.color}`}>
@@ -63,7 +63,7 @@ export default function WhyAriaVita() {
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold font-heading text-slate-900 group-hover:text-purple-700 transition-colors">
+                  <h3 className="text-lg font-bold font-heading text-slate-900 group-hover:text-sky-700 transition-colors">
                     {block.title}
                   </h3>
 
@@ -72,7 +72,7 @@ export default function WhyAriaVita() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-purple-700 group-hover:translate-x-1 transition-transform">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-sky-700 group-hover:translate-x-1 transition-transform">
                   <span>Learn more</span>
                   <span>→</span>
                 </div>

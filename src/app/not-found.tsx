@@ -7,12 +7,12 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center p-4 pt-24">
       <div className="max-w-md w-full text-center space-y-6">
-        <div className="w-20 h-20 rounded-2xl bg-purple-950/80 border border-purple-800 text-purple-400 flex items-center justify-center mx-auto shadow-2xl">
+        <div className="w-20 h-20 rounded-2xl bg-sky-950/80 border border-sky-800 text-sky-400 flex items-center justify-center mx-auto shadow-2xl">
           <Wind className="w-10 h-10 animate-pulse" />
         </div>
 
         <div className="space-y-2">
-          <span className="text-xs font-mono font-bold text-purple-400 uppercase tracking-widest block">
+          <span className="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block">
             Error 404
           </span>
           <h1 className="text-4xl font-extrabold font-heading text-white">Airflow Lost.</h1>
@@ -36,7 +36,7 @@ export default function NotFound() {
             variant="outline"
             size="md"
             href="/products"
-            icon={<ArrowRight className="w-4 h-4 text-purple-400" />}
+            icon={<ArrowRight className="w-4 h-4 text-sky-400" />}
             className="bg-slate-900 text-white border-slate-700 hover:bg-slate-800"
           >
             Explore Products

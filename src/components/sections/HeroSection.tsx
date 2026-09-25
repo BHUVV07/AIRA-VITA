@@ -10,10 +10,10 @@ export default function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <section className="relative min-h-[92vh] bg-gradient-to-b from-white via-sky-50/60 to-ice-blue pt-32 pb-20 overflow-hidden flex items-center border-b border-sky-100">
+    <section className="relative min-h-[92vh] bg-gradient-to-b from-white via-sky-50/70 to-ice-blue pt-32 pb-20 overflow-hidden flex items-center border-b border-sky-100">
       {/* Background Soft Blue & Translucent Airflow Orbs */}
       <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-200/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-purple-200/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute inset-0 bg-tech-grid opacity-50 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-6">
@@ -23,7 +23,7 @@ export default function HeroSection() {
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-heading text-slate-900 tracking-tight leading-[1.08]">
               Precision Air. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-sky-600 to-purple-900">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-sky-400 to-sky-800">
                 Perfect Comfort.
               </span>
             </h1>
@@ -53,7 +53,7 @@ export default function HeroSection() {
                 variant="outline"
                 size="lg"
                 onClick={() => setModalOpen(true)}
-                icon={<PhoneCall className="w-5 h-5 text-purple-600" />}
+                icon={<PhoneCall className="w-5 h-5 text-sky-600" />}
                 className="bg-white hover:bg-slate-50 border-slate-300 text-slate-900 shadow-sm"
               >
                 Talk to Our Team
@@ -63,15 +63,15 @@ export default function HeroSection() {
             {/* Technical Highlights */}
             <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 text-xs text-slate-600">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-purple-700 shrink-0" />
+                <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
                 <span className="font-medium">Fire Safety Tested</span>
               </div>
               <div className="flex items-center gap-2">
-                <Wind className="w-4 h-4 text-sky-600 shrink-0" />
+                <Wind className="w-4 h-4 text-sky-500 shrink-0" />
                 <span className="font-medium">Flow Balancing</span>
               </div>
               <div className="flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-purple-700 shrink-0" />
+                <Cpu className="w-4 h-4 text-sky-600 shrink-0" />
                 <span className="font-medium">MEP Consultant Grade</span>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function HeroSection() {
           {/* Right Product Composition with Soft Blue Airflow Shape & Technical Annotations */}
           <div className="lg:col-span-5 relative">
             {/* Background Soft Blue Airflow Shape */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/60 via-purple-100/40 to-sky-100/80 rounded-3xl transform rotate-3 scale-105 pointer-events-none border border-sky-200/60 shadow-lg" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/60 via-sky-100/40 to-sky-100/80 rounded-3xl transform rotate-3 scale-105 pointer-events-none border border-sky-200/60 shadow-lg" />
 
             {/* Main Featured Visual Container */}
             <div className="relative rounded-2xl overflow-hidden bg-white p-3 border border-sky-200 shadow-2xl group">
@@ -96,14 +96,9 @@ export default function HeroSection() {
 
                 {/* Internal Label */}
                 <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-white/95 backdrop-blur-md border border-slate-200 flex items-center justify-between text-slate-900 shadow-lg">
-                  <div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-purple-700 block">
-                      Flagship Product
-                    </span>
-                    <span className="text-sm font-bold block">
-                      CAR
-                    </span>
-                  </div>
+                  <span className="text-sm font-bold font-heading">
+                    CAR
+                  </span>
                   <span className="text-xs font-mono font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded border border-sky-200">
                     50–250 Pa
                   </span>
@@ -113,13 +108,13 @@ export default function HeroSection() {
 
             {/* Technical Engineering Annotations around Hero */}
             <div className="hidden sm:block absolute -top-5 -right-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-sky-200 shadow-lg text-[11px] font-mono text-slate-800 z-30">
-              <span className="w-2 h-2 rounded-full bg-purple-600 inline-block mr-1.5" />
+              <span className="w-2 h-2 rounded-full bg-sky-500 inline-block mr-1.5" />
               AIRFLOW CONTROL • 50–250 Pa
             </div>
 
             <div className="hidden sm:block absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-sky-200 shadow-xl z-30 max-w-xs">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-                <CheckCircle2 className="w-4 h-4 text-purple-600" />
+                <CheckCircle2 className="w-4 h-4 text-sky-600" />
                 <span>Ecosta Systems, Bangalore</span>
               </div>
               <p className="text-[11px] text-slate-500 mt-0.5">
