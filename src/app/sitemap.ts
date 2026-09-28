@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
 import { PRODUCTS } from "@/data/products";
-import { TECHNICAL_ARTICLES } from "@/data/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.ariavita.in";
@@ -32,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/resources`,
+      url: `${baseUrl}/gallery`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
@@ -68,13 +67,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   });
 
-  // Educational Article routes
-  const articleRoutes: MetadataRoute.Sitemap = TECHNICAL_ARTICLES.map((article) => ({
-    url: `${baseUrl}/resources/${article.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  return [...staticRoutes, ...productRoutes, ...subcategoryRoutes, ...articleRoutes];
+  return [...staticRoutes, ...productRoutes, ...subcategoryRoutes];
 }

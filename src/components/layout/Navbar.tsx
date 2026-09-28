@@ -29,7 +29,7 @@ export default function Navbar() {
     { name: "Products", href: "/products", hasDropdown: true },
     { name: "Industries", href: "/industries" },
     { name: "About", href: "/about" },
-    { name: "Resources", href: "/resources" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
 

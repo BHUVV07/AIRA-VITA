@@ -50,12 +50,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       (sc.model && sc.model.toLowerCase() === subSlug.toLowerCase())
   );
 
-  const title = activeSubcategory
+  const title = activeSubcategory?.seoTitle
+    ? activeSubcategory.seoTitle
+    : activeSubcategory
     ? `${product.name} — ${activeSubcategory.name} | Aria Vita`
     : product.seoTitle || `${product.name} | Aria Vita`;
 
   const description =
-    activeSubcategory?.description || product.seoDescription || product.description;
+    activeSubcategory?.seoDescription || activeSubcategory?.description || product.seoDescription || product.description;
+
+  const keywords = activeSubcategory?.seoKeywords || product.seoKeywords;
+
+  const imageAlt =
+    activeSubcategory?.imageAlt ||
+    product.imageAlt ||
+    (activeSubcategory ? `Aria Vita ${product.name} ${activeSubcategory.name}` : `Aria Vita ${product.name}`);
 
   const slugPath = slugSegments.join("/");
   const canonicalUrl = `https://www.ariavita.in/products/${slugPath}`;
@@ -63,7 +72,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    keywords: product.seoKeywords,
+    keywords,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -76,7 +85,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [
         {
           url: `https://www.ariavita.in${activeSubcategory?.image || product.image}`,
-          alt: activeSubcategory ? `Aria Vita ${product.name} ${activeSubcategory.name}` : `Aria Vita ${product.name}`,
+          alt: imageAlt,
         },
       ],
     },
@@ -117,7 +126,7 @@ export default async function DynamicProductPage({ params }: PageProps) {
 
   return (
     <>
-      <ProductSchema product={product} />
+      <ProductSchema product={product} subcategory={activeSubcategory} />
       <BreadcrumbSchema items={breadcrumbItems} />
       <ProductDetailClient mainSlug={mainSlug} subSlug={subSlug} />
     </>

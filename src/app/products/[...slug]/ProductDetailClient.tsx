@@ -176,11 +176,13 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
                 <Image
                   src={activeSubcategory?.image || product.image}
                   alt={
-                    product.slug === "car"
+                    activeSubcategory?.imageAlt ||
+                    product.imageAlt ||
+                    (product.slug === "car"
                       ? "Aria Vita Constant Airflow Regulator"
                       : activeSubcategory
                       ? `Aria Vita ${product.name} ${activeSubcategory.name}`
-                      : `Aria Vita ${product.name}`
+                      : `Aria Vita ${product.name}`)
                   }
                   fill
                   className="object-contain p-2 rounded-xl"
@@ -378,7 +380,7 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
                       </span>
                     </div>
                     <Link
-                      href="/resources"
+                      href="/gallery"
                       className="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-lg text-[11px] shrink-0"
                     >
                       View

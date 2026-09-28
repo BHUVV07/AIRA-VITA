@@ -1,5 +1,5 @@
 import React from "react";
-import { COMPANY_INFO, Product } from "@/data/products";
+import { COMPANY_INFO, Product, ProductSubcategory } from "@/data/products";
 
 export interface BreadcrumbItem {
   name: string;
@@ -66,14 +66,15 @@ export function WebSiteSchema() {
   );
 }
 
-export function ProductSchema({ product }: { product: Product }) {
+export function ProductSchema({ product, subcategory }: { product: Product; subcategory?: ProductSubcategory }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.fullName ? `${product.name} — ${product.fullName}` : product.name,
-    description: product.seoDescription || product.description,
-    image: `https://www.ariavita.in${product.image}`,
+    name: subcategory?.seoTitle || (subcategory ? `${product.name} — ${subcategory.name}` : product.fullName ? `${product.name} — ${product.fullName}` : product.name),
+    description: subcategory?.seoDescription || subcategory?.description || product.seoDescription || product.description,
+    image: `https://www.ariavita.in${subcategory?.image || product.image}`,
     category: product.category,
+    keywords: subcategory?.seoKeywords?.join(", ") || product.seoKeywords?.join(", "),
     brand: {
       "@type": "Brand",
       name: "Aria Vita™",

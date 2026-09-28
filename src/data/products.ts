@@ -25,6 +25,7 @@ export interface ProductSubcategory {
   subtitle?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   isComingSoon?: boolean;
   applications?: string[];
   features?: string[];
@@ -32,6 +33,9 @@ export interface ProductSubcategory {
   specifications?: Record<string, string | number>;
   models?: ProductModel[];
   technicalDocuments?: TechnicalDocument[];
+  seoTitle?: string;
+  seoDescription?: string;
+  seoKeywords?: string[];
 }
 
 export interface Product {
@@ -44,6 +48,7 @@ export interface Product {
   shortDescription: string;
   description: string;
   image: string;
+  imageAlt?: string;
   gallery?: string[];
   applications: string[];
   features: string[];
@@ -131,22 +136,46 @@ export const PRODUCTS: Product[] = [
     category: "Fire Retardent Canvas",
     shortDescription: "Fire safety-certified flexible ducting for smoke exhaust and high-risk HVAC zones.",
     description:
-      "Safety-first flexible ducting engineered specifically for smoke extraction systems, commercial kitchen exhausts, and fire-rated building shafts. Available in Fire Retardent (92°C) and Fire Resistant (250°C) variants.",
+      "Safety-first flexible ducting engineered specifically for smoke extraction systems, commercial kitchen exhausts, and fire-rated building shafts. Available in Fire Retardent (92°C) and Fire Resistant (250°C) variants with neoprene canvas and flange options.",
     image: "/images/products/fire-retardent-canvas.png",
+    imageAlt: "Aria Vita fire rated canvas, fire proof canvas, and Fire Retardent canvas",
     featured: true,
     badges: ["Fire Retardent — 92°C", "Fire Resistant — 250°C"],
-    seoTitle: "Fire Retardent Canvas for HVAC Applications | Aria Vita",
-    seoDescription: "Aria Vita fire safety-certified flexible duct connectors. Available in Fire Retardent (92°C) and Fire Resistant (250°C) high-temperature options.",
-    seoKeywords: ["Fire Retardent Canvas", "Fire Resistant Canvas", "HVAC Duct Connector", "Flexible Duct Connection", "92C Canvas", "250C Fire Resistant Canvas"],
+    seoTitle: "Fire Retardent Canvas & Fire Rated Canvas | Aria Vita",
+    seoDescription: "Aria Vita fire rated canvas, fire proof canvas, Neoprene canvas, and fire canvas with flange flexible duct connectors. Available in 92°C and 250°C high-temperature variants.",
+    seoKeywords: [
+      "Fire rated canvas",
+      "Fire proof canvas",
+      "Fire Retardent canvas",
+      "Neoprene canvas",
+      "Aria Vita fire rated canvas",
+      "Fire canvas with flange",
+      "Fire Retardant Canvas",
+      "HVAC Duct Connector",
+      "Flexible Duct Connection",
+      "92C Canvas",
+      "250C Fire Resistant Canvas"
+    ],
     subcategories: [
       {
         id: "fire-retardent",
         slug: "fire-retardent",
         name: "Fire Retardent",
         temperature: "92°C",
-        subtitle: "Fire Retardent Canvas — 92°C Operating Temperature.",
-        description: "Fire Retardent Canvas rated for 92°C operating temperature. Designed for general ventilation, HVAC flexible duct connections, and standard smoke extraction shafts.",
+        subtitle: "Fire Retardent canvas — 92°C Operating Temperature Fire Rated Canvas.",
+        description: "Fire Retardent canvas rated for 92°C operating temperature, neoprene canvas coated options, and fire canvas with flange specifications. Designed for standard HVAC flexible duct connections and smoke extraction shafts.",
         image: "/images/products/fire-retardent-canvas.png",
+        imageAlt: "Aria Vita fire rated canvas 92C Fire Retardent canvas",
+        seoTitle: "Fire Retardent Canvas 92°C & Fire Rated Canvas | Aria Vita",
+        seoDescription: "Aria Vita fire rated canvas and Fire Retardent canvas (92°C) flexible duct connectors. Tested for smoke extract and HVAC duct connections.",
+        seoKeywords: [
+          "Fire Retardent canvas",
+          "Fire rated canvas",
+          "Fire proof canvas",
+          "Aria Vita fire rated canvas",
+          "Neoprene canvas",
+          "Fire canvas with flange"
+        ],
         isComingSoon: false,
         applications: [
           "Standard HVAC duct connection joints",
@@ -170,9 +199,19 @@ export const PRODUCTS: Product[] = [
         slug: "fire-resistant",
         name: "Fire Resistant",
         temperature: "250°C",
-        subtitle: "Fire Resistant Canvas — 250°C Operating Temperature.",
-        description: "High-temperature Fire Resistant Canvas rated for 250°C operating temperature. Engineered for commercial kitchen hood connections, high-temperature smoke extraction, and critical fire safety shafts.",
+        subtitle: "Fire proof canvas — 250°C Operating Temperature High-Risk Duct Connection.",
+        description: "High-temperature fire proof canvas rated for 250°C operating temperature. Engineered for commercial kitchen hood connections, fire canvas with flange applications, and critical fire safety shafts.",
         image: "/images/products/fire-retardent-canvas.png",
+        imageAlt: "Aria Vita fire proof canvas 250C fire canvas with flange",
+        seoTitle: "Fire Proof Canvas 250°C & Fire Canvas with Flange | Aria Vita",
+        seoDescription: "High-temperature 250°C fire proof canvas and Aria Vita fire rated canvas connectors with heavy-duty construction for critical fire zones.",
+        seoKeywords: [
+          "Fire proof canvas",
+          "Fire rated canvas",
+          "Fire canvas with flange",
+          "Neoprene canvas",
+          "Aria Vita fire rated canvas"
+        ],
         isComingSoon: false,
         applications: [
           "High-temperature smoke extraction shafts",
@@ -235,19 +274,45 @@ export const PRODUCTS: Product[] = [
     description:
       "Disc valves engineered for ceiling and wall mounting in supply and exhaust ventilation systems. Designed for smooth air distribution, minimal pressure drop, and low acoustic emission across commercial, residential, and industrial HVAC applications.",
     image: "/images/products/disc-valves.png",
+    imageAlt: "Aria Vita 150 mm disc valves in aluminium, SS stainless steel, and plastic variants",
     featured: true,
     badges: ["3 Material Variants", "Supply & Exhaust", "Aerodynamic Design"],
-    seoTitle: "Disc Valves for HVAC Air Distribution | Aria Vita",
-    seoDescription: "Aria Vita disc valves for supply and exhaust air distribution in commercial and residential HVAC systems. Available in Aluminium Powder Coated, Stainless Steel, and ABS Plastic variants.",
-    seoKeywords: ["Disc Valves", "HVAC Disc Valves", "Supply Disc Valves", "Exhaust Disc Valves", "Aluminium Disc Valve", "Stainless Steel Disc Valve", "ABS Plastic Disc Valve"],
+    seoTitle: "Disc Valves — Aluminium, Stainless Steel & ABS Plastic | Aria Vita",
+    seoDescription: "Aerodynamic supply and exhaust disc valves including 150 mm disc valve aluminium, 150 mm SS stainless steel disc valve, and ABS plastic disc valves from Aria Vita.",
+    seoKeywords: [
+      "Disc Valves",
+      "150 mm disc valve aluminium aria vita",
+      "150 mm disc valve",
+      "Aluminium disc valve",
+      "150 mm SS stainless steel disc valve Aria Vita",
+      "SS disc valve",
+      "Stainless steel disc valve",
+      "150 mm plastic disc valve Aria Vita",
+      "ABS plastic disc valves",
+      "Plastic disc valves",
+      "HVAC Disc Valves",
+      "Supply Disc Valves",
+      "Exhaust Disc Valves"
+    ],
     subcategories: [
       {
         id: "aluminium-powder-coated",
         slug: "aluminium-powder-coated",
         name: "Aluminium Powder Coated",
-        subtitle: "Architectural aluminium disc valves with durable powder-coated finish.",
-        description: "High-grade aluminium disc valves finished with electrostatic powder coating for superior corrosion resistance and seamless architectural integration in commercial HVAC systems.",
+        subtitle: "Architectural 150 mm aluminium disc valve with durable powder-coated finish.",
+        description: "High-grade 150 mm disc valve aluminium units finished with electrostatic powder coating for superior corrosion resistance and seamless architectural integration in commercial HVAC systems.",
         image: "/images/products/disc-valves.png",
+        imageAlt: "150 mm disc valve aluminium Aria Vita",
+        seoTitle: "150 mm Aluminium Disc Valve | Aria Vita HVAC Air Distribution",
+        seoDescription: "Aria Vita 150 mm disc valve aluminium supply and exhaust air distribution units. Engineered for low acoustic noise and smooth ceiling air dispersion.",
+        seoKeywords: [
+          "150 mm disc valve aluminium aria vita",
+          "150 mm disc valve",
+          "Aluminium disc valve",
+          "150mm disc valve aluminium",
+          "Aluminium powder coated disc valve",
+          "Supply disc valve aluminium"
+        ],
         isComingSoon: false,
         applications: [
           "Commercial office ceiling air distribution",
@@ -280,9 +345,19 @@ export const PRODUCTS: Product[] = [
         id: "stainless-steel",
         slug: "stainless-steel",
         name: "Stainless Steel",
-        subtitle: "Corrosion-resistant stainless steel disc valves for hygienic environments.",
-        description: "Heavy-duty stainless steel disc valves engineered specifically for cleanrooms, laboratories, commercial kitchens, and aggressive ambient environments.",
+        subtitle: "Corrosion-resistant 150 mm SS stainless steel disc valve for hygienic environments.",
+        description: "Heavy-duty SS disc valve units engineered in Grade 304 / 316 stainless steel. Designed for 150 mm SS stainless steel disc valve Aria Vita installations across cleanrooms, labs, and commercial kitchens.",
         image: "/images/products/disc-valves.png",
+        imageAlt: "150 mm SS stainless steel disc valve Aria Vita",
+        seoTitle: "150 mm SS Stainless Steel Disc Valve | Aria Vita",
+        seoDescription: "Aria Vita 150 mm SS stainless steel disc valve for hygienic and cleanroom HVAC applications. Grade 304/316 SS disc valve with high chemical resistance.",
+        seoKeywords: [
+          "150 mm SS stainless steel disc valve Aria Vita",
+          "SS disc valve",
+          "Stainless steel disc valve",
+          "150 mm stainless steel disc valve",
+          "Cleanroom SS disc valve"
+        ],
         isComingSoon: false,
         applications: [
           "Cleanrooms & pharmaceutical laboratories",
@@ -315,9 +390,19 @@ export const PRODUCTS: Product[] = [
         id: "abs-plastic",
         slug: "abs-plastic",
         name: "ABS Plastic",
-        subtitle: "TDV Series aerodynamic plastic disc valves for ceiling and wall mounting.",
-        description: "TDV Series aerodynamic plastic disc valves manufactured from durable, recyclable polypropylene. Designed for smooth air distribution and extraction in commercial offices, residential bathrooms, and domestic ventilation networks.",
+        subtitle: "TDV Series 150 mm plastic disc valves & ABS plastic disc valves for ceiling and wall mounting.",
+        description: "TDV Series plastic disc valves and ABS plastic disc valves manufactured from durable, recyclable polypropylene. Designed for 150 mm plastic disc valve Aria Vita setups, offering smooth air distribution and extraction.",
         image: "/images/products/disc-valves.png",
+        imageAlt: "150 mm plastic disc valve Aria Vita - ABS plastic disc valves",
+        seoTitle: "150 mm Plastic Disc Valve & ABS Plastic Disc Valves | Aria Vita",
+        seoDescription: "Aria Vita 150 mm plastic disc valve and TDV series ABS plastic disc valves for ceiling and wall mounting in residential and commercial ventilation.",
+        seoKeywords: [
+          "150 mm plastic disc valve Aria Vita",
+          "ABS plastic disc valves",
+          "Plastic disc valves",
+          "150 mm plastic disc valve",
+          "TDV plastic disc valve"
+        ],
         isComingSoon: false,
         applications: [
           "Domestic bathroom & kitchen extraction",
@@ -377,20 +462,39 @@ export const PRODUCTS: Product[] = [
     description:
       "Aria Vita Air Curtains project a continuous high-speed air stream across open doorways, forming an invisible environmental barrier. Reduces air conditioning energy loss, excludes dust, smoke, and flying insects.",
     image: "/images/products/air-curtains.jpg",
+    imageAlt: "Air curtain Aria Vita commercial, SS stainless steel, and industrial models",
     featured: true,
     badges: ["AACA", "AACS", "AACH"],
-    seoTitle: "Air Curtains for Commercial & Industrial Applications | Aria Vita",
-    seoDescription: "Aria Vita high-efficiency air curtain barrier units for commercial entrances, retail shops, cleanrooms, and industrial applications. Available in AACA, AACS, and AACH models.",
-    seoKeywords: ["Air Curtain", "Commercial Air Curtain", "Industrial Air Curtain", "AACA Air Curtain", "AACS Stainless Steel Air Curtain", "AACH Industrial Application"],
+    seoTitle: "Air Curtain Aria Vita — Commercial, SS & Industrial Air Curtains",
+    seoDescription: "Air curtain Aria Vita solutions including SS air curtain (AACS) and industrial air curtain (AACH) models for commercial, hygienic, and factory doorways.",
+    seoKeywords: [
+      "Air curtain",
+      "SS air curtain",
+      "Industrial air curtain",
+      "Air curtain Aria Vita",
+      "Commercial air curtain",
+      "AACA Air Curtain",
+      "AACS Stainless Steel Air Curtain",
+      "AACH Industrial Application"
+    ],
     subcategories: [
       {
         id: "aluminium-powder-coated",
         slug: "aluminium-powder-coated",
         name: "Aluminium Powder Coated",
         model: "AACA",
-        subtitle: "Aluminium powder-coated air curtain unit.",
-        description: "Commercial aluminium powder coated air curtain unit designed for mall entrances, retail stores, and hospital lobbies.",
+        subtitle: "Air curtain Aria Vita — Aluminium powder-coated air curtain unit.",
+        description: "Commercial aluminium air curtain Aria Vita unit designed for mall entrances, retail stores, and hospital lobbies. Maintains indoor thermal comfort and energy savings.",
         image: "/images/products/air-curtains.jpg",
+        imageAlt: "Air curtain Aria Vita aluminium commercial unit",
+        seoTitle: "Air Curtain Aria Vita — Aluminium Commercial Model AACA | Aria Vita",
+        seoDescription: "Air curtain Aria Vita commercial AACA series barrier units for retail and mall entrances. Provides powerful dust, insect, and thermal separation.",
+        seoKeywords: [
+          "Air curtain",
+          "Air curtain Aria Vita",
+          "Commercial air curtain",
+          "AACA Air Curtain"
+        ],
         isComingSoon: false,
         applications: [
           "Mall entrances & retail shops",
@@ -415,9 +519,18 @@ export const PRODUCTS: Product[] = [
         slug: "stainless-steel",
         name: "Stainless Steel",
         model: "AACS",
-        subtitle: "Stainless steel hygienic air curtain unit.",
-        description: "High-hygiene stainless steel air curtain unit engineered for cleanrooms, pharmaceutical labs, commercial kitchens, and food processing facilities.",
+        subtitle: "SS air curtain — Stainless steel hygienic air barrier unit.",
+        description: "High-hygiene SS air curtain unit engineered for cleanrooms, pharmaceutical labs, commercial kitchens, and food processing facilities.",
         image: "/images/products/air-curtains.jpg",
+        imageAlt: "SS air curtain Aria Vita stainless steel model",
+        seoTitle: "SS Air Curtain — Stainless Steel Model AACS | Aria Vita",
+        seoDescription: "Aria Vita SS air curtain units in Grade 304 stainless steel for cleanrooms, laboratories, and food processing facilities.",
+        seoKeywords: [
+          "SS air curtain",
+          "Air curtain Aria Vita",
+          "Stainless steel air curtain",
+          "AACS Air Curtain"
+        ],
         isComingSoon: false,
         applications: [
           "Clean rooms & pharmaceutical labs",
@@ -442,9 +555,18 @@ export const PRODUCTS: Product[] = [
         slug: "industrial-application",
         name: "Industrial Application",
         model: "AACH",
-        subtitle: "Heavy-duty air curtain unit for industrial doorways.",
-        description: "Industrial application high-velocity air curtain unit engineered for factories, warehouses, cold storage, and heavy industrial loading bays.",
+        subtitle: "Industrial air curtain — Heavy-duty air curtain unit for industrial doorways.",
+        description: "Industrial air curtain high-velocity barrier unit engineered for factories, warehouses, cold storage, and heavy industrial loading bays.",
         image: "/images/products/air-curtains.jpg",
+        imageAlt: "Industrial air curtain Aria Vita high velocity model",
+        seoTitle: "Industrial Air Curtain — High Velocity Model AACH | Aria Vita",
+        seoDescription: "Industrial air curtain units with high-velocity blowers for factories, warehouses, cold storage, and loading bays.",
+        seoKeywords: [
+          "Industrial air curtain",
+          "Air curtain Aria Vita",
+          "High velocity air curtain",
+          "AACH Industrial Air Curtain"
+        ],
         isComingSoon: false,
         applications: [
           "Factories & industrial manufacturing plants",
@@ -507,19 +629,37 @@ export const PRODUCTS: Product[] = [
     description:
       "High-performance flexible ducting engineered for HVAC air distribution, indoor agriculture, and hydroponic ventilation systems. Offers high velocity capability, minimal pressure drop, and superior humidity resistance.",
     image: "/images/products/flexible-duct.jpg",
+    imageAlt: "AriaVita flexible duct in insulated flexible duct and uninsulated flexible duct variants",
     featured: true,
     badges: ["Non-Insulated & Insulated", "30 m/s Max Velocity", "3000 Pa Pressure"],
-    seoTitle: "Flexible Duct for HVAC Ventilation | Aria Vita",
-    seoDescription: "Aria Vita heavy-duty multi-ply flexible ducting for HVAC heating, cooling, and ventilation networks. Available in Non-Insulated and Insulated variants.",
-    seoKeywords: ["Flexible Duct", "HVAC Flexible Duct", "Non-Insulated Flexible Duct", "Insulated Flexible Duct", "Aluminium Flexible Ducting", "Ducting Products India"],
+    seoTitle: "Flexible Duct — Insulated & Uninsulated Flexible Duct | AriaVita",
+    seoDescription: "AriaVita flexible duct solutions including insulated flexible duct and uninsulated flexible duct options for HVAC heating, cooling, and ventilation.",
+    seoKeywords: [
+      "Insulated flexible duct",
+      "Uninsulated flexible duct",
+      "AriaVita flexible duct",
+      "Flexible Duct",
+      "HVAC Flexible Duct",
+      "Non-Insulated Flexible Duct",
+      "Aluminium Flexible Ducting"
+    ],
     subcategories: [
       {
         id: "non-insulated",
         slug: "non-insulated",
         name: "Non-Insulated",
-        subtitle: "1 ply Aluminium + 2 ply Polyester (Black) flexible ducting.",
-        description: "Heavy-duty non-insulated flexible ducting constructed with 1 ply Aluminium combined with 2 ply Polyester (Black) over encapsulated spring steel wire. Engineered for minimal pressure drop, high velocity airflow, and extreme humidity resistance.",
+        subtitle: "Uninsulated flexible duct — 1 ply Aluminium + 2 ply Polyester flexible ducting.",
+        description: "Heavy-duty uninsulated flexible duct (non-insulated) constructed with 1 ply Aluminium combined with 2 ply Polyester over encapsulated spring steel wire. Premium AriaVita flexible duct for HVAC ventilation.",
         image: "/images/products/flexible-duct.jpg",
+        imageAlt: "Uninsulated flexible duct AriaVita flexible duct",
+        seoTitle: "Uninsulated Flexible Duct — AriaVita Flexible Duct | Aria Vita",
+        seoDescription: "Uninsulated flexible duct and non-insulated AriaVita flexible ducting constructed with 1 ply Aluminium + 2 ply Polyester over spring steel helix.",
+        seoKeywords: [
+          "Uninsulated flexible duct",
+          "Non-insulated flexible duct",
+          "AriaVita flexible duct",
+          "Aluminium flexible duct"
+        ],
         isComingSoon: false,
         applications: [
           "Ventilation heating and cooling",
@@ -548,9 +688,18 @@ export const PRODUCTS: Product[] = [
         id: "insulated",
         slug: "insulated",
         name: "Insulated",
-        subtitle: "Thermal and acoustic insulated flexible ducting.",
-        description: "Thermal insulated flexible ducting with acoustic fiberglass wool layer engineered to eliminate condensation and reduce duct breakout noise in central HVAC networks.",
+        subtitle: "Insulated flexible duct — Thermal and acoustic insulated flexible ducting.",
+        description: "Thermal insulated flexible ducting with high-density fiberglass insulation layer. Insulated flexible duct engineered to eliminate condensation and reduce sound in central AriaVita flexible duct systems.",
         image: "/images/products/flexible-duct.jpg",
+        imageAlt: "Insulated flexible duct AriaVita flexible duct",
+        seoTitle: "Insulated Flexible Duct — AriaVita Flexible Duct | Aria Vita",
+        seoDescription: "Insulated flexible duct and acoustic thermal AriaVita flexible ducting with fiberglass insulation layer preventing heat loss and condensation.",
+        seoKeywords: [
+          "Insulated flexible duct",
+          "AriaVita flexible duct",
+          "Thermal insulated ducting",
+          "Acoustic flexible duct"
+        ],
         isComingSoon: false,
         applications: [
           "Centralized HVAC supply & return air ducts",
@@ -609,22 +758,23 @@ export const PRODUCTS: Product[] = [
     category: "CAR",
     shortDescription: "CAV AriaVita Constant Airflow Regulator (CAR Aria Vita Airflow Regulator / Airflow Regulator Aria Vita / CAV Aria Vita) self-balancing mechanical airflow controller.",
     description:
-      "The CAR (CAV AriaVita Constant Airflow Regulator / CAR Aria Vita Airflow Regulator / Airflow Regulator Aria Vita / CAV Aria Vita) is a self-adjusting mechanical Constant Airflow Regulator designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure across 50–200 dia, the internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations without electrical power.",
+      "The CAR (CAV AriaVita constant airflow regulator / CAR Aria Vita airflow regulator / Airflow regulator Aria Vita / CAV Aria Vita) is a self-adjusting mechanical Constant Airflow Regulator designed to automatically balance air distribution systems. Operating between 50 and 250 Pa static pressure across 50–200 dia, the internal inflatable membrane adjusts its passage cross-section in response to duct pressure variations without electrical power.",
     image: "/images/products/car.png",
+    imageAlt: "CAV AriaVita constant airflow regulator - CAR Aria Vita airflow regulator",
     featured: true,
     badges: ["50–200 dia", "50–250 Pa Control", "Zero Power"],
-    seoTitle: "CAR | CAV AriaVita Constant Airflow Regulator | Aria Vita",
-    seoDescription: "CAV AriaVita Constant Airflow Regulator (CAR Aria Vita Airflow Regulator). Self-balancing Airflow Regulator Aria Vita (CAV Aria Vita) operating across 50–200 dia and 50–250 Pa duct static pressure.",
+    seoTitle: "CAR — CAV AriaVita Constant Airflow Regulator | Aria Vita",
+    seoDescription: "CAV AriaVita constant airflow regulator (CAR Aria Vita airflow regulator / Airflow regulator Aria Vita / CAV Aria Vita) self-balancing airflow regulator.",
     seoKeywords: [
-      "CAR",
-      "CAV AriaVita Constant Airflow Regulator",
-      "CAR Aria Vita Airflow Regulator",
-      "Airflow Regulator Aria Vita",
+      "CAV AriaVita constant airflow regulator",
+      "CAR Aria Vita airflow regulator",
+      "Airflow regulator Aria Vita",
       "CAV Aria Vita",
       "Constant Airflow Regulator",
+      "CAR",
       "CAR Airflow Regulator",
       "HVAC Airflow Regulator",
-      "Self-Balancing Regulator",
+      "Self-Balancing Regulator"
     ],
     seoContent: "CAV AriaVita Constant Airflow Regulator CAR Aria Vita Airflow Regulator Airflow Regulator Aria Vita CAV Aria Vita Constant Airflow Regulator 50-200 dia 50-250 Pa",
     applications: [
@@ -807,6 +957,7 @@ export function getAllCategories(): string[] {
 export function searchProducts(query: string): Product[] {
   if (!query) return PRODUCTS;
   const q = query.toLowerCase().trim();
+  const qNormalized = q.replace(/[\s\-_]+/g, "");
 
   return PRODUCTS.filter((p) => {
     const nameMatch = p.name.toLowerCase().includes(q) || (p.fullName && p.fullName.toLowerCase().includes(q));
@@ -816,9 +967,9 @@ export function searchProducts(query: string): Product[] {
     const appMatch = p.applications?.some((app) => app.toLowerCase().includes(q));
     const featMatch = p.features?.some((f) => f.toLowerCase().includes(q));
     const modelMatch = p.models?.some((m) => m.name.toLowerCase().includes(q) || (m.size && m.size.toLowerCase().includes(q)));
-    
-    // Exact search term matches requested by client
-    // e.g. "AACA", "AACS", "AACH", "92", "250", "50-200", "50-250", "dia"
+    const seoKwMatch = p.seoKeywords?.some((kw) => kw.toLowerCase().includes(q) || kw.toLowerCase().replace(/[\s\-_]+/g, "").includes(qNormalized));
+    const imageAltMatch = p.imageAlt?.toLowerCase().includes(q);
+
     const subMatch = p.subcategories?.some(
       (sc) =>
         sc.name.toLowerCase().includes(q) ||
@@ -826,14 +977,27 @@ export function searchProducts(query: string): Product[] {
         (sc.temperature && sc.temperature.toLowerCase().includes(q)) ||
         (sc.description && sc.description.toLowerCase().includes(q)) ||
         sc.applications?.some((app) => app.toLowerCase().includes(q)) ||
-        sc.features?.some((f) => f.toLowerCase().includes(q))
+        sc.features?.some((f) => f.toLowerCase().includes(q)) ||
+        sc.seoKeywords?.some((kw) => kw.toLowerCase().includes(q) || kw.toLowerCase().replace(/[\s\-_]+/g, "").includes(qNormalized)) ||
+        (sc.imageAlt && sc.imageAlt.toLowerCase().includes(q))
     );
 
-    // Specifications matches
     const specMatch = Object.entries(p.specifications || {}).some(
       ([k, v]) => k.toLowerCase().includes(q) || String(v).toLowerCase().includes(q)
     );
 
-    return nameMatch || subtitleMatch || catMatch || descMatch || appMatch || featMatch || modelMatch || subMatch || specMatch;
+    return (
+      nameMatch ||
+      subtitleMatch ||
+      catMatch ||
+      descMatch ||
+      appMatch ||
+      featMatch ||
+      modelMatch ||
+      subMatch ||
+      specMatch ||
+      seoKwMatch ||
+      imageAltMatch
+    );
   });
 }

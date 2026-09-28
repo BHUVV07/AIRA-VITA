@@ -118,12 +118,16 @@ export async function getDbProducts(): Promise<Product[]> {
           subtitle: v.description || fallbackSub?.subtitle,
           description: v.description || fallbackSub?.description,
           image: v.image_url || p.primary_image_url || fallbackSub?.image || "/images/products/car.png",
+          imageAlt: fallbackSub?.imageAlt,
           isComingSoon: false,
           applications: fallbackSub?.applications || fallback?.applications || [],
           features: fallbackSub?.features || fallback?.features || [],
           standards: fallbackSub?.standards || fallback?.standards || [],
           specifications: Object.keys(vSpecs).length > 0 ? vSpecs : (fallbackSub?.specifications || {}),
           models: fallbackSub?.models || [],
+          seoTitle: fallbackSub?.seoTitle,
+          seoDescription: fallbackSub?.seoDescription,
+          seoKeywords: fallbackSub?.seoKeywords,
         };
       });
 
@@ -137,6 +141,7 @@ export async function getDbProducts(): Promise<Product[]> {
         shortDescription: p.short_description || fallback?.shortDescription || "",
         description: p.description || fallback?.description || "",
         image: p.primary_image_url || fallback?.image || "/images/products/car.png",
+        imageAlt: fallback?.imageAlt,
         featured: p.is_featured,
         badges: fallback?.badges || (p.availability_status === "in_stock" ? ["In Stock"] : []),
         applications: fallback?.applications || [],
@@ -155,6 +160,7 @@ export async function getDbProducts(): Promise<Product[]> {
         seoTitle: p.seo_title || fallback?.seoTitle,
         seoDescription: p.seo_description || fallback?.seoDescription,
         seoKeywords: fallback?.seoKeywords || [],
+        seoContent: fallback?.seoContent,
       };
     });
   } catch (err) {

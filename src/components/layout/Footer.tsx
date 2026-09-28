@@ -87,13 +87,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="hover:text-sky-700 transition-colors">
-                  Technical Resources
+                <Link href="/gallery" className="hover:text-sky-700 transition-colors">
+                  Product Gallery
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-sky-700 transition-colors">
                   Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin" className="hover:text-sky-700 font-bold text-sky-800 transition-colors">
+                  Admin Portal
                 </Link>
               </li>
             </ul>
@@ -162,6 +167,9 @@ export default function Footer() {
             <span>Authorized Distributor: Ecosta Systems, Bangalore</span>
             <Link href="/contact" className="hover:text-sky-700 transition-colors">
               RFQ Support
+            </Link>
+            <Link href="/admin" className="hover:text-sky-700 transition-colors font-semibold text-slate-700">
+              Admin CMS
             </Link>
           </div>
         </div>
