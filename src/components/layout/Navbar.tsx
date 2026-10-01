@@ -24,6 +24,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products", hasDropdown: true },

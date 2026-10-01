@@ -1,10 +1,18 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Mail, Phone, MapPin, Globe, ShieldCheck, ArrowUpRight } from "lucide-react";
 import AriaVitaLogo from "@/components/ui/AriaVitaLogo";
 import { COMPANY_INFO, PRODUCTS } from "@/data/products";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
   return (
     <footer className="bg-slate-50 text-slate-700 border-t border-slate-200">
       {/* Main Footer Body */}

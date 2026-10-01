@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getDbProducts } from "@/lib/supabase/data";
+import { isDevPlaceholderMode, getAdminSession } from "@/lib/auth/adminAuth";
 
 export async function GET() {
   try {
@@ -28,6 +29,11 @@ interface SpecInput {
 
 export async function POST(request: Request) {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
+
     const body = await request.json();
     const {
       name,
@@ -49,9 +55,35 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Product Name and Slug are required." }, { status: 400 });
     }
 
+    if (isDevPlaceholderMode()) {
+      const mockProduct = {
+        id: `qa-prod-${Date.now()}`,
+        name: name.trim(),
+        slug: slug.trim().toLowerCase().replace(/\s+/g, "-"),
+        category_id: category_id || null,
+        short_description: short_description || null,
+        description: description || null,
+        primary_image_url: primary_image_url || "/images/products/car.png",
+        seo_title: seo_title || `${name} | Aria Vita`,
+        seo_description: seo_description || short_description || description,
+        is_featured: is_featured ?? true,
+        availability_status: availability_status || "in_stock",
+        sort_order: typeof sort_order === "number" ? sort_order : 100,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+
+      return NextResponse.json({
+        success: true,
+        message: "Product created successfully.",
+        product: mockProduct,
+      });
+    }
+
     const supabase = createAdminClient();
 
-    // Insert Product
+    // Insert Product into Supabase
     const { data: productData, error: prodError } = await supabase
       .from("products")
       .insert({
@@ -109,6 +141,7 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     console.error("Create product API error:", err);
-    return NextResponse.json({ error: "Failed to create product." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to create product.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

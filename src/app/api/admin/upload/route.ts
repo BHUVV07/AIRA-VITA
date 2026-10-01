@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isDevPlaceholderMode, getAdminSession } from "@/lib/auth/adminAuth";
 
 export async function POST(request: Request) {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
     const bucket = (formData.get("bucket") as string) || "product-images";
@@ -41,13 +47,21 @@ export async function POST(request: Request) {
       }
     }
 
-    const supabase = createAdminClient();
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
     const ext = file.name.split(".").pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${ext}`;
     const filePath = `${fileName}`;
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        url: `/images/gallery/${file.name}`,
+        fileName,
+      });
+    }
+
+    const supabase = createAdminClient();
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
     const { error } = await supabase.storage
       .from(bucket)
@@ -70,6 +84,7 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     console.error("File upload API error:", err);
-    return NextResponse.json({ error: "Failed to upload file." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to upload file.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

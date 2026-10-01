@@ -162,26 +162,26 @@ export default function NewProductPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-800 pb-6">
+      <div className="flex items-center justify-between border-b border-slate-200 pb-6">
         <div className="flex items-center gap-3">
           <Link
             href="/admin/products"
-            className="p-2 bg-slate-900 border border-slate-800 text-slate-400 hover:text-white rounded-xl transition-colors"
+            className="p-2 bg-white border border-slate-200 text-slate-600 hover:text-slate-900 rounded-xl transition-colors shadow-xs"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <span className="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block">
+            <span className="text-xs font-bold text-sky-700 bg-sky-100 px-3 py-1 rounded-full border border-sky-200 uppercase tracking-wider inline-block mb-1">
               Product Catalogue
             </span>
-            <h1 className="text-2xl font-extrabold font-heading text-white">Add New Product</h1>
+            <h1 className="text-2xl font-extrabold font-heading text-slate-900">Add New Product</h1>
           </div>
         </div>
       </div>
 
       {error && (
-        <div className="p-4 bg-red-950/80 border border-red-800 rounded-2xl text-xs text-red-300 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+        <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-800 flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
           <span>{error}</span>
         </div>
       )}
@@ -189,14 +189,14 @@ export default function NewProductPage() {
       {/* Product Form */}
       <form onSubmit={handleSubmit} className="space-y-8 text-xs font-sans">
         {/* Core Product Information */}
-        <div className="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
-          <h2 className="text-lg font-bold font-heading text-white border-b border-slate-800 pb-3">
+        <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl space-y-6 shadow-sm">
+          <h2 className="text-lg font-bold font-heading text-slate-900 border-b border-slate-100 pb-3">
             1. Core Information
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Product Name *
               </label>
               <input
@@ -205,12 +205,12 @@ export default function NewProductPage() {
                 placeholder="e.g. Constant Airflow Regulator"
                 value={formData.name}
                 onChange={handleNameChange}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-sky-500 outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:ring-2 focus:ring-sky-500 outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Product Slug *
               </label>
               <input
@@ -219,20 +219,20 @@ export default function NewProductPage() {
                 placeholder="e.g. constant-airflow-regulator"
                 value={formData.slug}
                 onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white font-mono focus:ring-2 focus:ring-sky-500 outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-mono focus:ring-2 focus:ring-sky-500 outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Category *
               </label>
               <select
                 value={formData.category_id}
                 onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white outline-none cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 outline-none cursor-pointer"
               >
                 {categories.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -243,20 +243,20 @@ export default function NewProductPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Sort Order (Display Priority)
               </label>
               <input
                 type="number"
                 value={formData.sort_order}
                 onChange={(e) => setFormData({ ...formData, sort_order: parseInt(e.target.value) || 0 })}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white font-mono outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-mono outline-none"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Short Tagline / Subtitle
             </label>
             <input
@@ -264,12 +264,12 @@ export default function NewProductPage() {
               placeholder="e.g. Maintain consistent airflow despite duct pressure fluctuations."
               value={formData.short_description}
               onChange={(e) => setFormData({ ...formData, short_description: e.target.value })}
-              className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white outline-none"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:ring-2 focus:ring-sky-500 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Full Product Description
             </label>
             <textarea
@@ -277,13 +277,13 @@ export default function NewProductPage() {
               placeholder="Detailed engineering technical overview..."
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white outline-none resize-none"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:ring-2 focus:ring-sky-500 outline-none resize-none"
             />
           </div>
 
           {/* Image Path / Upload */}
           <div>
-            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
               Primary Product Image
             </label>
             <div className="flex flex-col sm:flex-row gap-3 items-center">
@@ -291,9 +291,9 @@ export default function NewProductPage() {
                 type="text"
                 value={formData.primary_image_url}
                 onChange={(e) => setFormData({ ...formData, primary_image_url: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white font-mono outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-mono outline-none"
               />
-              <label className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer inline-flex items-center gap-2">
+              <label className="px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer inline-flex items-center gap-2 shadow-xs">
                 <Upload className="w-4 h-4" />
                 <span>{uploading ? "Uploading..." : "Upload File"}</span>
                 <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
@@ -303,13 +303,13 @@ export default function NewProductPage() {
         </div>
 
         {/* Variants Section */}
-        <div className="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h2 className="text-lg font-bold font-heading text-white">2. Product Variants</h2>
+        <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl space-y-4 shadow-sm">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 className="text-lg font-bold font-heading text-slate-900">2. Product Variants</h2>
             <button
               type="button"
               onClick={addVariant}
-              className="px-3 py-1.5 bg-sky-950 text-sky-400 border border-sky-800 rounded-lg text-xs font-bold hover:bg-sky-900 inline-flex items-center gap-1.5"
+              className="px-3 py-1.5 bg-sky-50 text-sky-700 border border-sky-200 rounded-lg text-xs font-bold hover:bg-sky-100 inline-flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Variant</span>
@@ -317,17 +317,17 @@ export default function NewProductPage() {
           </div>
 
           {variants.length === 0 ? (
-            <p className="text-slate-400 text-xs py-2">No variants added yet. Click &quot;Add Variant&quot; above.</p>
+            <p className="text-slate-500 text-xs py-2">No variants added yet. Click &quot;Add Variant&quot; above.</p>
           ) : (
             <div className="space-y-3">
               {variants.map((v, idx) => (
-                <div key={idx} className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-3">
+                <div key={idx} className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="font-mono text-xs text-sky-400 font-bold">Variant #{idx + 1}</span>
+                    <span className="font-mono text-xs text-sky-800 font-bold">Variant #{idx + 1}</span>
                     <button
                       type="button"
                       onClick={() => removeVariant(idx)}
-                      className="text-red-400 hover:text-red-300 p-1"
+                      className="text-red-600 hover:text-red-700 p-1 cursor-pointer"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -342,7 +342,7 @@ export default function NewProductPage() {
                         updated[idx].name = e.target.value;
                         setVariants(updated);
                       }}
-                      className="px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white outline-none"
+                      className="px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 outline-none"
                     />
                     <input
                       type="text"
@@ -353,7 +353,7 @@ export default function NewProductPage() {
                         updated[idx].code = e.target.value;
                         setVariants(updated);
                       }}
-                      className="px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white font-mono outline-none"
+                      className="px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 font-mono outline-none"
                     />
                     <input
                       type="text"
@@ -364,7 +364,7 @@ export default function NewProductPage() {
                         updated[idx].temperature = e.target.value;
                         setVariants(updated);
                       }}
-                      className="px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white outline-none"
+                      className="px-3 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 outline-none"
                     />
                   </div>
                 </div>
@@ -374,13 +374,13 @@ export default function NewProductPage() {
         </div>
 
         {/* Specifications Section */}
-        <div className="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h2 className="text-lg font-bold font-heading text-white">3. Specifications</h2>
+        <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl space-y-4 shadow-sm">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 className="text-lg font-bold font-heading text-slate-900">3. Specifications</h2>
             <button
               type="button"
               onClick={addSpec}
-              className="px-3 py-1.5 bg-sky-950 text-sky-400 border border-sky-800 rounded-lg text-xs font-bold hover:bg-sky-900 inline-flex items-center gap-1.5"
+              className="px-3 py-1.5 bg-sky-50 text-sky-700 border border-sky-200 rounded-lg text-xs font-bold hover:bg-sky-100 inline-flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Specification</span>
@@ -399,7 +399,7 @@ export default function NewProductPage() {
                     updated[idx].spec_name = e.target.value;
                     setSpecs(updated);
                   }}
-                  className="flex-1 px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white outline-none"
+                  className="flex-1 px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 outline-none"
                 />
                 <input
                   type="text"
@@ -410,12 +410,12 @@ export default function NewProductPage() {
                     updated[idx].spec_value = e.target.value;
                     setSpecs(updated);
                   }}
-                  className="flex-1 px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white font-mono outline-none"
+                  className="flex-1 px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 font-mono outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => removeSpec(idx)}
-                  className="text-red-400 hover:text-red-300 p-2"
+                  className="text-red-600 hover:text-red-700 p-2 cursor-pointer"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -425,43 +425,43 @@ export default function NewProductPage() {
         </div>
 
         {/* SEO Information */}
-        <div className="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
-          <h2 className="text-lg font-bold font-heading text-white border-b border-slate-800 pb-3">
+        <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl space-y-4 shadow-sm">
+          <h2 className="text-lg font-bold font-heading text-slate-900 border-b border-slate-100 pb-3">
             4. SEO Meta Configuration
           </h2>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 SEO Title
               </label>
               <input
                 type="text"
                 value={formData.seo_title}
                 onChange={(e) => setFormData({ ...formData, seo_title: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 SEO Description
               </label>
               <textarea
                 rows={3}
                 value={formData.seo_description}
                 onChange={(e) => setFormData({ ...formData, seo_description: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white outline-none resize-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 outline-none resize-none"
               />
             </div>
           </div>
         </div>
 
         {/* Submit Bar */}
-        <div className="pt-4 flex items-center justify-end gap-4 border-t border-slate-800">
+        <div className="pt-4 flex items-center justify-end gap-4 border-t border-slate-200">
           <Link
             href="/admin/products"
-            className="px-5 py-2.5 text-xs text-slate-400 hover:text-white transition-colors"
+            className="px-5 py-2.5 text-xs text-slate-600 hover:text-slate-900 transition-colors"
           >
             Cancel
           </Link>
@@ -469,7 +469,7 @@ export default function NewProductPage() {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-3 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white text-xs font-bold rounded-xl transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer disabled:opacity-50"
+            className="px-6 py-3 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-xs font-bold rounded-xl transition-all shadow-md inline-flex items-center gap-2 cursor-pointer disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{loading ? "Saving Product..." : "Save Product to Catalogue"}</span>

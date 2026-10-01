@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getDbCategories } from "@/lib/supabase/data";
+import { isDevPlaceholderMode, getAdminSession } from "@/lib/auth/adminAuth";
 
 export async function GET() {
   try {
@@ -14,10 +15,30 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
+
     const { name, slug, description, sort_order } = await request.json();
 
     if (!name || !slug) {
       return NextResponse.json({ error: "Category Name and Slug are required." }, { status: 400 });
+    }
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        message: "Category created successfully.",
+        category: {
+          id: `cat-${Date.now()}`,
+          name: name.trim(),
+          slug: slug.trim().toLowerCase().replace(/\s+/g, "-"),
+          description: description || null,
+          sort_order: typeof sort_order === "number" ? sort_order : 100,
+          is_active: true,
+        },
+      });
     }
 
     const supabase = createAdminClient();
@@ -45,6 +66,7 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     console.error("Create category error:", err);
-    return NextResponse.json({ error: "Failed to create category." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to create category.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isDevPlaceholderMode, getAdminSession } from "@/lib/auth/adminAuth";
 
 interface Context {
   params: Promise<{ id: string }>;
@@ -7,11 +8,24 @@ interface Context {
 
 export async function PUT(request: Request, { params }: Context) {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
+
     const { id } = await params;
     const { status } = await request.json();
 
     if (!['new', 'contacted', 'qualified', 'closed'].includes(status)) {
       return NextResponse.json({ error: "Invalid status value." }, { status: 400 });
+    }
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        message: "Enquiry status updated.",
+        enquiry: { id, status, updated_at: new Date().toISOString() },
+      });
     }
 
     const supabase = createAdminClient();
@@ -37,15 +51,28 @@ export async function PUT(request: Request, { params }: Context) {
     });
   } catch (err: unknown) {
     console.error("Update enquiry error:", err);
-    return NextResponse.json({ error: "Failed to update enquiry." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to update enquiry.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
 export async function DELETE(request: Request, { params }: Context) {
   try {
-    const { id } = await params;
-    const supabase = createAdminClient();
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
 
+    const { id } = await params;
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        message: "Enquiry deleted successfully.",
+      });
+    }
+
+    const supabase = createAdminClient();
     const { error } = await supabase.from("enquiries").delete().eq("id", id);
 
     if (error) {
@@ -58,6 +85,7 @@ export async function DELETE(request: Request, { params }: Context) {
     });
   } catch (err: unknown) {
     console.error("Delete enquiry error:", err);
-    return NextResponse.json({ error: "Failed to delete enquiry." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to delete enquiry.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

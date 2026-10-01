@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isDevPlaceholderMode, getAdminSession } from "@/lib/auth/adminAuth";
 
 interface Context {
   params: Promise<{ id: string }>;
@@ -7,6 +8,11 @@ interface Context {
 
 export async function PUT(request: Request, { params }: Context) {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
+
     const { id } = await params;
     const body = await request.json();
     const {
@@ -23,6 +29,14 @@ export async function PUT(request: Request, { params }: Context) {
       sort_order,
       is_active,
     } = body;
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        message: "Product updated successfully.",
+        product: { id, name, slug, description, availability_status: availability_status || "in_stock", is_active: is_active ?? true },
+      });
+    }
 
     const supabase = createAdminClient();
 
@@ -58,15 +72,28 @@ export async function PUT(request: Request, { params }: Context) {
     });
   } catch (err: unknown) {
     console.error("Update product error:", err);
-    return NextResponse.json({ error: "Failed to update product." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to update product.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
 export async function DELETE(request: Request, { params }: Context) {
   try {
-    const { id } = await params;
-    const supabase = createAdminClient();
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
 
+    const { id } = await params;
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        message: "Product deleted successfully.",
+      });
+    }
+
+    const supabase = createAdminClient();
     const { error } = await supabase.from("products").delete().eq("id", id);
 
     if (error) {
@@ -79,6 +106,7 @@ export async function DELETE(request: Request, { params }: Context) {
     });
   } catch (err: unknown) {
     console.error("Delete product error:", err);
-    return NextResponse.json({ error: "Failed to delete product." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to delete product.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

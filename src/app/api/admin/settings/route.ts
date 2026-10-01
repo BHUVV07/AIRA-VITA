@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getSiteSettings } from "@/lib/supabase/data";
+import { isDevPlaceholderMode, getAdminSession } from "@/lib/auth/adminAuth";
 
 export async function GET() {
   try {
@@ -14,7 +15,21 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized. Admin authentication required." }, { status: 401 });
+    }
+
     const body = await request.json();
+
+    if (isDevPlaceholderMode()) {
+      return NextResponse.json({
+        success: true,
+        message: "Site settings updated successfully.",
+        settings: body,
+      });
+    }
+
     const supabase = createAdminClient();
 
     const { data, error } = await supabase
@@ -41,6 +56,7 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     console.error("Update settings error:", err);
-    return NextResponse.json({ error: "Failed to update settings." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Failed to update settings.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

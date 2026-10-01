@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isDevPlaceholderMode } from "@/lib/auth/adminAuth";
 
 export async function POST(request: Request) {
   try {
@@ -15,75 +16,55 @@ export async function POST(request: Request) {
       (trimmedEmail === "admin@ariavita.in" ||
         trimmedEmail === "admin@arirvita.com" ||
         trimmedEmail.includes("admin")) &&
-      (password === "admin123" || password.length >= 6);
+      password === "admin123";
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-    const isPlaceholder = !supabaseUrl || supabaseUrl.includes("placeholder");
-
-    // If Supabase URL is placeholder or dev admin credentials used, bypass remote network call
-    if (isPlaceholder || (isDevAdmin && password === "admin123")) {
-      return NextResponse.json({
-        success: true,
-        message: "Logged in as Admin (Development Mode)",
-        user: { email: email.trim(), role: "admin" },
-      });
-    }
-
-    // Try Supabase Auth if real URL is configured
-    try {
-      const supabase = await createServerSupabaseClient();
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
-      });
-
-      if (error || !data?.user) {
-        if (isDevAdmin && password === "admin123") {
-          return NextResponse.json({
-            success: true,
-            message: "Logged in as Admin (Development Mode)",
-            user: { email: email.trim(), role: "admin" },
-          });
-        }
-        return NextResponse.json({ error: error?.message || "Invalid login credentials." }, { status: 401 });
-      }
-
-      // Verify role in admin_profiles
-      try {
-        const adminDb = createAdminClient();
-        const { data: profile } = await adminDb
-          .from("admin_profiles")
-          .select("*")
-          .eq("user_id", data.user.id)
-          .single();
-
-        if (!profile && !data.user.email?.toLowerCase().includes("admin")) {
-          await supabase.auth.signOut();
-          return NextResponse.json({ error: "Unauthorized. Your account does not have admin access." }, { status: 403 });
-        }
-      } catch (dbErr) {
-        console.warn("Supabase admin_profiles check warning:", dbErr);
-      }
-
-      return NextResponse.json({
-        success: true,
-        message: "Admin authentication successful.",
-        user: data.user,
-      });
-    } catch (authErr) {
-      console.warn("Supabase remote Auth connection failed, using dev fallback:", authErr);
-      if (isDevAdmin || password === "admin123") {
+    // ONLY in non-production local development mode with placeholder configuration
+    if (isDevPlaceholderMode()) {
+      if (isDevAdmin) {
         return NextResponse.json({
           success: true,
           message: "Logged in as Admin (Development Mode)",
           user: { email: email.trim(), role: "admin" },
         });
       }
-      return NextResponse.json(
-        { error: "Could not connect to Supabase Auth. Please use dev admin credentials (admin@ariavita.in / admin123)." },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Invalid email or password." }, { status: 401 });
     }
+
+    // Production / Live Supabase Auth Flow
+    const supabase = await createServerSupabaseClient();
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
+
+    if (error || !data?.user) {
+      return NextResponse.json({ error: error?.message || "Invalid login credentials." }, { status: 401 });
+    }
+
+    // Verify role in admin_profiles table
+    try {
+      const adminDb = createAdminClient();
+      const { data: profile } = await adminDb
+        .from("admin_profiles")
+        .select("*")
+        .eq("user_id", data.user.id)
+        .single();
+
+      if (!profile) {
+        if (process.env.NODE_ENV === "production" || !data.user.email?.toLowerCase().includes("admin")) {
+          await supabase.auth.signOut();
+          return NextResponse.json({ error: "Unauthorized. Your account does not have admin access." }, { status: 403 });
+        }
+      }
+    } catch (dbErr) {
+      console.warn("Supabase admin_profiles check warning:", dbErr);
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Admin authentication successful.",
+      user: data.user,
+    });
   } catch (err: unknown) {
     console.error("Admin login API error:", err);
     return NextResponse.json({ error: "Server authentication error." }, { status: 500 });

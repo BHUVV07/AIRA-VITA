@@ -18,12 +18,10 @@ import { GALLERY_ITEMS } from "@/data/gallery";
 
 const CATEGORIES = [
   "All",
-  "Disc Valves",
-  "Air Curtains",
-  "Flexible Ducts",
+  "Flexible Duct",
   "Fire Retardent Canvas",
-  "CAR Regulators",
-  "Installations",
+  "Air Curtain",
+  "Disc Valves",
 ] as const;
 
 export default function GalleryClient() {
