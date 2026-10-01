@@ -137,7 +137,92 @@ export default function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* Quick Actions & System Status */}
+      {/* Quick Administrative Tasks & Workflows */}
+      <div className="bg-gradient-to-r from-sky-900 via-slate-900 to-sky-950 text-white rounded-3xl p-6 sm:p-8 shadow-lg space-y-4 border border-sky-800/40">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-sky-800/60 pb-4">
+          <div>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 block">
+              Early Administrative Tasks
+            </span>
+            <h2 className="text-xl font-bold font-heading text-white">
+              Quick Administrative Workflows
+            </h2>
+          </div>
+          <span className="text-xs text-sky-200 bg-sky-900/60 px-3 py-1 rounded-full border border-sky-700/50 self-start sm:self-auto font-mono">
+            CMS Shortcuts
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+          <Link
+            href="/admin/products/new"
+            className="p-4 rounded-2xl bg-white/10 hover:bg-sky-600/30 border border-white/10 hover:border-sky-400/50 transition-all duration-200 group flex items-start gap-3"
+          >
+            <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-300 group-hover:bg-sky-500 group-hover:text-white transition-colors shrink-0">
+              <Plus className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white group-hover:text-sky-200 transition-colors">
+                Add New Product
+              </h3>
+              <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">
+                Create new air duct, valve, or curtain product items.
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/products"
+            className="p-4 rounded-2xl bg-white/10 hover:bg-sky-600/30 border border-white/10 hover:border-sky-400/50 transition-all duration-200 group flex items-start gap-3"
+          >
+            <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-300 group-hover:bg-sky-500 group-hover:text-white transition-colors shrink-0">
+              <Package className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white group-hover:text-sky-200 transition-colors">
+                Manage Catalogue
+              </h3>
+              <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">
+                Edit product specs, images, descriptions, and statuses.
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/enquiries"
+            className="p-4 rounded-2xl bg-white/10 hover:bg-sky-600/30 border border-white/10 hover:border-sky-400/50 transition-all duration-200 group flex items-start gap-3"
+          >
+            <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-300 group-hover:bg-sky-500 group-hover:text-white transition-colors shrink-0">
+              <Inbox className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white group-hover:text-sky-200 transition-colors">
+                Customer Leads
+              </h3>
+              <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">
+                Review website inquiry messages and RFQ contact leads.
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/categories"
+            className="p-4 rounded-2xl bg-white/10 hover:bg-sky-600/30 border border-white/10 hover:border-sky-400/50 transition-all duration-200 group flex items-start gap-3"
+          >
+            <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-300 group-hover:bg-sky-500 group-hover:text-white transition-colors shrink-0">
+              <Layers className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white group-hover:text-sky-200 transition-colors">
+                Categories & Settings
+              </h3>
+              <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">
+                Organize product categories and update company information.
+              </p>
+            </div>
+          </Link>
+        </div>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Recent Enquiries */}
         <div className="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-6 space-y-6 shadow-sm">
