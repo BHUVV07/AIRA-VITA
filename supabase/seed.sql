@@ -20,7 +20,7 @@ INSERT INTO public.products (
 )
 VALUES
   (
-    'p1000000-0000-0000-0000-000000000001',
+    'a1000000-0000-0000-0000-000000000001',
     'c1000000-0000-0000-0000-000000000001',
     'Fire Retardent Canvas',
     'fire-retardent-canvas',
@@ -35,7 +35,7 @@ VALUES
     true
   ),
   (
-    'p2000000-0000-0000-0000-000000000002',
+    'a2000000-0000-0000-0000-000000000002',
     'c2000000-0000-0000-0000-000000000002',
     'Disc Valves',
     'disc-valves',
@@ -50,7 +50,7 @@ VALUES
     true
   ),
   (
-    'p3000000-0000-0000-0000-000000000003',
+    'a3000000-0000-0000-0000-000000000003',
     'c3000000-0000-0000-0000-000000000003',
     'Air Curtain',
     'air-curtain',
@@ -65,7 +65,7 @@ VALUES
     true
   ),
   (
-    'p4000000-0000-0000-0000-000000000004',
+    'a4000000-0000-0000-0000-000000000004',
     'c4000000-0000-0000-0000-000000000004',
     'Flexible Duct',
     'flexible-duct',
@@ -80,7 +80,7 @@ VALUES
     true
   ),
   (
-    'p5000000-0000-0000-0000-000000000005',
+    'a5000000-0000-0000-0000-000000000005',
     'c5000000-0000-0000-0000-000000000005',
     'CAR',
     'car',
@@ -106,8 +106,8 @@ INSERT INTO public.product_variants (
 VALUES
   -- Fire Retardent Canvas Variants
   (
-    'v1000000-0000-0000-0000-000000000011',
-    'p1000000-0000-0000-0000-000000000001',
+    'b1000000-0000-0000-0000-000000000011',
+    'a1000000-0000-0000-0000-000000000001',
     'Fire Retardent',
     'FR-92',
     'fire-retardent',
@@ -118,8 +118,8 @@ VALUES
     true
   ),
   (
-    'v1000000-0000-0000-0000-000000000012',
-    'p1000000-0000-0000-0000-000000000001',
+    'b1000000-0000-0000-0000-000000000012',
+    'a1000000-0000-0000-0000-000000000001',
     'Fire Resistant',
     'FR-250',
     'fire-resistant',
@@ -132,8 +132,8 @@ VALUES
 
   -- Disc Valves Variants
   (
-    'v2000000-0000-0000-0000-000000000021',
-    'p2000000-0000-0000-0000-000000000002',
+    'b2000000-0000-0000-0000-000000000021',
+    'a2000000-0000-0000-0000-000000000002',
     'Aluminium Powder Coated',
     'ADV-AL',
     'aluminium-powder-coated',
@@ -144,8 +144,8 @@ VALUES
     true
   ),
   (
-    'v2000000-0000-0000-0000-000000000022',
-    'p2000000-0000-0000-0000-000000000002',
+    'b2000000-0000-0000-0000-000000000022',
+    'a2000000-0000-0000-0000-000000000002',
     'Stainless Steel',
     'ADV-SS',
     'stainless-steel',
@@ -156,8 +156,8 @@ VALUES
     true
   ),
   (
-    'v2000000-0000-0000-0000-000000000023',
-    'p2000000-0000-0000-0000-000000000002',
+    'b2000000-0000-0000-0000-000000000023',
+    'a2000000-0000-0000-0000-000000000002',
     'ABS Plastic',
     'TDV',
     'abs-plastic',
@@ -170,8 +170,8 @@ VALUES
 
   -- Air Curtain Variants
   (
-    'v3000000-0000-0000-0000-000000000031',
-    'p3000000-0000-0000-0000-000000000003',
+    'b3000000-0000-0000-0000-000000000031',
+    'a3000000-0000-0000-0000-000000000003',
     'Aluminium Powder Coated',
     'AACA',
     'aluminium-powder-coated',
@@ -182,8 +182,8 @@ VALUES
     true
   ),
   (
-    'v3000000-0000-0000-0000-000000000032',
-    'p3000000-0000-0000-0000-000000000003',
+    'b3000000-0000-0000-0000-000000000032',
+    'a3000000-0000-0000-0000-000000000003',
     'Stainless Steel',
     'AACS',
     'stainless-steel',
@@ -194,8 +194,8 @@ VALUES
     true
   ),
   (
-    'v3000000-0000-0000-0000-000000000033',
-    'p3000000-0000-0000-0000-000000000003',
+    'b3000000-0000-0000-0000-000000000033',
+    'a3000000-0000-0000-0000-000000000003',
     'Industrial Application',
     'AACH',
     'industrial-application',
@@ -208,8 +208,8 @@ VALUES
 
   -- Flexible Duct Variants
   (
-    'v4000000-0000-0000-0000-000000000041',
-    'p4000000-0000-0000-0000-000000000004',
+    'b4000000-0000-0000-0000-000000000041',
+    'a4000000-0000-0000-0000-000000000004',
     'Non-Insulated',
     'FD-NI',
     'non-insulated',
@@ -220,8 +220,8 @@ VALUES
     true
   ),
   (
-    'v4000000-0000-0000-0000-000000000042',
-    'p4000000-0000-0000-0000-000000000004',
+    'b4000000-0000-0000-0000-000000000042',
+    'a4000000-0000-0000-0000-000000000004',
     'Insulated',
     'FD-INS',
     'insulated',
@@ -234,8 +234,8 @@ VALUES
 
   -- CAR Variant
   (
-    'v5000000-0000-0000-0000-000000000051',
-    'p5000000-0000-0000-0000-000000000005',
+    'b5000000-0000-0000-0000-000000000051',
+    'a5000000-0000-0000-0000-000000000005',
     'Standard CAR',
     'CAR 50-200',
     'standard-car',
@@ -251,34 +251,34 @@ ON CONFLICT DO NOTHING;
 INSERT INTO public.product_specifications (product_id, variant_id, spec_name, spec_value, sort_order)
 VALUES
   -- Fire Retardent Canvas
-  ('p1000000-0000-0000-0000-000000000001', 'v1000000-0000-0000-0000-000000000011', 'Temperature Resistance', '92°C', 10),
-  ('p1000000-0000-0000-0000-000000000001', 'v1000000-0000-0000-0000-000000000012', 'Temperature Resistance', '250°C', 20),
-  ('p1000000-0000-0000-0000-000000000001', NULL, 'Fire Safety Standards', 'BS 476 Part 7 Class 1 / ASTM E84 Class A / UL 94 V-0', 30),
-  ('p1000000-0000-0000-0000-000000000001', NULL, 'Flexibility Radius', '0.6 x Diameter', 40),
+  ('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000011', 'Temperature Resistance', '92°C', 10),
+  ('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000012', 'Temperature Resistance', '250°C', 20),
+  ('a1000000-0000-0000-0000-000000000001', NULL, 'Fire Safety Standards', 'BS 476 Part 7 Class 1 / ASTM E84 Class A / UL 94 V-0', 30),
+  ('a1000000-0000-0000-0000-000000000001', NULL, 'Flexibility Radius', '0.6 x Diameter', 40),
 
   -- Disc Valves
-  ('p2000000-0000-0000-0000-000000000002', NULL, 'Available Variants', 'Aluminium Powder Coated, Stainless Steel, ABS Plastic', 10),
-  ('p2000000-0000-0000-0000-000000000002', NULL, 'Mounting', 'Ceiling & Wall Mounting', 20),
-  ('p2000000-0000-0000-0000-000000000002', NULL, 'Airflow Dispersion', '360° Radial Dispersion Pattern', 30),
+  ('a2000000-0000-0000-0000-000000000002', NULL, 'Available Variants', 'Aluminium Powder Coated, Stainless Steel, ABS Plastic', 10),
+  ('a2000000-0000-0000-0000-000000000002', NULL, 'Mounting', 'Ceiling & Wall Mounting', 20),
+  ('a2000000-0000-0000-0000-000000000002', NULL, 'Airflow Dispersion', '360° Radial Dispersion Pattern', 30),
 
   -- Air Curtain
-  ('p3000000-0000-0000-0000-000000000003', NULL, 'Available Variants', 'Aluminium Powder Coated (AACA), Stainless Steel (AACS), Industrial Application (AACH)', 10),
-  ('p3000000-0000-0000-0000-000000000003', NULL, 'Door Height Coverage', '7 ft to 18 ft', 20),
-  ('p3000000-0000-0000-0000-000000000003', NULL, 'Blower Type', 'Centrifugal direct-drive fan wheels', 30),
+  ('a3000000-0000-0000-0000-000000000003', NULL, 'Available Variants', 'Aluminium Powder Coated (AACA), Stainless Steel (AACS), Industrial Application (AACH)', 10),
+  ('a3000000-0000-0000-0000-000000000003', NULL, 'Door Height Coverage', '7 ft to 18 ft', 20),
+  ('a3000000-0000-0000-0000-000000000003', NULL, 'Blower Type', 'Centrifugal direct-drive fan wheels', 30),
 
   -- Flexible Duct
-  ('p4000000-0000-0000-0000-000000000004', NULL, 'Construction', '1 ply Aluminium + 2 ply Polyester (Black)', 10),
-  ('p4000000-0000-0000-0000-000000000004', NULL, 'Nominal Thickness', '45 micron', 20),
-  ('p4000000-0000-0000-0000-000000000004', NULL, 'Diameter Range', '102–508 mm', 30),
-  ('p4000000-0000-0000-0000-000000000004', NULL, 'Operating Temperature', '-30°C to +120°C', 40),
-  ('p4000000-0000-0000-0000-000000000004', NULL, 'Maximum Air Velocity', '30 m/s', 50),
-  ('p4000000-0000-0000-0000-000000000004', NULL, 'Maximum Operating Pressure', '3000 Pa', 60),
+  ('a4000000-0000-0000-0000-000000000004', NULL, 'Construction', '1 ply Aluminium + 2 ply Polyester (Black)', 10),
+  ('a4000000-0000-0000-0000-000000000004', NULL, 'Nominal Thickness', '45 micron', 20),
+  ('a4000000-0000-0000-0000-000000000004', NULL, 'Diameter Range', '102–508 mm', 30),
+  ('a4000000-0000-0000-0000-000000000004', NULL, 'Operating Temperature', '-30°C to +120°C', 40),
+  ('a4000000-0000-0000-0000-000000000004', NULL, 'Maximum Air Velocity', '30 m/s', 50),
+  ('a4000000-0000-0000-0000-000000000004', NULL, 'Maximum Operating Pressure', '3000 Pa', 60),
 
   -- CAR
-  ('p5000000-0000-0000-0000-000000000005', NULL, 'Diameter', '50–200 dia', 10),
-  ('p5000000-0000-0000-0000-000000000005', NULL, 'Pressure Range', '50–250 Pa', 20),
-  ('p5000000-0000-0000-0000-000000000005', NULL, 'Housing Material', 'High-impact Polystyrene', 30),
-  ('p5000000-0000-0000-0000-000000000005', NULL, 'Color', 'Black', 40)
+  ('a5000000-0000-0000-0000-000000000005', NULL, 'Diameter', '50–200 dia', 10),
+  ('a5000000-0000-0000-0000-000000000005', NULL, 'Pressure Range', '50–250 Pa', 20),
+  ('a5000000-0000-0000-0000-000000000005', NULL, 'Housing Material', 'High-impact Polystyrene', 30),
+  ('a5000000-0000-0000-0000-000000000005', NULL, 'Color', 'Black', 40)
 ON CONFLICT DO NOTHING;
 
 -- 5. INSERT SITE SETTINGS
