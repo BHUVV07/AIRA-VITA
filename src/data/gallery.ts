@@ -291,4 +291,26 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     badge: "Stainless Steel Hygienic",
     productSlug: "air-curtain",
   },
+
+  // 6. Site & Cleanroom Installations (23-24)
+  {
+    id: "gal-ac-cr-01",
+    title: "SS Aircurtain In clean room",
+    category: "Air Curtain",
+    description: "Aria Vita stainless steel air curtain installed in ISO 7 cleanroom entry doorway for hygienic barrier protection.",
+    image: "/images/gallery/ss-aircurtain-in-clean-room.png",
+    imageAlt: "SS Aircurtain In clean room",
+    badge: "Cleanroom ISO 7",
+    productSlug: "air-curtain",
+  },
+  {
+    id: "gal-fd-site-01",
+    title: "Flexible duct at site Aria Vita",
+    category: "Flexible Duct",
+    description: "Aria Vita heavy-duty flexible ducts installed along commercial ceiling grid system at site.",
+    image: "/images/gallery/flexible-duct-at-site-aria-vita.png",
+    imageAlt: "Flexible duct at site Aria Vita",
+    badge: "Commercial Site Installation",
+    productSlug: "flexible-duct",
+  },
 ];
