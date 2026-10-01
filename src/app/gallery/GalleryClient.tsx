@@ -22,6 +22,7 @@ const CATEGORIES = [
   "Fire Retardent Canvas",
   "Air Curtain",
   "Disc Valves",
+  "CAR",
 ] as const;
 
 export default function GalleryClient() {

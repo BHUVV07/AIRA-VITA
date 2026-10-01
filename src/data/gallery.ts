@@ -1,7 +1,7 @@
 export interface GalleryItem {
   id: string;
   title: string;
-  category: "Flexible Duct" | "Fire Retardent Canvas" | "Air Curtain" | "Disc Valves";
+  category: "Flexible Duct" | "Fire Retardent Canvas" | "Air Curtain" | "Disc Valves" | "CAR";
   description: string;
   image: string;
   imageAlt: string;
@@ -283,12 +283,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "gal-ac-kt-01",
-    title: "Aria Vita Stainless Steel Commercial Air Curtain",
+    title: "Aluminium Powder Coated Air Curtain",
     category: "Air Curtain",
-    description: "Stainless steel commercial air curtain units installed over kitchen doorways for hygienic barrier protection.",
+    description: "Aluminium powder coated air curtain units installed for commercial and industrial entry barrier protection.",
     image: "/images/gallery/kitchen-commercial-aircurtain-aria-vita.png",
-    imageAlt: "Aria Vita Stainless Steel Commercial Air Curtain",
-    badge: "Stainless Steel Hygienic",
+    imageAlt: "Aluminium Powder Coated Air Curtain",
+    badge: "Aluminium Powder Coated",
     productSlug: "air-curtain",
   },
 
@@ -312,5 +312,37 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     imageAlt: "Flexible duct at site Aria Vita",
     badge: "Commercial Site Installation",
     productSlug: "flexible-duct",
+  },
+
+  // 7. Constant Airflow Regulators (CAR)
+  {
+    id: "gal-car-01",
+    title: "CAR Constant Airflow Regulator",
+    category: "CAR",
+    description: "Aria Vita Constant Airflow Regulator (CAR) automatically balances airflow in HVAC duct systems.",
+    image: "/images/gallery/car-constant-airflow-regulator-01.png",
+    imageAlt: "CAR Constant Airflow Regulator",
+    badge: "Automatic Air Balancing",
+    productSlug: "car",
+  },
+  {
+    id: "gal-car-02",
+    title: "Constant Airflow Regulator (CAR) Assembly",
+    category: "CAR",
+    description: "Self-regulating HVAC volume controller engineered for constant air volume control.",
+    image: "/images/gallery/car-constant-airflow-regulator-02.png",
+    imageAlt: "Constant Airflow Regulator (CAR) Assembly",
+    badge: "50-250 Pa Differential",
+    productSlug: "car",
+  },
+  {
+    id: "gal-car-03",
+    title: "Aria Vita Constant Airflow Regulator (CAR)",
+    category: "CAR",
+    description: "Precision engineered round duct Constant Airflow Regulator for commercial ventilation systems.",
+    image: "/images/gallery/car-constant-airflow-regulator-03.png",
+    imageAlt: "Aria Vita Constant Airflow Regulator (CAR)",
+    badge: "HVAC Air Control",
+    productSlug: "car",
   },
 ];
