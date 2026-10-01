@@ -21,11 +21,18 @@ export async function POST(request: Request) {
     // ONLY in non-production local development mode with placeholder configuration
     if (isDevPlaceholderMode()) {
       if (isDevAdmin) {
-        return NextResponse.json({
+        const response = NextResponse.json({
           success: true,
           message: "Logged in as Admin (Development Mode)",
           user: { email: email.trim(), role: "admin" },
         });
+        response.cookies.set("aria_admin_dev_session", "true", {
+          path: "/",
+          httpOnly: true,
+          sameSite: "lax",
+          maxAge: 60 * 60 * 24 * 7, // 7 days
+        });
+        return response;
       }
       return NextResponse.json({ error: "Invalid email or password." }, { status: 401 });
     }

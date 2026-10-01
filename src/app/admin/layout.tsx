@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -22,10 +22,56 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (pathname === "/admin/login") {
+      setAuthenticated(true);
+      return;
+    }
+
+    async function checkAuth() {
+      try {
+        const res = await fetch("/api/admin/auth/session");
+        const data = await res.json();
+        if (res.ok && data.authenticated) {
+          setAuthenticated(true);
+        } else {
+          setAuthenticated(false);
+          router.replace("/admin/login");
+        }
+      } catch {
+        setAuthenticated(false);
+        router.replace("/admin/login");
+      }
+    }
+
+    checkAuth();
+  }, [pathname, router]);
 
   // If on login page, render full screen without sidebar
   if (pathname === "/admin/login") {
     return <>{children}</>;
+  }
+
+  // Show loading screen while verifying session
+  if (authenticated === null) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+        <div className="p-6 bg-white rounded-3xl border border-slate-200 shadow-lg text-center space-y-4 max-w-sm w-full">
+          <AriaVitaLogo showTagline={false} />
+          <div className="flex items-center justify-center gap-2 text-xs font-bold text-sky-700 pt-2">
+            <span className="w-4 h-4 rounded-full border-2 border-sky-600 border-t-transparent animate-spin inline-block" />
+            <span>Verifying Admin Authorization...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // If unauthenticated, return null while redirecting
+  if (!authenticated) {
+    return null;
   }
 
   const navItems = [
@@ -40,7 +86,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     try {
       await fetch("/api/admin/auth/logout", { method: "POST" });
     } catch {}
-    router.push("/admin/login");
+    setAuthenticated(false);
+    router.replace("/admin/login");
     router.refresh();
   };
 

@@ -5,8 +5,12 @@ export async function POST() {
   try {
     const supabase = await createServerSupabaseClient();
     await supabase.auth.signOut();
-    return NextResponse.json({ success: true, message: "Logged out successfully." });
+    const response = NextResponse.json({ success: true, message: "Logged out successfully." });
+    response.cookies.delete("aria_admin_dev_session");
+    return response;
   } catch {
-    return NextResponse.json({ success: true });
+    const response = NextResponse.json({ success: true });
+    response.cookies.delete("aria_admin_dev_session");
+    return response;
   }
 }

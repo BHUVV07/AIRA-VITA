@@ -1,6 +1,7 @@
 import type { User } from "@supabase/supabase-js";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { cookies } from "next/headers";
 
 export interface AdminUserSession {
   user: User;
@@ -21,11 +22,17 @@ export function isDevPlaceholderMode(): boolean {
  */
 export async function getAdminSession(): Promise<AdminUserSession | null> {
   try {
+    const cookieStore = await cookies();
+    const devCookie = cookieStore.get("aria_admin_dev_session");
+
     if (isDevPlaceholderMode()) {
-      return {
-        user: { id: "dev-admin-id", email: "admin@ariavita.in" } as User,
-        profile: { id: "dev-admin-profile", role: "admin" },
-      };
+      if (devCookie?.value === "true") {
+        return {
+          user: { id: "dev-admin-id", email: "admin@ariavita.in" } as User,
+          profile: { id: "dev-admin-profile", role: "admin" },
+        };
+      }
+      return null;
     }
 
     const supabase = await createServerSupabaseClient();
