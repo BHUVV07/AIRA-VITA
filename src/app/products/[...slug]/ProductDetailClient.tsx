@@ -133,14 +133,26 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
 
               {/* CAR Prominent Key Highlights */}
               {isCAR && (
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <div className="px-4 py-2 bg-white rounded-xl border border-sky-200 shadow-sm font-mono">
-                    <span className="text-[10px] text-slate-400 uppercase font-bold block">DIAMETER</span>
-                    <span className="text-sm font-extrabold text-sky-900">50–200 dia</span>
+                <div className="space-y-3 pt-2">
+                  <div className="flex flex-wrap gap-3">
+                    <div className="px-4 py-2 bg-white rounded-xl border border-sky-200 shadow-sm font-mono">
+                      <span className="text-[10px] text-slate-400 uppercase font-bold block">DIAMETER</span>
+                      <span className="text-sm font-extrabold text-sky-900">50–200 dia</span>
+                    </div>
+                    <div className="px-4 py-2 bg-white rounded-xl border border-sky-200 shadow-sm font-mono">
+                      <span className="text-[10px] text-slate-400 uppercase font-bold block">PRESSURE RANGE</span>
+                      <span className="text-sm font-extrabold text-sky-700">50–250 Pa</span>
+                    </div>
                   </div>
-                  <div className="px-4 py-2 bg-white rounded-xl border border-sky-200 shadow-sm font-mono">
-                    <span className="text-[10px] text-slate-400 uppercase font-bold block">PRESSURE RANGE</span>
-                    <span className="text-sm font-extrabold text-sky-700">50–250 Pa</span>
+
+                  <div>
+                    <Link
+                      href="/constant-airflow-regulator-best-brand-pan-india"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 bg-sky-50 px-3 py-1.5 rounded-lg border border-sky-200 hover:border-sky-300 transition-colors"
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5 text-sky-600" />
+                      <span>Pan-India CAR Technical Sizing & Best Brand Guide &rarr;</span>
+                    </Link>
                   </div>
                 </div>
               )}

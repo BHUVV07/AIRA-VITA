@@ -9,7 +9,7 @@ import { INDUSTRIES } from "@/data/ariaVitaData";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "HVAC Air Distribution for Commercial & Industrial Sectors | Aria Vita",
+  title: "HVAC Air Distribution for Commercial & Industrial Sectors",
   description:
     "Tailored HVAC air distribution and airflow control solutions for commercial buildings, healthcare facilities, data centers, food processing, and manufacturing plants.",
   alternates: {

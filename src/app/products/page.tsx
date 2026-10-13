@@ -3,16 +3,16 @@ import ProductsClient from "./ProductsClient";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "HVAC Air Distribution Products | Aria Vita",
+  title: "HVAC Air Distribution Products South India",
   description:
-    "Explore Aria Vita's HVAC air distribution products including disc valves, air curtains, flexible ducts, fire retardent canvas and CAR airflow control solutions.",
+    "Explore Aria Vita's HVAC air distribution products across South India: Fire Retardent Canvas, Constant Airflow Regulator (CAR), Disc Valves, Air Curtains, and Flexible Ducts. Distributed by Ecosta Systems Bangalore.",
   alternates: {
     canonical: "https://www.ariavita.in/products",
   },
   openGraph: {
-    title: "HVAC Air Distribution Products | Aria Vita",
+    title: "HVAC Air Distribution Products South India | Aria Vita",
     description:
-      "Explore Aria Vita's HVAC air distribution products including disc valves, air curtains, flexible ducts, fire retardent canvas and CAR airflow control solutions.",
+      "Explore Aria Vita's HVAC air distribution products across South India: Fire Retardent Canvas, Constant Airflow Regulator (CAR), Disc Valves, Air Curtains, and Flexible Ducts. Distributed by Ecosta Systems Bangalore.",
     url: "https://www.ariavita.in/products",
     siteName: "Aria Vita",
     type: "website",

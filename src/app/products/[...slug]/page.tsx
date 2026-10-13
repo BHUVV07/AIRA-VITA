@@ -50,11 +50,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       (sc.model && sc.model.toLowerCase() === subSlug.toLowerCase())
   );
 
-  const title = activeSubcategory?.seoTitle
+  const rawTitle = activeSubcategory?.seoTitle
     ? activeSubcategory.seoTitle
     : activeSubcategory
-    ? `${product.name} — ${activeSubcategory.name} | Aria Vita`
-    : product.seoTitle || `${product.name} | Aria Vita`;
+    ? `${product.name} — ${activeSubcategory.name}`
+    : product.seoTitle || product.name;
+
+  // Strip trailing "| Aria Vita" or "| AriaVita" so root template "%s | Aria Vita" appends it cleanly once
+  const cleanTitle = rawTitle
+    .replace(/\s*\|\s*Aria\s*Vita.*$/i, "")
+    .replace(/\s*\|\s*AriaVita.*$/i, "")
+    .trim();
+
+  const fullTitleWithBrand = `${cleanTitle} | Aria Vita`;
 
   const description =
     activeSubcategory?.seoDescription || activeSubcategory?.description || product.seoDescription || product.description;
@@ -70,14 +78,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = `https://www.ariavita.in/products/${slugPath}`;
 
   return {
-    title,
+    title: cleanTitle,
     description,
     keywords,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
+      title: fullTitleWithBrand,
       description,
       url: canonicalUrl,
       type: "website",

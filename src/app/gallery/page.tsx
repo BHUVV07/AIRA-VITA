@@ -4,7 +4,7 @@ import GalleryClient from "./GalleryClient";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Product & Project Installation Gallery | Aria Vita",
+  title: "Product & Project Installation Gallery",
   description:
     "Explore high-performance ARIA VITA HVAC air distribution products, custom engineering variants, and project installations across India. Disc valves, air curtains, flexible ducts, fire retardent canvas, and CAR regulators.",
   alternates: {
