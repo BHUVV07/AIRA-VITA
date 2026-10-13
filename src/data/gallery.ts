@@ -189,12 +189,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "gal-ac-04",
-    title: "Air Curtain – Industrial Air Curtain",
+    title: "Air Curtain – Residential & Commercial",
     category: "Air Curtain",
-    description: "Heavy-duty industrial air curtain unit for factory entrances, loading bays, and cold storage doors.",
+    description: "Energy-efficient residential and commercial air curtain unit engineered for doorways, retail entrances, and office buildings to prevent dust, insects, and air conditioning loss.",
     image: "/images/gallery/PHOTO-2026-09-30-20-29-01.jpg",
-    imageAlt: "Air Curtain – Industrial Air Curtain",
-    badge: "Industrial (AACH)",
+    imageAlt: "Air Curtain – Residential & Commercial Air Curtain",
+    badge: "Residential / Commercial",
     productSlug: "air-curtain",
   },
 
