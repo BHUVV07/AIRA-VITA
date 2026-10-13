@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Search } from "lucide-react";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ProductModal from "@/components/ui/ProductModal";
 import { PRODUCTS, getAllCategories, searchProducts, Product } from "@/data/products";
+import { trackSelectItem } from "@/lib/analytics/gtag";
 
 export default function ProductsClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All Products");
@@ -189,6 +190,15 @@ export default function ProductsClient() {
                                 <Link
                                   key={sub.id}
                                   href={`/products/${product.slug}/${sub.slug}`}
+                                  onClick={() => {
+                                    trackSelectItem({
+                                      item_id: sub.id,
+                                      item_name: `${product.name} - ${sub.name}`,
+                                      item_category: product.category,
+                                      item_list_name: "Products Catalogue Subcategories",
+                                      item_variant: sub.name,
+                                    });
+                                  }}
                                   className="text-[11px] font-semibold text-slate-700 hover:text-sky-700 bg-white px-2.5 py-1 rounded border border-slate-200 transition-colors"
                                 >
                                   {sub.name}
@@ -217,7 +227,15 @@ export default function ProductsClient() {
                       {/* Card Action CTAs */}
                       <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <button
-                          onClick={() => setSelectedProduct(product)}
+                          onClick={() => {
+                            setSelectedProduct(product);
+                            trackSelectItem({
+                              item_id: product.id,
+                              item_name: product.name,
+                              item_category: product.category,
+                              item_list_name: "Products Catalogue Quick Specs",
+                            });
+                          }}
                           className="text-xs font-semibold text-slate-500 hover:text-sky-700 transition-colors cursor-pointer"
                         >
                           Quick Specifications
@@ -225,6 +243,14 @@ export default function ProductsClient() {
 
                         <Link
                           href={`/products/${product.slug}`}
+                          onClick={() => {
+                            trackSelectItem({
+                              item_id: product.id,
+                              item_name: product.name,
+                              item_category: product.category,
+                              item_list_name: "Products Catalogue Card",
+                            });
+                          }}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 group-hover:translate-x-1 transition-all"
                         >
                           <span>Explore Product</span>

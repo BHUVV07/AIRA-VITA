@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Cpu, Sliders, ChevronRight } from "lucide-reac
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProductModal from "@/components/ui/ProductModal";
 import { PRODUCTS, ProductItem } from "@/data/ariaVitaData";
+import { trackSelectItem } from "@/lib/analytics/gtag";
 
 export default function ProductShowcase() {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
@@ -85,7 +86,15 @@ export default function ProductShowcase() {
                 {/* Card Action Links */}
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <button
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      trackSelectItem({
+                        item_id: product.id,
+                        item_name: product.name,
+                        item_category: product.category,
+                        item_list_name: "Homepage Showcase Quick Specs",
+                      });
+                    }}
                     className="text-xs font-semibold text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                   >
                     Quick Specs
@@ -93,6 +102,14 @@ export default function ProductShowcase() {
 
                   <Link
                     href={`/products/${product.slug}`}
+                    onClick={() => {
+                      trackSelectItem({
+                        item_id: product.id,
+                        item_name: product.name,
+                        item_category: product.category,
+                        item_list_name: "Homepage Showcase Card",
+                      });
+                    }}
                     className="inline-flex items-center gap-1 text-sm font-bold text-sky-700 hover:text-sky-800 group-hover:translate-x-1 transition-all"
                   >
                     <span>View Product</span>

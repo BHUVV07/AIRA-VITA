@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Mail, Phone, MapPin, Globe, ShieldCheck, ArrowUpRight } from "lucide-react";
 import AriaVitaLogo from "@/components/ui/AriaVitaLogo";
 import { COMPANY_INFO, PRODUCTS } from "@/data/products";
+import { trackClickEmail, trackClickWhatsApp } from "@/lib/analytics/gtag";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -117,6 +118,7 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-sky-700 shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${COMPANY_INFO.contact.email}`}
+                  onClick={() => trackClickEmail({ location: "footer" })}
                   className="hover:text-slate-900 font-bold transition-colors"
                 >
                   {COMPANY_INFO.contact.email}
@@ -135,6 +137,7 @@ export default function Footer() {
                     href="https://wa.me/919342050097"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackClickWhatsApp({ location: "footer", label: "Footer Contact Desk" })}
                     className="text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
                   >
                     WhatsApp: +91 93420 50097

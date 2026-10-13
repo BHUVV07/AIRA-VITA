@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Sliders, ChevronRight, Wind, Layers } from "lu
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProductModal from "@/components/ui/ProductModal";
 import { PRODUCTS, Product } from "@/data/products";
+import { trackSelectItem } from "@/lib/analytics/gtag";
 
 export default function ProductWorld() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -55,13 +56,29 @@ export default function ProductWorld() {
               <div className="pt-2 flex items-center gap-4">
                 <Link
                   href={`/products/${featuredProduct.slug}`}
+                  onClick={() => {
+                    trackSelectItem({
+                      item_id: featuredProduct.id,
+                      item_name: featuredProduct.name,
+                      item_category: featuredProduct.category,
+                      item_list_name: "Homepage Product World Featured Lead",
+                    });
+                  }}
                   className="px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl inline-flex items-center gap-2 shadow-md transition-colors"
                 >
                   <span>Explore {featuredProduct.name} Specs</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <button
-                  onClick={() => setSelectedProduct(featuredProduct)}
+                  onClick={() => {
+                    setSelectedProduct(featuredProduct);
+                    trackSelectItem({
+                      item_id: featuredProduct.id,
+                      item_name: featuredProduct.name,
+                      item_category: featuredProduct.category,
+                      item_list_name: "Homepage Product World Quick Specs",
+                    });
+                  }}
                   className="text-xs font-bold text-slate-700 hover:text-sky-700 underline underline-offset-4 cursor-pointer"
                 >
                   Quick Specs
@@ -113,7 +130,15 @@ export default function ProductWorld() {
 
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                     <button
-                      onClick={() => setSelectedProduct(prod)}
+                      onClick={() => {
+                        setSelectedProduct(prod);
+                        trackSelectItem({
+                          item_id: prod.id,
+                          item_name: prod.name,
+                          item_category: prod.category,
+                          item_list_name: "Homepage Product World Quick Data Sheet",
+                        });
+                      }}
                       className="text-xs font-semibold text-slate-500 hover:text-sky-700 cursor-pointer"
                     >
                       Quick Data Sheet
@@ -121,6 +146,14 @@ export default function ProductWorld() {
 
                     <Link
                       href={`/products/${prod.slug}`}
+                      onClick={() => {
+                        trackSelectItem({
+                          item_id: prod.id,
+                          item_name: prod.name,
+                          item_category: prod.category,
+                          item_list_name: "Homepage Product World Card",
+                        });
+                      }}
                       className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 hover:text-sky-800 group-hover:translate-x-1 transition-transform"
                     >
                       <span>View Details</span>

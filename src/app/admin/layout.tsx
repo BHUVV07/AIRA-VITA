@@ -13,8 +13,6 @@ import {
   LogOut,
   Menu,
   X,
-  ShieldCheck,
-  Building2,
 } from "lucide-react";
 import AriaVitaLogo from "@/components/ui/AriaVitaLogo";
 
@@ -22,11 +20,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
+  const isLoginPage = pathname === "/admin/login";
+  const [authenticated, setAuthenticated] = useState<boolean | null>(isLoginPage ? true : null);
 
   useEffect(() => {
-    if (pathname === "/admin/login") {
-      setAuthenticated(true);
+    if (isLoginPage) {
       return;
     }
 
@@ -47,7 +45,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }
 
     checkAuth();
-  }, [pathname, router]);
+  }, [pathname, isLoginPage, router]);
 
   // If on login page, render full screen without sidebar
   if (pathname === "/admin/login") {

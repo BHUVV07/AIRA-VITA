@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,6 +15,7 @@ import {
 import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ui/ContactModal";
 import { GALLERY_ITEMS } from "@/data/gallery";
+import { trackViewGallery, trackSelectItem } from "@/lib/analytics/gtag";
 
 const CATEGORIES = [
   "All",
@@ -35,8 +36,25 @@ export default function GalleryClient() {
     return item.category === selectedCategory;
   });
 
+  // Track gallery page view and category filter changes
+  useEffect(() => {
+    trackViewGallery({
+      category: selectedCategory,
+      item_count: filteredItems.length,
+    });
+  }, [selectedCategory, filteredItems.length]);
+
   const openLightbox = (index: number) => {
     setActiveItemIndex(index);
+    const item = filteredItems[index];
+    if (item) {
+      trackSelectItem({
+        item_id: item.id,
+        item_name: item.title,
+        item_category: item.category,
+        item_list_name: "Gallery Grid",
+      });
+    }
   };
 
   const closeLightbox = () => {

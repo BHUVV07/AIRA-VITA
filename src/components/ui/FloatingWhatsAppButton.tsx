@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { getDirectWhatsAppUrl } from "@/utils/whatsapp";
+import { trackClickWhatsApp } from "@/lib/analytics/gtag";
 
 export default function FloatingWhatsAppButton() {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export default function FloatingWhatsAppButton() {
         href={getDirectWhatsAppUrl()}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackClickWhatsApp({ location: "floating_desk", label: "WhatsApp Desk" })}
         className="fixed bottom-6 right-6 z-50 group flex items-center gap-2.5 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-emerald-300"
         aria-label="Chat with ARIA VITA on WhatsApp"
       >

@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/JsonLd";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -103,6 +104,7 @@ export default function RootLayout({
         <WebSiteSchema />
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-sky-100 selection:text-sky-900">
+        <GoogleAnalytics />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

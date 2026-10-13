@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { X, CheckCircle2, Building, ShieldCheck, MessageCircle } from "lucide-react";
 import { COMPANY_INFO, PRODUCTS } from "@/data/ariaVitaData";
 import { generateWhatsAppEnquiryUrl } from "@/utils/whatsapp";
+import { trackClickWhatsApp, trackFormStart, trackGenerateLead } from "@/lib/analytics/gtag";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -28,6 +29,17 @@ export default function ContactModal({
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const formStartedRef = useRef(false);
+
+  const handleFormInteract = () => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      trackFormStart({
+        form_id: "contact_modal",
+        form_name: "Technical Quote & RFQ Modal",
+      });
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -41,6 +53,23 @@ export default function ContactModal({
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+
+      // Track successful lead generation only after backend confirms success
+      if (res.ok && data.success) {
+        trackGenerateLead({
+          form_id: "contact_modal",
+          lead_type: "product_enquiry",
+          product_name: formData.product,
+          project_type: formData.projectType,
+        });
+      }
+
+      // Track WhatsApp redirection click
+      trackClickWhatsApp({
+        location: "contact_modal_submit",
+        label: "WhatsApp RFQ Redirection",
+      });
+
       const targetUrl = data.whatsappUrl || generateWhatsAppEnquiryUrl(formData);
 
       if (typeof window !== "undefined") {
@@ -51,6 +80,10 @@ export default function ContactModal({
       console.error("Enquiry submission error:", err);
       // Fallback direct WhatsApp open
       const waUrl = generateWhatsAppEnquiryUrl(formData);
+      trackClickWhatsApp({
+        location: "contact_modal_fallback",
+        label: "WhatsApp Fallback Open",
+      });
       if (typeof window !== "undefined") {
         window.open(waUrl, "_blank", "noopener,noreferrer");
       }
@@ -109,6 +142,12 @@ export default function ContactModal({
                   href={generateWhatsAppEnquiryUrl(formData)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackClickWhatsApp({
+                      location: "contact_modal_success_dialog",
+                      label: "Open WhatsApp Chat",
+                    })
+                  }
                   className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md transition-all"
                 >
                   <MessageCircle className="w-4 h-4" />
@@ -130,7 +169,7 @@ export default function ContactModal({
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} onFocusCapture={handleFormInteract} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">

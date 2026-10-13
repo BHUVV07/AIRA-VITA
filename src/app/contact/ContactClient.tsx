@@ -1,9 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Mail, Phone, MapPin, Globe, ShieldCheck, CheckCircle2, MessageCircle } from "lucide-react";
 import { COMPANY_INFO, PRODUCTS } from "@/data/ariaVitaData";
 import { generateWhatsAppEnquiryUrl } from "@/utils/whatsapp";
+import {
+  trackClickEmail,
+  trackClickWhatsApp,
+  trackFormStart,
+  trackGenerateLead,
+} from "@/lib/analytics/gtag";
 
 export default function ContactClient() {
   const [formData, setFormData] = useState({
@@ -18,6 +24,17 @@ export default function ContactClient() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const formStartedRef = useRef(false);
+
+  const handleFormInteract = () => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      trackFormStart({
+        form_id: "contact_page_form",
+        form_name: "Contact Page Specification Form",
+      });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +47,23 @@ export default function ContactClient() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+
+      // Track successful lead generation only after backend confirms success
+      if (res.ok && data.success) {
+        trackGenerateLead({
+          form_id: "contact_page_form",
+          lead_type: "product_enquiry",
+          product_name: formData.product,
+          project_type: formData.projectType,
+        });
+      }
+
+      // Track WhatsApp click
+      trackClickWhatsApp({
+        location: "contact_page_submit",
+        label: "WhatsApp Technical Enquiry Submit",
+      });
+
       const whatsappUrl = data.whatsappUrl || generateWhatsAppEnquiryUrl(formData);
 
       setSubmitted(true);
@@ -39,6 +73,10 @@ export default function ContactClient() {
     } catch (err) {
       console.error("Enquiry error:", err);
       const whatsappUrl = generateWhatsAppEnquiryUrl(formData);
+      trackClickWhatsApp({
+        location: "contact_page_fallback",
+        label: "WhatsApp Fallback Submit",
+      });
       setSubmitted(true);
       if (typeof window !== "undefined") {
         window.open(whatsappUrl, "_blank", "noopener,noreferrer");
@@ -97,7 +135,7 @@ export default function ContactClient() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
+              <form onSubmit={handleSubmit} onFocusCapture={handleFormInteract} className="space-y-4 text-xs font-sans">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
@@ -228,7 +266,11 @@ export default function ContactClient() {
                     <span className="text-xs text-slate-500 font-semibold uppercase block">
                       Email Address:
                     </span>
-                    <a href={`mailto:${COMPANY_INFO.contact.email}`} className="font-bold text-slate-900 hover:text-sky-700 transition-colors">
+                    <a
+                      href={`mailto:${COMPANY_INFO.contact.email}`}
+                      onClick={() => trackClickEmail({ location: "contact_page" })}
+                      className="font-bold text-slate-900 hover:text-sky-700 transition-colors"
+                    >
                       {COMPANY_INFO.contact.email}
                     </a>
                   </div>

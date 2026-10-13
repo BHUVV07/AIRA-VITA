@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,15 +9,13 @@ import {
   CheckCircle2,
   Sliders,
   Mail,
-  Wind,
   Settings2,
-  Clock,
-  PhoneCall,
   Thermometer,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ui/ContactModal";
 import { getProductBySlug, PRODUCTS, COMPANY_INFO, ProductSubcategory } from "@/data/products";
+import { trackViewItem, trackSelectItem } from "@/lib/analytics/gtag";
 
 interface ProductDetailClientProps {
   mainSlug: string;
@@ -51,7 +49,21 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
 
   const [activeSubIdx, setActiveSubIdx] = useState(initialSubIdx);
   const [modalOpen, setModalOpen] = useState(false);
-  const [carMode, setCarMode] = useState<"blowing" | "extraction">("blowing");
+
+  const subcategories = product?.subcategories || [];
+  const activeSubcategory: ProductSubcategory | undefined = subcategories[activeSubIdx];
+
+  // Track product / variant view before any early returns
+  useEffect(() => {
+    if (product) {
+      trackViewItem({
+        item_id: activeSubcategory?.id || product.id,
+        item_name: activeSubcategory ? `${product.name} - ${activeSubcategory.name}` : product.name,
+        item_category: product.category,
+        item_variant: activeSubcategory?.name,
+      });
+    }
+  }, [product, activeSubcategory]);
 
   if (!product) {
     return (
@@ -67,9 +79,6 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
 
   const isCAR = product.slug === "car";
   const isFireCanvas = product.slug === "fire-retardent-canvas";
-
-  const subcategories = product.subcategories || [];
-  const activeSubcategory: ProductSubcategory | undefined = subcategories[activeSubIdx];
 
   const activeSpecs = activeSubcategory?.specifications || product.specifications;
   const activeFeatures = activeSubcategory?.features || product.features || [];
@@ -221,7 +230,16 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
                 return (
                   <button
                     key={sub.id}
-                    onClick={() => setActiveSubIdx(idx)}
+                    onClick={() => {
+                      setActiveSubIdx(idx);
+                      trackSelectItem({
+                        item_id: sub.id,
+                        item_name: `${product.name} - ${sub.name}`,
+                        item_category: product.category,
+                        item_list_name: "Product Detail Variant Selector",
+                        item_variant: sub.name,
+                      });
+                    }}
                     className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all shrink-0 text-left cursor-pointer border ${
                       isSelected
                         ? "bg-sky-600 border-sky-600 text-white shadow-md ring-2 ring-sky-300"
@@ -423,6 +441,14 @@ export default function ProductDetailClient({ mainSlug, subSlug }: ProductDetail
               <Link
                 key={rel.id}
                 href={`/products/${rel.slug}`}
+                onClick={() => {
+                  trackSelectItem({
+                    item_id: rel.id,
+                    item_name: rel.name,
+                    item_category: rel.category,
+                    item_list_name: "Related Products",
+                  });
+                }}
                 className="group bg-white p-4 rounded-2xl border border-slate-200 hover:border-sky-300 shadow-xs hover:shadow-md transition-all flex items-center gap-3"
               >
                 <div className="relative w-16 h-16 rounded-xl bg-slate-50 overflow-hidden shrink-0 border border-slate-200">
