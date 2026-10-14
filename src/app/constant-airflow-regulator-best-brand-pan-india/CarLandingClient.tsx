@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ui/ContactModal";
-import { CAR_LANDING_PAGE_DATA } from "@/lib/seo/car-landing-page";
+import { CAR_PAGE_CONTENT } from "@/lib/seo/car-landing-page";
 import { SEO_SITE_CONFIG } from "@/lib/seo/site-config";
 import { trackClickWhatsApp, trackSelectItem } from "@/lib/analytics/gtag";
 
@@ -65,12 +65,12 @@ export default function CarLandingClient() {
 
               {/* Client-Provided Primary H1 */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 leading-[1.15] tracking-tight">
-                {CAR_LANDING_PAGE_DATA.clientH1}
+                {CAR_PAGE_CONTENT.clientH1}
               </h1>
 
               {/* Client-Provided Secondary H2 */}
               <h2 className="text-lg sm:text-xl font-semibold text-sky-800 leading-snug">
-                {CAR_LANDING_PAGE_DATA.clientH2}
+                {CAR_PAGE_CONTENT.clientH2}
               </h2>
 
               <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
@@ -131,8 +131,8 @@ export default function CarLandingClient() {
                 <div className="relative w-full aspect-square max-w-md mx-auto">
                   <Image
                     src="/images/products/car.png"
-                    alt={CAR_LANDING_PAGE_DATA.imageAltTexts.descriptivePrimaryAlt}
-                    title={CAR_LANDING_PAGE_DATA.imageAltTexts.primaryProductImage}
+                    alt={CAR_PAGE_CONTENT.imageAltTexts.descriptivePrimaryAlt}
+                    title={CAR_PAGE_CONTENT.imageAltTexts.primaryProductImage}
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 500px"
@@ -164,7 +164,7 @@ export default function CarLandingClient() {
                 Automatic CFM Control with Zero Duct Commissioning Overhead
               </h2>
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                {CAR_LANDING_PAGE_DATA.clientSuppliedOverview}
+                {CAR_PAGE_CONTENT.clientSuppliedOverview}
               </p>
             </div>
           </div>
@@ -255,31 +255,31 @@ export default function CarLandingClient() {
                   <tbody className="divide-y divide-slate-200 text-xs sm:text-sm">
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Diameter Range</td>
-                      <td className="py-3 px-5 text-sky-700 font-bold">{CAR_LANDING_PAGE_DATA.specifications.diameterRange}</td>
+                      <td className="py-3 px-5 text-sky-700 font-bold">{CAR_PAGE_CONTENT.specifications.diameterRange}</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Pressure Operating Range</td>
-                      <td className="py-3 px-5 text-sky-700 font-bold">{CAR_LANDING_PAGE_DATA.specifications.pressureRange}</td>
+                      <td className="py-3 px-5 text-sky-700 font-bold">{CAR_PAGE_CONTENT.specifications.pressureRange}</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Power Requirement</td>
-                      <td className="py-3 px-5">{CAR_LANDING_PAGE_DATA.specifications.activation}</td>
+                      <td className="py-3 px-5">{CAR_PAGE_CONTENT.specifications.activation}</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Airflow Precision</td>
-                      <td className="py-3 px-5">{CAR_LANDING_PAGE_DATA.specifications.airflowPrecision}</td>
+                      <td className="py-3 px-5">{CAR_PAGE_CONTENT.specifications.airflowPrecision}</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Housing & Construction</td>
-                      <td className="py-3 px-5">{CAR_LANDING_PAGE_DATA.specifications.bodyMaterial}</td>
+                      <td className="py-3 px-5">{CAR_PAGE_CONTENT.specifications.bodyMaterial}</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Installation Orientation</td>
-                      <td className="py-3 px-5">{CAR_LANDING_PAGE_DATA.specifications.installation}</td>
+                      <td className="py-3 px-5">{CAR_PAGE_CONTENT.specifications.installation}</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-5 font-semibold text-slate-900">Maintenance Cycle</td>
-                      <td className="py-3 px-5">{CAR_LANDING_PAGE_DATA.specifications.maintenance}</td>
+                      <td className="py-3 px-5">{CAR_PAGE_CONTENT.specifications.maintenance}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -305,7 +305,7 @@ export default function CarLandingClient() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CAR_LANDING_PAGE_DATA.clientFeatures.map((feat, idx) => (
+            {CAR_PAGE_CONTENT.clientFeatures.map((feat, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-2 hover:border-sky-300 transition-colors">
                 <div className="flex items-center gap-2 text-sky-600">
                   <CheckCircle2 className="w-5 h-5 shrink-0" />
@@ -382,23 +382,12 @@ export default function CarLandingClient() {
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 leading-tight">
-                Ready Stock & Direct Project Dispatch Across 40+ Cities
+                Ready Stock & Direct Project Dispatch
               </h2>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
-                Aria Vita Constant Airflow Regulators are stocked in Bangalore and dispatched nationwide by authorized distributor <strong>Ecosta Systems</strong>. Fast delivery to site locations across Bangalore, Chennai, Hyderabad, Kochi, Mumbai, Delhi, Pune, Kolkata, Ahmedabad, and beyond.
+                Aria Vita Constant Airflow Regulators are stocked in Bangalore and dispatched nationwide by authorized distributor <strong>Ecosta Systems</strong>. Fast delivery, technical sizing support, and verified factory submittals across Indian project locations.
               </p>
-
-              <div className="flex flex-wrap gap-2 text-[11px] text-slate-600">
-                {CAR_LANDING_PAGE_DATA.panIndiaCities.slice(0, 16).map((city, idx) => (
-                  <span key={idx} className="px-2.5 py-1 bg-sky-50 rounded-md border border-sky-200/60 font-medium">
-                    {city}
-                  </span>
-                ))}
-                <span className="px-2.5 py-1 bg-slate-100 rounded-md text-slate-700 font-bold">
-                  + 24 more cities
-                </span>
-              </div>
 
               <div className="pt-2 flex flex-wrap gap-4">
                 <Button
@@ -472,7 +461,7 @@ export default function CarLandingClient() {
           </div>
 
           <div className="space-y-4">
-            {CAR_LANDING_PAGE_DATA.faqs.map((faq, index) => {
+            {CAR_PAGE_CONTENT.faqs.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
                 <div

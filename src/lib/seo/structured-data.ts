@@ -67,17 +67,5 @@ export function buildCarProductSchema() {
       name: "Aria Vita™",
       url: SEO_SITE_CONFIG.canonicalBase,
     },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "INR",
-      priceValidUntil: "2027-12-31",
-      itemCondition: "https://schema.org/NewCondition",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: SEO_SITE_CONFIG.distributor.name,
-        url: SEO_SITE_CONFIG.canonicalBase,
-      },
-    },
   };
 }

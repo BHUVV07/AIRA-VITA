@@ -5,8 +5,6 @@ import ProductWorld from "@/components/sections/ProductWorld";
 import AboutIntroduction from "@/components/sections/AboutIntroduction";
 import EngineeringPrinciples from "@/components/sections/EngineeringPrinciples";
 import IndustriesPreview from "@/components/sections/IndustriesPreview";
-import AirflowAssistant from "@/components/sections/AirflowAssistant";
-import SouthIndiaCoverage from "@/components/sections/SouthIndiaCoverage";
 import DistributorSection from "@/components/sections/DistributorSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import { HOMEPAGE_MONEY_KEYWORDS } from "@/lib/seo/homepage-keywords";
@@ -38,8 +36,6 @@ export default function Home() {
       <AboutIntroduction />
       <EngineeringPrinciples />
       <IndustriesPreview />
-      <AirflowAssistant />
-      <SouthIndiaCoverage />
       <DistributorSection />
       <FinalCTASection />
     </>

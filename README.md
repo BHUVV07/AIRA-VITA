@@ -98,7 +98,7 @@ npm run start
 │   │   └── contact/                # Engineering project enquiry & WhatsApp
 │   ├── components/
 │   │   ├── layout/                 # Navbar, Footer
-│   │   ├── sections/               # Hero, ProductWorld, AirflowAssistant, etc.
+│   │   ├── sections/               # Hero, ProductWorld, DistributorSection, etc.
 │   │   └── ui/                     # AriaVitaLogo, ContactModal, FloatingWhatsAppButton, etc.
 │   ├── data/
 │   │   ├── ariaVitaData.ts         # Central specifications & data store

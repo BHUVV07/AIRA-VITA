@@ -79,16 +79,10 @@ export function ProductSchema({ product, subcategory }: { product: Product; subc
       "@type": "Brand",
       name: "Aria Vita™",
     },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "INR",
-      priceValidUntil: "2027-12-31",
-      itemCondition: "https://schema.org/NewCondition",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: "Ecosta Systems",
-      },
+    manufacturer: {
+      "@type": "Organization",
+      name: "Aria Vita™",
+      url: "https://www.ariavita.in",
     },
   };
 

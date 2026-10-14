@@ -4,17 +4,9 @@
  * Preserves all client-provided titles, headings, keyword sets, FAQs, and content.
  */
 
-export const CAR_LANDING_PAGE_DATA = {
-  route: "/constant-airflow-regulator-best-brand-pan-india",
-  clientTitle: "Constant Airflow Regulator Best Brand Pan India | CAR Supplier",
+export const CAR_PAGE_CONTENT = {
   clientH1: "India's Best Brand for Constant Airflow Regulators (CAR) - Aria Vita - Pan India",
   clientH2: "Best Brand Constant Airflow Regulator Manufacturer & Supplier Pan India - No Power Required",
-
-  metaDescription:
-    "Aria Vita Constant Airflow Regulator (CAR) automatically balances duct airflow with zero power required. Pressure independent 50–250 Pa, 50–200 mm diameter. Pan-India supply via Ecosta Systems Bangalore.",
-
-  clientSuppliedMetaDescription:
-    "Constant Airflow Regulator Best Brand Pan India | Aria Vita CAR - Pressure Independent, No Power Required, Best Price Best Quality | Pan India Supply Bangalore Chennai Hyderabad Kochi Mumbai Delhi | Ecosta Systems 9342050099",
 
   specifications: {
     diameterRange: "50–200 mm",
@@ -27,14 +19,72 @@ export const CAR_LANDING_PAGE_DATA = {
   },
 
   clientFeatures: [
-    { title: "Best Brand CAR — Made in India", desc: "Engineered for Indian commercial, hospital, and cleanroom HVAC projects.", verified: false, flag: "Made in India origin certification pending client sign-off." },
-    { title: "Pressure Independent — No Power Required", desc: "Mechanical silicone bulb adjusts aerodynamically to duct pressure changes between 50 and 250 Pa.", verified: true },
-    { title: "Automatically Maintains Set CFM", desc: "Maintains constant volume regardless of upstream or downstream damper movements.", verified: true },
-    { title: "Reduces Commissioning Time — Saves Energy", desc: "Eliminates tedious manual damper balancing and prevents energy waste from over-ventilation.", verified: true },
-    { title: "Accurate CFM Control — Low Maintenance", desc: "Self-cleaning aerodynamic profile with zero electronic sensors to service.", verified: true },
-    { title: "Ideal for Cleanroom, Lab, Hospital, Office, VAV", desc: "Precision isolation airflow control across sterile and commercial zones.", verified: true },
-    { title: "Pan India Stock — Fast Delivery", desc: "Dispatched from central Bangalore distribution hub by Ecosta Systems.", verified: true },
+    { title: "Best Brand CAR — Engineered for India", desc: "Engineered for Indian commercial, hospital, and cleanroom HVAC projects." },
+    { title: "Pressure Independent — No Power Required", desc: "Mechanical silicone bulb adjusts aerodynamically to duct pressure changes between 50 and 250 Pa." },
+    { title: "Automatically Maintains Set CFM", desc: "Maintains constant volume regardless of upstream or downstream damper movements." },
+    { title: "Reduces Commissioning Time — Saves Energy", desc: "Eliminates tedious manual damper balancing and prevents energy waste from over-ventilation." },
+    { title: "Accurate CFM Control — Low Maintenance", desc: "Self-cleaning aerodynamic profile with zero electronic sensors to service." },
+    { title: "Ideal for Cleanroom, Lab, Hospital, Office, VAV", desc: "Precision isolation airflow control across sterile and commercial zones." },
+    { title: "Pan India Stock — Fast Delivery", desc: "Dispatched from central Bangalore distribution hub by Ecosta Systems." },
   ],
+
+  clientSuppliedOverview:
+    "Aria Vita is India's Best Brand for Constant Airflow Regulators (CAR) - Precision Air. Perfect Comfort. Our CAR automatically maintains set CFM regardless of duct pressure fluctuations - No Power Required, Pressure Independent, Low Maintenance, Accurate CFM Control. As best brand CAR manufacturer in India, we supply premium quality constant airflow regulators Pan India via authorized distributor Ecosta Systems, Bangalore. Ideal for offices, cleanrooms, laboratories, hospitals, pharma, data centers, VAV systems - reducing commissioning time and saving energy. Best brand, best quality, best price Pan India.",
+
+  faqs: [
+    {
+      question: "Which is best brand for constant airflow regulator in India?",
+      clientAnswer:
+        "Aria Vita is best brand for constant airflow regulator Pan India - premium quality, best price, no power required.",
+      editorialAnswer:
+        "Aria Vita™ provides precision mechanical Constant Airflow Regulators (CAR) engineered for pressure-independent ventilation control (50–250 Pa) across Indian commercial, healthcare, and industrial projects. Designed for operation with zero electrical power, Aria Vita CAR devices are supplied Pan-India with full technical sizing support through authorized distributor Ecosta Systems, Bangalore.",
+    },
+    {
+      question: "Where to buy constant airflow regulator Pan India?",
+      clientAnswer:
+        "Ecosta Systems Bangalore is authorized Pan India distributor for Aria Vita best brand CAR - supply across 40+ cities.",
+      editorialAnswer:
+        "Aria Vita Constant Airflow Regulators are stocked and distributed Pan-India by authorized distributor Ecosta Systems, Bangalore. Direct project dispatches, submittal documentation, and ready site inventory are coordinated across major Indian commercial hubs including Bangalore, Chennai, Hyderabad, Kochi, Mumbai, Delhi, Pune, and Kolkata.",
+    },
+    {
+      question: "What is price of best brand CAR?",
+      clientAnswer:
+        "Best brand CAR price Pan India - contact Ecosta Systems 9342050099 for best price.",
+      editorialAnswer:
+        "Constant Airflow Regulator pricing depends on duct diameter sizing (50 mm to 200 mm), pressure rating (50–250 Pa), and project quantities. For official B2B wholesale quotations, project rates, and technical submittal data sheets, contact Ecosta Systems at +91 93420 50097 / 9342050099 or submit an online RFQ enquiry.",
+    },
+    {
+      question: "How does a Constant Airflow Regulator work without electricity?",
+      editorialAnswer:
+        "A Constant Airflow Regulator operates purely on aerodynamic mechanical principles. Inside the cylindrical casing, a calibrated silicone bulb expands or contracts in direct response to static pressure changes in the duct (50 to 250 Pa). As duct pressure increases, the regulator automatically adjusts the free area, maintaining constant CFM without motorized dampers or wiring.",
+    },
+    {
+      question: "What duct diameters are available for Aria Vita CAR?",
+      editorialAnswer:
+        "Aria Vita CAR models support standard circular duct diameters ranging from 50 mm up to 200 mm. They fit directly into spiral ducting, flexible duct take-offs, or rigid sleeve collars in supply and exhaust HVAC systems.",
+    },
+  ],
+
+  imageAltTexts: {
+    primaryProductImage: "Constant-airflow-regulator-best-brand-Pan-India-Aria-Vita.jpg",
+    descriptivePrimaryAlt: "Aria Vita Constant Airflow Regulator CAR precision mechanical self-balancing airflow valve Pan India",
+    manufacturerImage: "Best-brand-CAR-manufacturer-India-Aria-Vita-Ecosta-Systems.jpg",
+    descriptiveManufacturerAlt: "Aria Vita CAR constant air volume regulator distributed Pan India by Ecosta Systems Bangalore",
+  },
+} as const;
+
+/**
+ * Server-Side SEO Metadata & Keyword Research Dataset
+ * Used exclusively by server components (page.tsx metadata generation).
+ * Kept out of client-side JavaScript bundles.
+ */
+export const CAR_SEO_METADATA = {
+  route: "/constant-airflow-regulator-best-brand-pan-india",
+  clientTitle: "Constant Airflow Regulator Best Brand Pan India | CAR Supplier",
+  metaDescription:
+    "Aria Vita Constant Airflow Regulator (CAR) automatically balances duct airflow with zero power required. Pressure independent 50–250 Pa, 50–200 mm diameter. Pan-India supply via Ecosta Systems Bangalore.",
+  clientSuppliedMetaDescription:
+    "Constant Airflow Regulator Best Brand Pan India | Aria Vita CAR - Pressure Independent, No Power Required, Best Price Best Quality | Pan India Supply Bangalore Chennai Hyderabad Kochi Mumbai Delhi | Ecosta Systems 9342050099",
 
   // Section A: Best Brand Main Keywords
   mainBrandKeywords: [
@@ -115,51 +165,12 @@ export const CAR_LANDING_PAGE_DATA = {
     "Made in India best brand CAR vs imported",
     "Indian best brand CAR vs foreign brand",
   ],
+} as const;
 
-  // Section G: Client Content Statement
-  clientSuppliedOverview:
-    "Aria Vita is India's Best Brand for Constant Airflow Regulators (CAR) - Precision Air. Perfect Comfort. Our CAR automatically maintains set CFM regardless of duct pressure fluctuations - No Power Required, Pressure Independent, Low Maintenance, Accurate CFM Control. As best brand CAR manufacturer in India, we supply premium quality constant airflow regulators Pan India across Bangalore, Chennai, Hyderabad, Kochi, Mumbai, Delhi, Pune, Kolkata, Ahmedabad and 40+ cities via authorized distributor Ecosta Systems, Bangalore. Ideal for offices, cleanrooms, laboratories, hospitals, pharma, data centers, VAV systems - reducing commissioning time and saving energy. Best brand, best quality, best price Pan India.",
-
-  // Section I: Client FAQ Questions
-  faqs: [
-    {
-      question: "Which is best brand for constant airflow regulator in India?",
-      clientAnswer:
-        "Aria Vita is best brand for constant airflow regulator Pan India - premium quality, best price, no power required.",
-      editorialAnswer:
-        "Aria Vita™ provides precision mechanical Constant Airflow Regulators (CAR) engineered for pressure-independent ventilation control (50–250 Pa) across Indian commercial, healthcare, and industrial projects. Designed for operation with zero electrical power, Aria Vita CAR devices are supplied Pan-India with full technical sizing support through authorized distributor Ecosta Systems, Bangalore.",
-    },
-    {
-      question: "Where to buy constant airflow regulator Pan India?",
-      clientAnswer:
-        "Ecosta Systems Bangalore is authorized Pan India distributor for Aria Vita best brand CAR - supply across 40+ cities.",
-      editorialAnswer:
-        "Aria Vita Constant Airflow Regulators are stocked and distributed Pan-India by authorized distributor Ecosta Systems, Bangalore. Direct project dispatches, submittal documentation, and ready site inventory are coordinated across 40+ cities including Bangalore, Chennai, Hyderabad, Kochi, Mumbai, Delhi, Pune, and Kolkata.",
-    },
-    {
-      question: "What is price of best brand CAR?",
-      clientAnswer:
-        "Best brand CAR price Pan India - contact Ecosta Systems 9342050099 for best price.",
-      editorialAnswer:
-        "Constant Airflow Regulator pricing depends on duct diameter sizing (50 mm to 200 mm), pressure rating (50–250 Pa), and project quantities. For official B2B wholesale quotations, project rates, and technical submittal data sheets, contact Ecosta Systems at +91 93420 50097 / 9342050099 or submit an online RFQ enquiry.",
-    },
-    {
-      question: "How does a Constant Airflow Regulator work without electricity?",
-      editorialAnswer:
-        "A Constant Airflow Regulator operates purely on aerodynamic mechanical principles. Inside the cylindrical casing, a calibrated silicone bulb expands or contracts in direct response to static pressure changes in the duct (50 to 250 Pa). As duct pressure increases, the regulator automatically adjusts the free area, maintaining constant CFM without motorized dampers or wiring.",
-    },
-    {
-      question: "What duct diameters are available for Aria Vita CAR?",
-      editorialAnswer:
-        "Aria Vita CAR models support standard circular duct diameters ranging from 50 mm up to 200 mm. They fit directly into spiral ducting, flexible duct take-offs, or rigid sleeve collars in supply and exhaust HVAC systems.",
-    },
-  ],
-
-  // Section J: Image Alt Texts
-  imageAltTexts: {
-    primaryProductImage: "Constant-airflow-regulator-best-brand-Pan-India-Aria-Vita.jpg",
-    descriptivePrimaryAlt: "Aria Vita Constant Airflow Regulator CAR precision mechanical self-balancing airflow valve Pan India",
-    manufacturerImage: "Best-brand-CAR-manufacturer-India-Aria-Vita-Ecosta-Systems.jpg",
-    descriptiveManufacturerAlt: "Aria Vita CAR constant air volume regulator distributed Pan India by Ecosta Systems Bangalore",
-  },
+/**
+ * Combined dataset exported for backwards compatibility.
+ */
+export const CAR_LANDING_PAGE_DATA = {
+  ...CAR_SEO_METADATA,
+  ...CAR_PAGE_CONTENT,
 } as const;
